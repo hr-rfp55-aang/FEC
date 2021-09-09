@@ -6,17 +6,16 @@ class Review extends React.Component {
 
     this.state = {
 
-    }
+    };
   }
-
 
   render() {
-    return(
-      <div>Reviews
+    return (
+      <div>
+        Reviews
       </div>
-    )
+    );
   }
 }
-
 
 export default Review;

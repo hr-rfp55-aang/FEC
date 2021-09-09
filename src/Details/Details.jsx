@@ -6,17 +6,16 @@ class Details extends React.Component {
 
     this.state = {
 
-    }
+    };
   }
-
 
   render() {
-    return(
-      <div>Details
+    return (
+      <div>
+        Details
       </div>
-    )
+    );
   }
 }
-
 
 export default Details;

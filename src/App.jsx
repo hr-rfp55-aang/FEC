@@ -1,8 +1,9 @@
-import React from 'react'
-import Details from './Details/Details.jsx'
-import Questions from './Questions/Questions.jsx'
-import Reviews from './Reviews/Reviews.jsx'
-import Related from './Related/Related.jsx'
+/* eslint-disable import/extensions */
+import React from 'react';
+import Details from './Details/Details.jsx';
+import Questions from './Questions/Questions.jsx';
+import Reviews from './Reviews/Reviews.jsx';
+import Related from './Related/Related.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,23 +11,19 @@ class App extends React.Component {
 
     this.state = {
 
-    }
+    };
   }
 
-
   render() {
-    return(
+    return (
       <div>
         <Details />
         <Related />
         <Questions />
         <Reviews />
       </div>
-    )
+    );
   }
 }
 
-
-
-
-export default App
+export default App;

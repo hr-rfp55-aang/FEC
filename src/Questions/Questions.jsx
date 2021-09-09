@@ -6,15 +6,15 @@ class Questions extends React.Component {
 
     this.state = {
 
-    }
+    };
   }
 
-
   render() {
-    return(
-      <div>Questions
+    return (
+      <div>
+        Questions
       </div>
-    )
+    );
   }
 }
 

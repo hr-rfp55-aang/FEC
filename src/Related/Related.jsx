@@ -6,17 +6,16 @@ class Related extends React.Component {
 
     this.state = {
 
-    }
+    };
   }
-
 
   render() {
-    return(
-      <div>Related
+    return (
+      <div>
+        Related
       </div>
-    )
+    );
   }
 }
-
 
 export default Related;
