@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import React from 'react';
 import Details from './Details/Details.jsx';
 import Questions from './Questions/Questions.jsx';
