@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 
 app.get('/products', (req, res) => {
   console.log(req.url);
-  atelier.getAtetlier(req.url, (err, productData) => {
+  atelier.getAtelier(req.url, (err, productData) => {
     if (err) {
       console.log('get /products: ', err);
       res.status(404).send(err);
@@ -32,7 +32,7 @@ app.get('/products', (req, res) => {
 
 app.get('/products/:product_id', (req, res) => {
   console.log(req.url);
-  atelier.getAtetlier(req.url, (err, productData) => {
+  atelier.getAtelier(req.url, (err, productData) => {
     if (err) {
       console.log(`get ${req.url}: ${err}`);
       res.status(404).send(`Failed to find product id: ${req.params.product_id}`);
