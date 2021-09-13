@@ -18,26 +18,26 @@ app.get('/', (req, res) => {
 });
 
 app.get('/products', (req, res) => {
-  console.log(req.url);
+  // console.log(req.url);
   atelier.getAtelier(req.url, (err, productData) => {
     if (err) {
       console.log('get /products: ', err);
       res.status(404).send(err);
     } else {
-      console.log('product get: ', productData);
+      // console.log('product get: ', productData);
       res.status(200).send(productData);
     }
   });
 });
 
 app.get('/products/:product_id', (req, res) => {
-  console.log(req.url);
+  // console.log(req.url);
   atelier.getAtelier(req.url, (err, productData) => {
     if (err) {
       console.log(`get ${req.url}: ${err}`);
       res.status(404).send(`Failed to find product id: ${req.params.product_id}`);
     } else {
-      console.log('product get: ', productData);
+      // console.log('product get: ', productData);
       res.status(200).send(productData);
     }
   });
