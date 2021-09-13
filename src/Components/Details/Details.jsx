@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import ProductInfo from './ProductInfo.jsx'
+import data from './fakeData.js'
 
 var Details = function (props) {
+  const [products, setProducts] = useState(data);
+
   return (
     <div>
       Details
