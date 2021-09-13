@@ -1,21 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Outfits from './Outfits'
 
-class Related extends React.Component {
-  constructor(props) {
-    super(props);
+var Related = () => {
 
-    this.state = {
-
-    };
-  }
-
-  render() {
-    return (
-      <div>
-        Related
-      </div>
-    );
-  }
+  return (
+    <div>
+      Related
+      <Outfits />
+    </div>
+  );
 }
 
 export default Related;
