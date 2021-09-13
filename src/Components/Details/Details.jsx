@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import ProductInfo from './ProductInfo.jsx'
-import data from './fakeData.js'
+import React, { useState, useEffect, useContext} from 'react';
+import ProductInfo from './ProductInfo.jsx';
+import data from './fakeData.js';
+import { ProductContext } from '../../ProductContext.jsx';
 
-var Details = function (props) {
+const Details = () => {
   const [products, setProducts] = useState(data);
 
   return (
     <div>
-      Details
       {/* Photo Gallery Component*/}
-      <ProductInfo />
+      <ProductInfo products={products} setProducts={setProducts}/>
       {/* Style Selector Component*/}
       {/* Add to Cart Component*/}
     </div>
