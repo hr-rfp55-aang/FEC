@@ -5,8 +5,6 @@ const axios = require('axios');
 const atelier = require('../helpers/atelier.js');
 const PORT = 3001;
 
-
-
 const app = express();
 
 app.use(express.static(path.join(__dirname, '..', 'dist')));
