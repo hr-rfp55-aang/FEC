@@ -17,31 +17,29 @@ app.get('/', (req, res) => {
   res.send('Hello from the server!');
 });
 
-app.get('/products', (req, res) => {
-  console.log(req.url);
-  atelier.getAtelier(req.url, (err, productData) => {
-    if (err) {
-      console.log('get /products: ', err);
-      res.status(404).send(err);
-    } else {
-      console.log('product get: ', productData);
-      res.status(200).send(productData);
-    }
+function getRequest(endpoint) {
+  app.get(endpoint, (req, res) => {
+    atelier.getAtelier(req.url, (err, data) => {
+      if (err) {
+        console.log(`get ${req.url}: ${err}`);
+        res.status(404).send(`Failed to retrieve ${req.url}`);
+      } else {
+        res.status(200).send(data);
+      }
+    });
   });
-});
+}
 
-app.get('/products/:product_id', (req, res) => {
-  console.log(req.url);
-  atelier.getAtelier(req.url, (err, productData) => {
-    if (err) {
-      console.log(`get ${req.url}: ${err}`);
-      res.status(404).send(`Failed to find product id: ${req.params.product_id}`);
-    } else {
-      console.log('product get: ', productData);
-      res.status(200).send(productData);
-    }
-  });
-});
+getRequest('/products');
+getRequest('/products/:product_id');
+getRequest('/products/:product_id/styles');
+getRequest('/products/:product_id/related');
+getRequest('/reviews');
+getRequest('/reviews/meta');
+getRequest('/qa/questions');
+getRequest('/qa/questions/:question_id/answers');
+getRequest('/cart');
+
 
 
 app.listen(PORT, () => {
