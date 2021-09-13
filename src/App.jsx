@@ -1,8 +1,8 @@
 import React from 'react';
-import Details from './Details/Details.jsx';
-import Questions from './Questions/Questions.jsx';
-import Reviews from './Reviews/Reviews.jsx';
-import Related from './Related/Related.jsx';
+import Details from './Components/Details/Details.jsx';
+import Questions from './Components/Questions/Questions.jsx';
+import Reviews from './Components/Reviews/Reviews.jsx';
+import Related from './Components/Related/Related.jsx';
 import axios from 'axios';
 
 let server = 'http://localhost:3001';

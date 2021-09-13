@@ -3,7 +3,7 @@ const config = require('../config.js');
 
 const server = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 
-let getAtetlier = (endpoint, callback) => {
+let getAtelier = (endpoint, callback) => {
 
   let options = {
     method: 'GET',
@@ -24,4 +24,4 @@ let getAtetlier = (endpoint, callback) => {
 };
 
 
-module.exports.getAtetlier = getAtetlier;
+module.exports.getAtelier = getAtelier;
