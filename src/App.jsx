@@ -31,11 +31,11 @@ class App extends React.Component {
     console.log('mounted');
     this.update();
   }
-
+  // input date and will return formatted date
   formatDate (date) {
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var now = new Date(date);
-    return months[now.getMonth()] + ' ' + ( now.getDate() + 1 ) + ', ' + now.getFullYear();
+    var formattedDate = new Date(date);
+    return months[formattedDate.getMonth()] + ' ' + ( formattedDate.getDate() + 1 ) + ', ' + formattedDate.getFullYear();
   }
 
   render() {
