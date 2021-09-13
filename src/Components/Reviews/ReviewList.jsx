@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import ReviewListEntry from './ReviewListEntry.jsx'
 
-const ReviewList = ({reviews, setReviews}) => {
+const ReviewList = ({reviews, setReviews, formatDate}) => {
 
   return (
     <div>
       {reviews.results.map((review) =>
-        <ReviewListEntry review={review} setReviews={setReviews}/>
+        <ReviewListEntry review={review} setReviews={setReviews} formatDate={formatDate}/>
       )}
     </div>
   )

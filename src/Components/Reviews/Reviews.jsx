@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReviewList from './ReviewList.jsx'
 
-var Review = () => {
+var Review = ({formatDate}) => {
 
   var reviewsList = {
     "product": "2",
@@ -46,7 +46,7 @@ var Review = () => {
   const [reviews, setReviews] = useState(reviewsList);
 
     return (
-      <ReviewList reviews={reviews} setReviews={setReviews}/>
+      <ReviewList formatDate={formatDate} reviews={reviews} setReviews={setReviews}/>
     );
 }
 
