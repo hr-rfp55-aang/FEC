@@ -1,21 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-class Details extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-
-    };
-  }
-
-  render() {
-    return (
-      <div>
-        Details
-      </div>
-    );
-  }
+var Details = function (props) {
+  return (
+    <div>
+      Details
+      {/* Photo Gallery Component*/}
+      {/* Product Info Component */}
+      {/* Style Selector Component*/}
+      {/* Add to Cart Component*/}
+    </div>
+  )
 }
 
 export default Details;
