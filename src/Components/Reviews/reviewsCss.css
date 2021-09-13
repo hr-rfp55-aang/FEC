@@ -1,0 +1,36 @@
+/* #reviewList {
+
+} */
+
+#reviewBreakdown {
+  margin: 0px 50px 0px 25px;
+}
+
+#reviews {
+  margin-top: 20px;
+  display: flex;
+  justify-content: left;
+}
+
+h1 {
+  margin: 0px;
+  color: rgb(52, 53, 52);
+}
+
+h6 {
+  margin: 10px 0px;
+  color:rgb(56, 56, 56);
+  font-weight: 100;
+}
+
+h5 {
+  margin: 5px;
+  text-decoration: underline;
+  color:grey;
+  font-weight: 100;
+}
+
+h4 {
+  color:rgb(56, 56, 56);
+  font-weight: 100;
+}
