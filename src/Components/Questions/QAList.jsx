@@ -6,7 +6,7 @@ const QAList = (props) => {
   return (
     <div>
       <div>Questions & Answers</div>
-      {props.questions.results.map((question) => (<QAListEntry question={question} />))}
+      {props.questions.results.map((question, index) => (<QAListEntry question={question} key={index} />))}
     </div>
   );
 };
