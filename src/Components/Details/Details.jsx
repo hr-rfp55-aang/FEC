@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect, useContext} from 'react';
+import ProductDescription from './ProductDescription.jsx';
+import { ContextObj } from '../../ContextObj.jsx';
+import './details.css';
 
-class Details extends React.Component {
-  constructor(props) {
-    super(props);
+const Details = () => {
+  const [productStyles, setProductStyles] = useState({results: []});
 
-    this.state = {
+  const {productInfo, getServer} = useContext(ContextObj);
+  const id = productInfo.id;
 
-    };
-  }
+  useEffect(() => {
+    getServer(`/products/${id}/styles`, (result) => setProductStyles(result));
+  }, [productInfo]);
 
-  render() {
-    return (
-      <div>
-        Details
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      {/* Photo Gallery Component*/}
+      <ProductDescription productStyles={productStyles}/>
+      {/* Style Selector Component*/}
+      {/* Add to Cart Component*/}
+      _______________________________________________
+    </div>
+  );
+};
 
 export default Details;
