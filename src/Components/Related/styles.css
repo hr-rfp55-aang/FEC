@@ -1,0 +1,17 @@
+.productCard {
+  height: 150px;
+  float: left;
+}
+
+.relatedPhoto {
+  height: 100px;
+}
+
+.relatedCarousel {
+  height: 200px;
+}
+
+.outfits {
+  clear: both;
+  height: 200px;
+}
