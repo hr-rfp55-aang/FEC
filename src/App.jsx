@@ -11,7 +11,6 @@ const server = 'http://localhost:3001';
 const App = () => {
 
   const [productInfo, setProductInfo] = useState({});
-  const [reviewMeta, setReviewMeta] = useState({});
   const [ratingStars, setRatingStars] = useState(0);
 
   const getServer = (endpoint, callback) => {
@@ -24,24 +23,25 @@ const App = () => {
       });
   };
 
+  const grabReviewScore = (ratingsObj) => {
+    var rating = 0;
+    var total = 0;
+
+    for (var key in ratingsObj) {
+      rating += Number(key) * Number(ratingsObj[key]);
+      total += Number(ratingsObj[key]);
+    }
+    setRatingStars(rating / total);
+  };
+
   useEffect(() => {
     getServer('/products/40350', (result) => setProductInfo(result));
   }, []);
 
-  // useEffect(() => {
-  //   getServer('/reviews/meta/?product_id=40375', (result) => setReviewMeta(result));
-  // }, [productInfo]);
+  useEffect(() => {
+    getServer('/reviews/meta/?product_id=40375', (result) => grabReviewScore(result.ratings));
+  }, [productInfo]);
 
-  // const grabReviewScore = (ratingsObj) => {
-  //   var rating = 0;
-  //   var total = 0;
-
-  //   for (var key in ratingsObj) {
-  //     rating += Number(key) * Number(ratingsObj[key]);
-  //     total += Number(ratingsObj[key]);
-  //   }
-  //   setRatingStars(rating / total);
-  // };
 
 
   const formatDate = (date) => {
