@@ -8,7 +8,7 @@ var ReviewBreakdown = ({reviews}) => {
   ratio = ratio / reviews.results.length;
 
   return (
-    <div id='reviewBreakdown'>
+    <div className='reviewBreakdown'>
       <h1>{ratio}</h1>
       <h6>100% of reviewers recomend this product</h6>
       <h5>5 stars</h5>

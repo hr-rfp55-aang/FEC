@@ -50,7 +50,7 @@ var Review = ({ formatDate }) => {
   return (
     <div>
       <h4>Ratings & Reviews</h4>
-      <div id='reviews'>
+      <div className='reviews'>
         <ReviewBreakdown reviews={reviews} />
         <ReviewList formatDate={formatDate} reviews={reviews} setReviews={setReviews} />
       </div>
