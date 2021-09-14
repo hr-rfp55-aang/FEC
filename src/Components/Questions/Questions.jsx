@@ -1,21 +1,29 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import QAList from './QAList.jsx'
 
-class Questions extends React.Component {
-  constructor(props) {
-    super(props);
+const Questions = (props) => {
 
-    this.state = {
+  const [questions, setQuestions] = useState({results: []});
 
-    };
-  }
+  useEffect(() => {
+    axios.get('http://localhost:3001/qa/questions?product_id=40344')
+    .then((qs) => {
+      setQuestions(qs.data)
+    })
+    .catch((error) => {
+      console.log('get questions error', error)
+    });
+  }, [])
 
-  render() {
-    return (
-      <div>
-        Questions
-      </div>
-    );
-  }
+
+  return (
+    <div >
+      <QAList questions={questions}/>
+    </div>
+  )
 }
 
+
 export default Questions;
+
