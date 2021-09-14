@@ -1,30 +1,24 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
-import QAList from './QAList.jsx'
+import QAList from './QAList.jsx';
 import './styles.css';
+import {ContextObj} from '../../ContextObj';
 
 const Questions = (props) => {
-
+  const {productInfo, getServer} = useContext(ContextObj);
   const [questions, setQuestions] = useState({results: []});
+  const id = productInfo.id;
 
   useEffect(() => {
-    axios.get('http://localhost:3001/qa/questions?product_id=40344')
-    .then((qs) => {
-      setQuestions(qs.data)
-    })
-    .catch((error) => {
-      console.log('get questions error', error)
-    });
-  }, [])
-
+    getServer(`/qa/questions?product_id=${id}`, (result) => setQuestions(result));
+  }, [productInfo]);
 
   return (
     <div className='questions'>
       <QAList questions={questions}/>
     </div>
-  )
-}
-
+  );
+};
 
 export default Questions;
 
