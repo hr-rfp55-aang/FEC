@@ -19,7 +19,7 @@ const QAListEntry = (props) => {
         <span>Helpful? Yes ({props.question.question_helpfulness})</span>
         <span>  |  Add Answer</span>
       </div>
-      <div>{answers.results.map((answer) => <AnswerEntry answer={answer}/>)}</div>
+      <div>{answers.results.map((answer, index) => <AnswerEntry answer={answer} key={index}/>)}</div>
     </div>
   );
 };
