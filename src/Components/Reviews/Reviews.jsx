@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import ReviewList from './ReviewList.jsx'
+import ReviewList from './ReviewList.jsx';
+import ReviewBreakdown from './ReviewBreakdown.jsx';
+import './reviewsCss.css'
 
-var Review = ({formatDate}) => {
+var Review = ({ formatDate }) => {
 
   var reviewsList = {
     "product": "2",
@@ -19,13 +21,13 @@ var Review = ({formatDate}) => {
         "reviewer_name": "shortandsweeet",
         "helpfulness": 5,
         "photos": [{
-            "id": 1,
-            "url": "urlplaceholder/review_5_photo_number_1.jpg"
-          },
-          {
-            "id": 2,
-            "url": "urlplaceholder/review_5_photo_number_2.jpg"
-          }
+          "id": 1,
+          "url": "urlplaceholder/review_5_photo_number_1.jpg"
+        },
+        {
+          "id": 2,
+          "url": "urlplaceholder/review_5_photo_number_2.jpg"
+        }
         ]
       },
       {
@@ -45,9 +47,15 @@ var Review = ({formatDate}) => {
 
   const [reviews, setReviews] = useState(reviewsList);
 
-    return (
-      <ReviewList formatDate={formatDate} reviews={reviews} setReviews={setReviews}/>
-    );
+  return (
+    <div>
+      <h4>Ratings & Reviews</h4>
+      <div className='reviews'>
+        <ReviewBreakdown reviews={reviews} />
+        <ReviewList formatDate={formatDate} reviews={reviews} setReviews={setReviews} />
+      </div>
+    </div>
+  );
 }
 
 export default Review;
