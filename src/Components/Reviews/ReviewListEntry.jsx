@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ContextObj } from '../../ContextObj.jsx';
 
-var ReviewListEntry = ({ review, setReviews, formatDate }) => {
+var ReviewListEntry = ({ review, setReviews }) => {
+  const { formatDate } = useContext(ContextObj);
 
   return (
     (review.response) ?

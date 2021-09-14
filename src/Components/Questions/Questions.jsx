@@ -1,22 +1,24 @@
-import React from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import axios from 'axios';
+import QAList from './QAList.jsx';
 import './styles.css';
+import {ContextObj} from '../../ContextObj';
 
-class Questions extends React.Component {
-  constructor(props) {
-    super(props);
+const Questions = (props) => {
+  const {productInfo, getServer} = useContext(ContextObj);
+  const [questions, setQuestions] = useState({results: []});
+  const id = productInfo.id;
 
-    this.state = {
+  useEffect(() => {
+    getServer(`/qa/questions?product_id=${id}`, (result) => setQuestions(result));
+  }, [productInfo]);
 
-    };
-  }
-
-  render() {
-    return (
-      <div className='questions'>
-        Questions
-      </div>
-    );
-  }
-}
+  return (
+    <div className='questions'>
+      <QAList questions={questions}/>
+    </div>
+  );
+};
 
 export default Questions;
+

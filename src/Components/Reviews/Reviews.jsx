@@ -4,7 +4,7 @@ import ReviewBreakdown from './ReviewBreakdown.jsx';
 import './reviewsCss.css';
 import { ContextObj } from '../../ContextObj.jsx';
 
-var Review = ({ formatDate }) => {
+var Review = () => {
   const [reviews, setReviews] = useState({results:[]});
   const { getServer, productInfo } = useContext(ContextObj);
   const id = productInfo.id;
@@ -20,7 +20,7 @@ var Review = ({ formatDate }) => {
       <h4>Ratings & Reviews</h4>
       <div className='reviews'>
         <ReviewBreakdown reviews={reviews} />
-        <ReviewList formatDate={formatDate} reviews={reviews} setReviews={setReviews} />
+        <ReviewList reviews={reviews} setReviews={setReviews} />
       </div>
     </div>
   );
