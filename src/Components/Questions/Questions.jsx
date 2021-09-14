@@ -10,7 +10,7 @@ const Questions = (props) => {
   const id = productInfo.id;
 
   useEffect(() => {
-    getServer(`/qa/questions?product_id=40351`, (result) => setQuestions(result));
+    getServer(`/qa/questions?product_id=${id}`, (result) => setQuestions(result));
   }, [productInfo]);
 
   return (
