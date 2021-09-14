@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { ProductContext } from '../../ProductContext.jsx';
-
+import { ContextObj } from '../../ContextObj.jsx';
+import ProductCard from './ProductCard';
+import './styles.css';
 
 const Outfits = () => {
 
-  console.log('related:', useContext(ProductContext));
-  return(
-    <div>
-      Outfits
+  const { productInfo, getServer } = useContext(ContextObj);
+  const id = productInfo.id;
+
+  return (
+    <div className='outfits'>
+      <ProductCard item={id} />
     </div>
-  )
-}
+  );
+};
 
 export default Outfits;
