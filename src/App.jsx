@@ -1,53 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Details from './Components/Details/Details.jsx';
 import Questions from './Components/Questions/Questions.jsx';
 import Reviews from './Components/Reviews/Reviews.jsx';
 import Related from './Components/Related/Related.jsx';
 import axios from 'axios';
+import { ContextObj } from './ContextObj';
 
-let server = 'http://localhost:3001';
+const server = 'http://localhost:3001';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
+const App = () => {
 
-    this.state = {
+  const [productInfo, setProductInfo] = useState({});
 
-    };
-    this.update = this.update.bind(this);
-  }
-
-  update() {
-    axios.get(server + '/products')
+  const getServer = (endpoint, callback) => {
+    axios.get(server + endpoint)
       .then( (result) => {
-        console.log('axios success', result);
+        callback(result.data);
       })
       .catch( (err) => {
         console.log('axios err', err);
       });
-  }
+  };
 
-  componentDidMount() {
-    console.log('mounted');
-    this.update();
-  }
-  // input date and will return formatted date
-  formatDate (date) {
+  useEffect(() => {
+    getServer('/products/40350', (result) => setProductInfo(result) );
+  }, []);
+
+  const formatDate = (date) => {
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var formattedDate = new Date(date);
     return months[formattedDate.getMonth()] + ' ' + ( formattedDate.getDate() + 1 ) + ', ' + formattedDate.getFullYear();
-  }
+  };
 
-  render() {
-    return (
-      <div>
+  return (
+    <div>
+      <ContextObj.Provider value={{ productInfo: productInfo, getServer: getServer}}>
         <Details />
         <Related />
         <Questions />
-        <Reviews formatDate={this.formatDate}/>
-      </div>
-    );
-  }
-}
+        <Reviews formatDate={formatDate}/>
+      </ContextObj.Provider>
+    </div>
+  );
+};
 
 export default App;

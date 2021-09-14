@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import QAList from './QAList.jsx'
+import './styles.css';
 
 const Questions = (props) => {
 
@@ -18,7 +19,7 @@ const Questions = (props) => {
 
 
   return (
-    <div >
+    <div className='questions'>
       <QAList questions={questions}/>
     </div>
   )
