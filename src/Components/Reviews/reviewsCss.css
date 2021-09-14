@@ -1,23 +1,28 @@
 .reviewBreakdown {
-  margin: 0px 50px 0px 25px;
+  margin: 0px 15px 0px 15px;
+  width: 25%;
 }
 
 .reviews {
   margin-top: 20px;
   display: flex;
   justify-content: left;
+  width: 80%;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 h1 {
   margin: 0px;
-  color: #525252
-  ;
+  color: #525252;
+  font-size: 60px;
 }
 
 h6 {
   margin: 10px 0px;
   color:rgb(56, 56, 56);
   font-weight: 100;
+  font-size: 15px;
 }
 
 h5 {
@@ -30,7 +35,7 @@ h5 {
 h4 {
   color:rgb(56, 56, 56);
   font-weight: 100;
-  margin-left: 25px;
+  margin-left: 11%;
 }
 
 .reviewEntry {
@@ -38,6 +43,11 @@ h4 {
   border-bottom-style: solid;
   border-width: thin;
   margin-bottom: 20px;
+}
+
+.reviewList {
+  width: 60%;
+  margin-left: 0px;
 }
 
 /* Review Entry box */
@@ -48,7 +58,7 @@ h4 {
 
 .date {
   display: inline-block;
-  margin-left: 300px;
+  margin-left: 280px;
   color:grey;
   font-weight: 100;
   font-size: 12px;
