@@ -1,27 +1,25 @@
 import React, { useState, useEffect, useContext} from 'react';
 import ProductInfo from './ProductInfo.jsx';
-import { ProductContext } from '../../ProductContext.jsx';
-import axios from 'axios';
-const server = 'http://localhost:3001';
+import { ContextObj } from '../../ContextObj.jsx';
+import './details.css';
 
 const Details = () => {
   const [productStyles, setProductStyles] = useState({})
 
-  useEffect(() => {
-    axios.get(server + '/products/40350/styles')
-     .then( (result) => {
-       setProductStyles(result.data);
-     })
-  })
+  const {productInfo, getServer} = useContext(ContextObj)
+  const id = productInfo.id
 
-  let product = useContext(ProductContext)
+  useEffect(() => {
+    getServer(`/products/${id}/styles`, (result) => setProductStyles(result));
+  }, []);
 
   return (
     <div>
       {/* Photo Gallery Component*/}
-      <ProductInfo product={product} productStyles={productStyles}/>
+      <ProductInfo productStyles={productStyles}/>
       {/* Style Selector Component*/}
       {/* Add to Cart Component*/}
+      _______________________________________________
     </div>
   )
 }
