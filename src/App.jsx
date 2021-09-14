@@ -34,7 +34,7 @@ const App = () => {
 
   return (
     <div>
-      <ContextObj.Provider value={{ productInfo: productInfo, getServer: getServer}}>
+      <ContextObj.Provider value={{ productInfo: productInfo, getServer: getServer, formatDate: formatDate}}>
         <Details />
         <Related />
         <Questions />
