@@ -1,19 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { ProductContext } from '../../ProductContext.jsx';
 
-const ProductInfo = ({ products, setProducts }) => {
+const ProductInfo = ({ product, productStyles}) => {
+
+  if (Object.keys(product).length === 0) {
+    return  <div>No Product</div>
+  }
+
+  // console.log('In ProductInfo ', 'product: ', product, 'productStyles: ', productStyles)
+  // var currentProductImage = productStyles.results ? productStyles.results[0].photos.url : null
+  // console.log(currentProductImage)
   return (
     <div>
       {/* Star Rating Component */}
       <div>
+        {/* { productStyles.results ? productStyles.results[0].name : null } */}
+        {/* <img src={currentProductImage}/> */}
         {/* Product Category */}
-        {products[0].category.toUpperCase()}
+        {product.category.toUpperCase()}
         {/* Product Name */}
-        <h2>{products[0].name}</h2>
+        <h2>{product.name}</h2>
       </div>
       {/* Price Component */}
-      <div>${products[0].default_price}</div>
+      <div>${product.default_price}</div>
       {/* Product Description Component*/}
-      <div>{products[0].description}</div>
+      <div>{product.description}</div>
       {/* Share on Social Media Component */}
     </div>
   )
