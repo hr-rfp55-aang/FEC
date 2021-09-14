@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext} from 'react';
 import ProductDescription from './ProductDescription.jsx';
+import PhotoGallery from './PhotoGallery';
 import { ContextObj } from '../../ContextObj.jsx';
-import './details.css';
+import './styles.css';
 
 const Details = () => {
   const [productStyles, setProductStyles] = useState({results: []});
@@ -14,12 +15,11 @@ const Details = () => {
   }, [productInfo]);
 
   return (
-    <div>
-      {/* Photo Gallery Component*/}
+    <div className="productOverview">
+      <PhotoGallery productStyles={productStyles}/>
       <ProductDescription productStyles={productStyles}/>
       {/* Style Selector Component*/}
       {/* Add to Cart Component*/}
-      _______________________________________________
     </div>
   );
 };
