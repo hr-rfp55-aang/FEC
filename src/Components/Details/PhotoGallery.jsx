@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext} from 'react';
 import ProductDescription from './ProductDescription.jsx';
-// import PhotoGalleryListItem from './PhotoGalleryListItem';
+import ThumbnailList from './ThumbnailList';
 import { ContextObj } from '../../ContextObj.jsx';
-import './styles.css';
 
 const PhotoGallery = ({productStyles}) => {
   console.log('In Photo Gallery ', productStyles);
@@ -10,7 +9,8 @@ const PhotoGallery = ({productStyles}) => {
   // console.log('In photo gallery the first photo is ', productStyles.results[0].photos[0].url);
 
   return (
-    <div>
+    <div className="productPhotos">
+      <ThumbnailList productStyles={productStyles}/>
       <div>
         {
           productStyles.results.length > 0 &&
