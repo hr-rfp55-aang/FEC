@@ -2,10 +2,18 @@
   display: flex;
 }
 
+.productPhotos {
+  display: flex;
+}
+
 .displayedPhoto {
   display: flex;
   height: 300px;
   width: 275px;
+}
+
+.thumbnailList {
+  display: flex;
 }
 
 .descriptionOverview {
