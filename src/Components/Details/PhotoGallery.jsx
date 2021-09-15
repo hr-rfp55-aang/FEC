@@ -11,7 +11,6 @@ const PhotoGallery = ({productStyles}) => {
 
   return (
     <div>
-      Photo Gallery
       <div>
         {
           productStyles.results.length > 0 &&
