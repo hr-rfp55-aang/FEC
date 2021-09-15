@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const server = 'http://localhost:3001';
 const getServer = (endpoint) => {
-  return new Promise ((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     axios.get(server + endpoint)
       .then((result) => {
         resolve(result.data);
@@ -23,7 +23,6 @@ const grabReviewScore = (ratingsObj) => {
   }
 
   return Number(Math.round((rating / total) + 'e1') + 'e-1');
-  // setRatingAvg(Number(Math.round((rating / total) + 'e1') + 'e-1'));
 };
 
 const formatDate = (date) => {
