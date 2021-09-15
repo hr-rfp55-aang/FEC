@@ -7,12 +7,17 @@ import { ContextObj } from '../../ContextObj.jsx';
 var Review = () => {
   const [reviews, setReviews] = useState([]);
   const [reviewsLimit, setLimit] = useState(2);
+  const [sortStr, setsortStr] = useState('');
   const { getServer, productInfo } = useContext(ContextObj);
   const id = productInfo.id;
 
   useEffect(() => {
-    getServer(`/reviews/?product_id=${40380}`, (result)=> setReviews(result.results));
+    getServer(`/reviews/?product_id=${40444}`, (result)=> setReviews(result.results));
   }, [productInfo]);
+
+  useEffect(() => {
+    getServer(`/reviews/?product_id=${40444}&sort=${sortStr}`, (result)=> setReviews(result.results));
+  }, [sortStr]);
 
 
   return (
@@ -20,7 +25,7 @@ var Review = () => {
       <h4>Ratings & Reviews</h4>
       <div className='reviews'>
         <ReviewBreakdown reviews={reviews} />
-        <ReviewList reviews={reviews} setReviews={setReviews} setLimit={setLimit} reviewsLimit={reviewsLimit}/>
+        <ReviewList reviews={reviews} setReviews={setReviews} setLimit={setLimit} reviewsLimit={reviewsLimit} setsortStr={setsortStr}/>
       </div>
     </div>
   );

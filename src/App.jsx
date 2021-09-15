@@ -12,6 +12,7 @@ const App = () => {
 
   const [productInfo, setProductInfo] = useState({});
   const [ratingAvg, setRatingAvg] = useState(0);
+  const [reviewsTotal, setReviewsTotal] = useState(0);
 
   const getServer = (endpoint, callback) => {
     axios.get(server + endpoint)
@@ -32,6 +33,7 @@ const App = () => {
       total += Number(ratingsObj[key]);
     }
     setRatingAvg(Number(Math.round((rating / total) + 'e1') + 'e-1'));
+    setReviewsTotal(total);
   };
 
   useEffect(() => {
@@ -52,7 +54,7 @@ const App = () => {
 
   return (
     <div>
-      <ContextObj.Provider value={{ productInfo: productInfo, getServer: getServer, formatDate: formatDate, ratingAvg: ratingAvg}}>
+      <ContextObj.Provider value={{ productInfo: productInfo, getServer: getServer, formatDate: formatDate, ratingAvg: ratingAvg, reviewsTotal: reviewsTotal}}>
         <Details />
         <Related />
         <Questions />
