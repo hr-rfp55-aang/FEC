@@ -11,7 +11,9 @@ const Details = () => {
   const id = productInfo.id;
 
   useEffect(() => {
-    getServer(`/products/${id}/styles`, (result) => setProductStyles(result));
+    if (id) {
+      getServer(`/products/${id}/styles`, (result) => setProductStyles(result));
+    }
   }, [productInfo]);
 
   return (
