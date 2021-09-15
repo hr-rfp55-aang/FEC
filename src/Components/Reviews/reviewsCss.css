@@ -12,6 +12,15 @@
   padding-right: 10%;
 }
 
+.moreReviews {
+  border-style: solid;
+  background-color: white;
+  height: 50px;
+  width: 150px;
+  font-weight: 600;
+  border-width: thin;
+}
+
 h1 {
   margin: 0px;
   color: #525252;
@@ -57,11 +66,13 @@ h4 {
 }
 
 .date {
-  display: inline-block;
-  margin-left: 280px;
+  display: inline;
+  margin-left: auto;
+  margin-right: 0px;
   color:grey;
   font-weight: 100;
   font-size: 12px;
+  float: right;
 }
 
 .summary,

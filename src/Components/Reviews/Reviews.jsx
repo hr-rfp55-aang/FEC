@@ -5,21 +5,23 @@ import './reviewsCss.css';
 import { ContextObj } from '../../ContextObj.jsx';
 
 var Review = () => {
-  const [reviews, setReviews] = useState({results: []});
+  const [reviews, setReviews] = useState([]);
+  const [reviewsLimit, setLimit] = useState(2);
   const { getServer, productInfo } = useContext(ContextObj);
   const id = productInfo.id;
   console.log(id);
 
   useEffect(() => {
-    getServer(`/reviews/?product_id=${40380}`, (result)=> setReviews(result));
+    getServer(`/reviews/?product_id=${40380}`, (result)=> setReviews(result.results));
   }, [productInfo]);
+
 
   return (
     <div>
       <h4>Ratings & Reviews</h4>
       <div className='reviews'>
         <ReviewBreakdown reviews={reviews} />
-        <ReviewList reviews={reviews} setReviews={setReviews} />
+        <ReviewList reviews={reviews} setReviews={setReviews} setLimit={setLimit} reviewsLimit={reviewsLimit}/>
       </div>
     </div>
   );
