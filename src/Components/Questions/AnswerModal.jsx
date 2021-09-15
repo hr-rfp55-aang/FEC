@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 
-const QuestionModal = (props) => {
+const AnswerModal = (props) => {
 
   if (!props.show) {
     return null;
@@ -10,8 +10,8 @@ const QuestionModal = (props) => {
     <div className="modal" onClick={props.onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <h2 className="modal-title">Ask Your Question</h2>
-          <h4 className="modal-subtitle">About the {props.name}</h4>
+          <h2 className="modal-title">Submit Your Answer</h2>
+          <h4 className="modal-subtitle">{props.name}: {props.question}</h4>
         </div>
         <div className="modal-body">
           <form>
@@ -24,13 +24,13 @@ const QuestionModal = (props) => {
             <div>
               <label>
                 *What is your nickname
-                <input type="text" placeholder="Example: jackson11!"></input>
+                <input type="text" placeholder="Example: jack543!"></input>
               </label>
             </div>
             <div>
               <label>
                 *Your email
-                <input type="text" placeholder="Why did you like the product or not?"></input>
+                <input type="text" placeholder="Example: jack@email.com"></input>
                 <div>
                   For authentication reasons you will not be emailed
                 </div>
@@ -39,6 +39,9 @@ const QuestionModal = (props) => {
           </form>
         </div>
         <div className="modal-footer">
+          <div>
+            <button>Upload Your Photos</button>
+          </div>
           <button>Submit</button>
         </div>
       </div>
@@ -46,4 +49,4 @@ const QuestionModal = (props) => {
   );
 };
 
-export default QuestionModal;
+export default AnswerModal;
