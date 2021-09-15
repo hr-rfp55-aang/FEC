@@ -9,7 +9,7 @@ const ProductDescription = ({ productStyles }) => {
   // console.log('In ProductInfo ', 'product: ', productInfo, 'productStyles: ', productStyles);
 
   return (
-    <div>
+    <div className="descriptionOverview">
       {/* Star Rating Component */}
       <div> ***** Read all 100 reviews </div>
       {/* Product Category */}
@@ -24,7 +24,7 @@ const ProductDescription = ({ productStyles }) => {
         }
       </div>
       {/* Product Description Component*/}
-      <div>{productInfo.description}</div>
+      <div className="detailedDescription">{productInfo.description}</div>
       {/* Share on Social Media Component */}
     </div>
   );
