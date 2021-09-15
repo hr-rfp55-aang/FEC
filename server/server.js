@@ -38,6 +38,21 @@ getRequest('/qa/questions');
 getRequest('/qa/questions/:question_id/answers');
 getRequest('/cart');
 
+function putRequest(endpoint) {
+  app.put(endpoint, (req, res) => {
+    atelier.putAtelier(req.url, (err, data) => {
+      if (err) {
+        console.log(`get ${req.url}: ${err}`);
+        res.status(404).send(`Failed to retrieve ${req.url}`);
+      } else {
+        res.status(201).send('successfully updated item');
+      }
+    });
+  });
+}
+
+putRequest('/reviews/:review_id/helpful');
+
 
 
 app.listen(PORT, () => {
