@@ -3,7 +3,7 @@ import { ContextObj } from '../../ContextObj.jsx';
 
 const ProductDescription = ({ productStyles }) => {
 
-  const { productInfo, getServer } = useContext(ContextObj);
+  const { productInfo, getServer, ratingAvg } = useContext(ContextObj);
   const id = productInfo.id;
 
   // console.log('In ProductInfo ', 'product: ', productInfo, 'productStyles: ', productStyles);
@@ -11,7 +11,7 @@ const ProductDescription = ({ productStyles }) => {
   return (
     <div className="descriptionOverview">
       {/* Star Rating Component */}
-      <div> ***** Read all 100 reviews </div>
+      <div> {ratingAvg} *** Read all 100 reviews </div>
       {/* Product Category */}
       <div>{productInfo.category}</div>
       {/* Product Name */}
