@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReviewListEntry from './ReviewListEntry.jsx';
 
-const ReviewList = ({reviews, setReviews }) => {
-
+const ReviewList = ({reviews, setReviews, setLimit, reviewsLimit }) => {
+  var func = (array) => {
+    var temp = array.slice();
+    temp = temp.splice(0, reviewsLimit);
+    return temp;
+  };
+  // var temp = reviews;
+  // temp = temp.splice(0, reviewsLimit);
   return (
     <div className='reviewList'>
-      {reviews.results.map((review) =>
-        <ReviewListEntry review={review} setReviews={setReviews} key={review.review_id}/>
+      {func(reviews).map((review) =>
+        <ReviewListEntry review={review} setReviews={setReviews} key={review.review_id} />
       )}
+      <button className='moreReviews' onClick={()=>setLimit(reviewsLimit + 2)}>MORE REVIEWS</button>
+      <button className='addReview'>MORE REVIEWS</button>
     </div>
   );
 };
