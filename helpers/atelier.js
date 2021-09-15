@@ -14,13 +14,15 @@ let getAtelier = (endpoint, callback) => {
     }
   };
 
-  axios(options)
-    .then ( (result) => {
-      callback(null, result.data);
-    })
-    .catch( (err) => {
-      callback(err, null);
-    });
+  return new Promise((resolve, reject) => {
+    axios(options)
+      .then ( (result) => {
+        resolve(result.data);
+      })
+      .catch( (err) => {
+        reject(err);
+      });
+  });
 };
 
 

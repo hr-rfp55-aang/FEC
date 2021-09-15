@@ -17,19 +17,22 @@ app.get('/', (req, res) => {
 
 function getRequest(endpoint) {
   app.get(endpoint, (req, res) => {
-    atelier.getAtelier(req.url, (err, data) => {
-      if (err) {
-        console.log(`get ${req.url}: ${err}`);
-        res.status(404).send(`Failed to retrieve ${req.url}`);
-      } else {
+    atelier.getAtelier(req.url)
+      .then( (data) => {
         res.status(200).send(data);
-      }
-    });
+      })
+      .catch( (err) => {
+        console.log(`get ${req.url}: ${err}`);
+        if (arguments[1]) {
+          console.log(res);
+        }
+        res.status(404).send(`Failed to retrieve ${req.url}`);
+      });
   });
 }
 
 getRequest('/products');
-getRequest('/products/:product_id');
+getRequest('/products/:product_id', true);
 getRequest('/products/:product_id/styles');
 getRequest('/products/:product_id/related');
 getRequest('/reviews');
