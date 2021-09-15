@@ -15,7 +15,7 @@ const ReviewList = ({reviews, setReviews, setLimit, reviewsLimit }) => {
         <ReviewListEntry review={review} setReviews={setReviews} key={review.review_id} />
       )}
       <button className='moreReviews' onClick={()=>setLimit(reviewsLimit + 2)}>MORE REVIEWS</button>
-      <button className='addReview'>MORE REVIEWS</button>
+      <button className='addReview'>ADD REVIEW +</button>
     </div>
   );
 };
