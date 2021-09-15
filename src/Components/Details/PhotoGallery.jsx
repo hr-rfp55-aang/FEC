@@ -4,15 +4,14 @@ import ThumbnailList from './ThumbnailList';
 import { ContextObj } from '../../ContextObj.jsx';
 
 const PhotoGallery = ({productStyles}) => {
+  // const [productPhotos, setProductPhotos] = useState([]);
   //console.log('In Photo Gallery ', productStyles);
 
   //console.log('In photo gallery the first photo is ', productStyles.results[0].photos[0].url);
 
   return (
     <div className="productPhotos">
-      <ThumbnailList productPhotos={
-        productStyles.results.length > 0 &&
-        productStyles.results[0].photos}/>
+      <ThumbnailList productPhotos={ productStyles.results.length > 0 && productStyles.results[0].photos}/>
       <div>
         {
           productStyles.results.length > 0 &&
