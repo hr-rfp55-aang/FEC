@@ -2,10 +2,12 @@ import React, { useState, useEffect, useContext} from 'react';
 import ProductDescription from './ProductDescription.jsx';
 import { ContextObj } from '../../ContextObj.jsx';
 
-const ThumbnailListItem = ()=> {
-
+const ThumbnailListItem = ({img})=> {
+  // console.log('In thumbnaillistlitem: ', img)
   return (
-    <div>I am one thumbnail</div>
+    <div>
+      <img className="thumbnailListItem" src={img} />
+    </div>
   );
 };
 
