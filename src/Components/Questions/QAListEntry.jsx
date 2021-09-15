@@ -10,13 +10,14 @@ const QAListEntry = (props) => {
 
   useEffect(() => {
     getServer(`/qa/questions/${questionId}/answers`, (result) => setAnswers(result));
-  }, [productInfo]);
+  }, [questionId]);
+
 
   return (
     <div>
       <div>
         Q: {props.question.question_body}
-        <span>Helpful? Yes ({props.question.question_helpfulness})</span>
+        <span>  |  Helpful? Yes ({props.question.question_helpfulness})</span>
         <span>  |  Add Answer</span>
       </div>
       <div>{answers.results.map((answer, index) => <AnswerEntry answer={answer} key={index}/>)}</div>
