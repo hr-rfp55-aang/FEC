@@ -54,12 +54,12 @@ const App = () => {
 
   return (
     <div>
-      <ContextObj.Provider value={{ productInfo: productInfo, getServer: getServer, formatDate: formatDate, ratingAvg: ratingAvg, reviewsTotal: reviewsTotal}}>
+      {productInfo.id && <ContextObj.Provider value={{ productInfo: productInfo, getServer: getServer, formatDate: formatDate, ratingAvg: ratingAvg, reviewsTotal: reviewsTotal}}>
         <Details />
         <Related />
         <Questions />
         <Reviews />
-      </ContextObj.Provider>
+      </ContextObj.Provider>}
     </div>
   );
 };

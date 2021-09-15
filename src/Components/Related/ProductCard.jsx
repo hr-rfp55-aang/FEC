@@ -10,9 +10,11 @@ const ProductCard = (props) => {
   const [carouselStyle, setCarouselStyle] = useState({results: [{photos: [{'thumbnail_url': null}]}]});
 
   useEffect(() => {
-    getServer(`/products/${props.item}/`, (result) => setCarouselItem(result) );
-    getServer(`/products/${props.item}/styles`, (result) => setCarouselStyle(result) );
-  }, []);
+    if (id) {
+      getServer(`/products/${props.item}/`, (result) => setCarouselItem(result) );
+      getServer(`/products/${props.item}/styles`, (result) => setCarouselStyle(result) );
+    }
+  }, [productInfo]);
 
 
   return (
