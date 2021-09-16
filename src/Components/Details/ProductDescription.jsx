@@ -12,7 +12,7 @@ const ProductDescription = ({ productStyles }) => {
   return (
     <div className="descriptionOverview">
       {/* Star Rating Component */}
-      <div> {ratingAvg ? ratingAvg + '*** Read all {reviewsTotal} reviews' : 'No Ratings Available for this Product'}  </div>
+      <div> {ratingAvg ? ratingAvg + `*** Read all ${reviewsTotal} reviews` : 'No Ratings Available for this Product'}  </div>
       {/* Product Category */}
       <div>{productInfo.category}</div>
       {/* Product Name */}
