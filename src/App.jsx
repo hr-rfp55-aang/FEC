@@ -11,6 +11,7 @@ const App = () => {
   const [productId, setProductId] = useState(40390);
   const [productInfo, setProductInfo] = useState({});
   const [ratingAvg, setRatingAvg] = useState(0);
+  const [reviewsTotal, setReviewsTotal] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -20,7 +21,8 @@ const App = () => {
     ])
       .then(([pProductInfo, pReviewMeta]) => {
         setProductInfo(pProductInfo);
-        setRatingAvg(grabReviewScore(pReviewMeta.ratings));
+        setRatingAvg(grabReviewScore(pReviewMeta.ratings)[0]);
+        setReviewsTotal(grabReviewScore(pReviewMeta.ratings)[1]);
         setIsLoaded(true);
       })
       .catch ( (err) => {
@@ -30,11 +32,11 @@ const App = () => {
 
   return (
     <div>
-      {isLoaded && <ContextObj.Provider value={{ productId: productId, productInfo: productInfo, ratingAvg: ratingAvg}}>
+      {isLoaded && <ContextObj.Provider value={{ productId, productInfo, ratingAvg, reviewsTotal }}>
         {/* <Details /> */}
         <Related />
         <Questions />
-        {/* <Reviews /> */}
+        <Reviews />
       </ContextObj.Provider>}
     </div>
   );

@@ -13,6 +13,18 @@ const getServer = (endpoint) => {
   });
 };
 
+const putServer = (endpoint) => {
+  return new Promise((resolve, reject) => {
+    axios.put(server + endpoint)
+      .then((result) => {
+        resolve(result.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
 const grabReviewScore = (ratingsObj) => {
   var rating = 0;
   var total = 0;
@@ -22,7 +34,7 @@ const grabReviewScore = (ratingsObj) => {
     total += Number(ratingsObj[key]);
   }
 
-  return Number(Math.round((rating / total) + 'e1') + 'e-1');
+  return [Number(Math.round((rating / total) + 'e1') + 'e-1'), total];
 };
 
 const formatDate = (date) => {
@@ -35,5 +47,6 @@ const formatDate = (date) => {
 export {
   getServer,
   grabReviewScore,
-  formatDate
+  formatDate,
+  putServer
 };
