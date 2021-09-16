@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {ContextObj} from '../../ContextObj';
+import {formatDate} from '../../helpers';
 
 const AnswerEntry = (props) => {
-  const {formatDate} = useContext(ContextObj);
 
   return (
     <div>
