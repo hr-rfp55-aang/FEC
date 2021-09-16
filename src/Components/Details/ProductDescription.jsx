@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ContextObj } from '../../ContextObj.jsx';
+import { getServer, grabReviewScore, formatDate } from '../../helpers';
 
 const ProductDescription = ({ productStyles }) => {
 
-  const { productInfo, getServer, ratingAvg } = useContext(ContextObj);
-  const id = productInfo.id;
+  const { productId, productInfo, ratingAvg } = useContext(ContextObj);
 
-  // console.log('In ProductInfo ', 'product: ', productInfo, 'productStyles: ', productStyles);
+  //console.log('In ProductInfo ', 'product: ', productInfo, 'productStyles: ', productStyles);
 
   return (
     <div className="descriptionOverview">
@@ -17,10 +17,9 @@ const ProductDescription = ({ productStyles }) => {
       {/* Product Name */}
       <div><h2>{productInfo.name}</h2></div>
       {/* Price Component */}
-      {/* <div>${productInfo.default_price}</div> */}
       <div>
-        ${productStyles.results.length > 0 &&
-          productStyles.results[0].original_price
+        ${productStyles.length > 0 &&
+          productStyles[0].original_price
         }
       </div>
       {/* Product Description Component*/}
