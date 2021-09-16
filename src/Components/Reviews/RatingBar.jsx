@@ -24,7 +24,7 @@ var RatingBar = () => {
 
       </svg>
 
-      <svg viewBox="0 0 1000 200" className='rating'>
+      <svg viewBox="0 0 10 2" className='rating'>
         <defs>
 
           <polygon id="star" points="100,0 131,66 200,76 150,128 162,200 100,166 38,200 50,128 0,76 69,66 " />
@@ -39,9 +39,9 @@ var RatingBar = () => {
 
         </defs>
 
-        <rect className='rating__background' clip-path="url(#outline)"></rect>
+        <rect className='rating__background' clipPath="url(#outline)"></rect>
 
-        <rect width="25%" className='rating__value' clip-path="url(#bar)"></rect>
+        <rect width="20%" className='rating__value' clipPath="url(#bar)"></rect>
 
       </svg>
 
