@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import ReviewList from './ReviewList.jsx';
 import ReviewBreakdown from './ReviewBreakdown.jsx';
+import RatingBar from './RatingBar.jsx';
 import './styles.css';
 import { getServer, grabReviewScore, formatDate, putServer } from '../../helpers';
 import { ContextObj } from '../../ContextObj';
@@ -56,6 +57,7 @@ var Review = () => {
         <ReviewBreakdown reviews={reviews} />
         <ReviewList reviews={reviews} setReviews={setReviews} setLimit={setLimit} reviewsLimit={reviewsLimit} setsortStr={setsortStr} setCurReview={setCurReview} setReport={setReport} />
       </div>
+      <RatingBar />
     </div>
   );
 };

@@ -141,3 +141,25 @@ h4 {
   border-bottom-style: solid;
   border-width: thin;
 }
+
+body {
+  background: #FFF;
+  padding: 5em;
+  font-family: sans-serif;
+}
+
+svg {
+  margin-bottom: 2em;
+}
+
+.rating__background {
+  fill: #949492;
+  stroke-width: 1;
+  height: 100%;
+  width: 100%;
+}
+
+.rating__value {
+  fill: #5ce441;
+  height: 100%;
+}
