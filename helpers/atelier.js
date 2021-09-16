@@ -25,5 +25,30 @@ let getAtelier = (endpoint, callback) => {
   });
 };
 
+let putAtelier = (endpoint, callback) => {
 
-module.exports.getAtelier = getAtelier;
+  let options = {
+    method: 'PUT',
+    url: server + endpoint,
+    headers: {
+      'User-Agent': 'request',
+      'Authorization': `${config.TOKEN}`,
+    }
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(options)
+      .then ( (result) => {
+        resolve(result.data);
+      })
+      .catch( (err) => {
+        reject(err);
+      });
+  });
+};
+
+
+module.exports = {
+  getAtelier: getAtelier,
+  putAtelier: putAtelier
+};

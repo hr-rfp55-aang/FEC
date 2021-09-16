@@ -2,9 +2,6 @@ import React, {useState, useEffect} from 'react';
 import QAListEntry from './QAListEntry.jsx';
 
 const QAList = (props) => {
-  const sortByHelpfulness = (questions) => {
-
-  };
 
   return (
     <div>
