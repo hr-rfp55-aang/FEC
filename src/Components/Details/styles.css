@@ -1,0 +1,34 @@
+.productOverview {
+  display: flex;
+}
+
+.productPhotos {
+  display: flex;
+}
+
+.displayedPhoto {
+  display: flex;
+  height: 300px;
+  width: 275px;
+}
+
+.thumbnailList {
+  display: flex;
+  flex-direction: column;
+}
+
+.thumbnailListItem {
+  height: 90px;
+  width: 80px;
+}
+
+.descriptionOverview {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 10px;
+}
+
+.detailedDescription {
+  display: flex;
+}
