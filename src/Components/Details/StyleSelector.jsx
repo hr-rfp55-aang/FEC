@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
-import ProductDescription from './ProductDescription.jsx';
-import PhotoGallery from './PhotoGallery';
-import { ContextObj } from '../../ContextObj.jsx';
-import { getServer, grabReviewScore, formatDate } from '../../helpers';
+import StyleSelectorListItem from './StyleSelectorListItem.jsx';
 
-const StyleSelector = ({productStyles}) => {
-  console.log('in StyleSelector ', productStyles );
+const StyleSelector = ({ productStyles, currentProductStyle, setCurrentProductStyle }) => {
+  // console.log('in StyleSelector ', productStyles);
 
-  // loop through photos array
   return (
-    <div className="styleSelector">Style Selector</div>
+    <div className="styleSelector">
+      {/* Limit it to 4 displayed per line */}
+      {productStyles.map((style, index) => {
+        return <StyleSelectorListItem style={style} currentProductStyle={currentProductStyle} setCurrentProductStyle={setCurrentProductStyle}/>;
+      })}
+    </div>
   );
 };
 

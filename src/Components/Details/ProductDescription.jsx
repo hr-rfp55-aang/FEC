@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ContextObj } from '../../ContextObj.jsx';
-import { getServer, grabReviewScore, formatDate } from '../../helpers';
 
 const ProductDescription = ({ productStyles }) => {
 

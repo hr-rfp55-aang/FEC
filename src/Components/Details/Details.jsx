@@ -28,9 +28,11 @@ const Details = () => {
   return (
     <div className="productOverview">
       <PhotoGallery productStyles={productStyles} currentProductStyle={currentProductStyle} />
-      <ProductDescription productStyles={productStyles} />
-      <StyleSelector productStyles={productStyles}/>
-      {/* Add to Cart Component*/}
+      <div>
+        <ProductDescription productStyles={productStyles} />
+        <StyleSelector productStyles={productStyles} currentProductStyle={currentProductStyle} setCurrentProductStyle={setCurrentProductStyle}/>
+        {/* Add to Cart Component*/}
+      </div>
     </div>
   );
 };
