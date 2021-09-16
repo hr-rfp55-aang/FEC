@@ -33,7 +33,7 @@ const App = () => {
       {isLoaded && <ContextObj.Provider value={{ productId: productId, productInfo: productInfo, ratingAvg: ratingAvg}}>
         {/* <Details /> */}
         <Related />
-        {/* <Questions /> */}
+        <Questions />
         {/* <Reviews /> */}
       </ContextObj.Provider>}
     </div>

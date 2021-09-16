@@ -14,7 +14,7 @@ const QuestionModal = (props) => {
           <h4 className="modal-subtitle">About the {props.name}</h4>
         </div>
         <div className="modal-body">
-          <form>
+          <div>
             <div>
               <label>
                 *Your Question
@@ -36,7 +36,7 @@ const QuestionModal = (props) => {
                 </div>
               </label>
             </div>
-          </form>
+          </div>
         </div>
         <div className="modal-footer">
           <button>Submit</button>
