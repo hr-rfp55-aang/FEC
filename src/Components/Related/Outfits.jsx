@@ -4,13 +4,21 @@ import ProductCard from './ProductCard';
 import './styles.css';
 import { getServer, grabReviewScore, formatDate } from '../../helpers';
 
-const Outfits = () => {
+const Outfits = (props) => {
 
   const { productId } = useContext(ContextObj);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, [productId]);
 
   return (
-    <div className='outfits'>
-      <ProductCard item={productId} />
+    <div>
+      {isLoaded &&
+        <div className='outfits'>
+          <ProductCard cardId={productId} />
+        </div>}
     </div>
   );
 };
