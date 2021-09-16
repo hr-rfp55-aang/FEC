@@ -1,6 +1,21 @@
 import React, {useState} from 'react';
 
 const QuestionModal = (props) => {
+  const [qModalBody, setQModalBody] = useState('');
+  const [qModalName, setQModalName] = useState('');
+  const [qModalEmail, setQModalEmail] = useState('');
+
+  const qModalBodyHandler = () => {
+    setQModalBody(event.target.value);
+  };
+
+  const qModalNameHandler = () => {
+    setQModalName(event.target.value);
+  };
+
+  const qModalEmailHandler = () => {
+    setQModalEmail(event.target.value);
+  };
 
   if (!props.show) {
     return null;
@@ -18,14 +33,17 @@ const QuestionModal = (props) => {
             <div>
               <label>
                 *Your Question
-                <textarea></textarea>
+                <textarea onChange={qModalBodyHandler}></textarea>
               </label>
             </div>
             <div>
               <label>
                 *What is your nickname
-                <input type="text" placeholder="Example: jackson11!"></input>
+                <input onChange={qModalNameHandler} type="text" placeholder="Example: jackson11!"></input>
               </label>
+              <div>
+                For privacy reasons, do not use your full name or email address
+              </div>
             </div>
             <div>
               <label>
