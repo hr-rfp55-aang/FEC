@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { ContextObj } from '../../ContextObj.jsx';
+import ReviewPicList from './ReviewPicList.jsx';
 
 var ReviewListEntry = ({ review, setReviews }) => {
   const { formatDate } = useContext(ContextObj);
@@ -11,7 +12,9 @@ var ReviewListEntry = ({ review, setReviews }) => {
         <div className='date'>{review.reviewer_name}, {formatDate(review.date)}</div>
         <div className='summary'><b>{review.summary}</b></div>
         <div className='body'>{review.body}</div>
+        <div>{(review.recommend) ? 'I recomend this product' : ''}</div>
         <div className='response'>Response: <br></br> <br></br>{review.response}</div>
+        <ReviewPicList pictures={review.photos}/>
         <div className='helpful'>Helpful? <u>Yes({review.helpfulness})</u>  | <u>Report</u> </div>
       </div > :
       <div className='reviewEntry'>
@@ -19,7 +22,9 @@ var ReviewListEntry = ({ review, setReviews }) => {
         <div className='date'>{review.reviewer_name}, {formatDate(review.date)}</div>
         <div className='summary'><b>{review.summary}</b></div>
         <div className='body'>{review.body}</div>
-        <div className='helpful'>Helpful? <u>Yes({review.helpfulness})</u> | <u>Report</u> </div>
+        <div>{(review.recommend) ? 'I recomend this product' : ''}</div>
+        <ReviewPicList pictures={review.photos}/>
+        <div className='helpful'>Helpful? <u onClick={()=>console.log('ohYeahhh')}>Yes({review.helpfulness})</u> | <u onClick={()=>console.log('ohYeahhh')}>Report</u> </div>
       </div>
   );
 };

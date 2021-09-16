@@ -12,11 +12,11 @@ var Review = () => {
   const id = productInfo.id;
 
   useEffect(() => {
-    getServer(`/reviews/?product_id=${40444}`, (result)=> setReviews(result.results));
+    getServer(`/reviews/?product_id=${40380}`, (result)=> setReviews(result.results));
   }, [productInfo]);
 
   useEffect(() => {
-    getServer(`/reviews/?product_id=${40444}&sort=${sortStr}`, (result)=> setReviews(result.results));
+    getServer(`/reviews/?product_id=${40380}&sort=${sortStr}`, (result)=> setReviews(result.results));
   }, [sortStr]);
 
 

@@ -14,8 +14,8 @@ const ReviewList = ({ reviews, setReviews, setLimit, reviewsLimit, setsortStr}) 
 
   return (
     <div className='reviewList'>
-      <div>{reviewsTotal} reviews, sorted by relevance</div>
-      <select name="selectList" onChange={(e)=>setsortStr(e.target.value)}>
+      <div className='reviewsTotal'>{reviewsTotal} reviews, sorted by</div>
+      <select className='dropDown' name="selectList" onChange={(e)=>setsortStr(e.target.value)}>
         <option value="relevance">relevance</option>
         <option value="helpful">helpfulness</option>
         <option value="newest">newest</option>
