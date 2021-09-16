@@ -40,6 +40,10 @@
   border-radius: 60%;
 }
 
+.sizeAndQuantity {
+  display: flex;
+}
+
 .detailedDescription {
   display: flex;
 }
