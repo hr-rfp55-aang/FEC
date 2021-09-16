@@ -6,6 +6,14 @@ const QuestionModal = (props) => {
   const [qModalName, setQModalName] = useState('');
   const [qModalEmail, setQModalEmail] = useState('');
 
+  const validateEmail = (mail) => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+      return (true);
+    } else {
+      return (false);
+    }
+  };
+
   const qModalBodyHandler = () => {
     setQModalBody(event.target.value);
   };
@@ -19,13 +27,25 @@ const QuestionModal = (props) => {
   };
 
   const submitQuestion = (body, name, email, id) => {
-    console.log(body, name, email, id);
+    var validEmail = validateEmail(email);
+    if (body === '') {
+      alert('You must enter the following: Question');
+    }
+    if (name === '') {
+      alert('You must enter the following: Nickname');
+    }
+    if (!validEmail) {
+      alert('You must enter the following: A valid email address');
+    }
+
     postServer('/qa/questions', ({
       body: body,
       name: name,
       email: email,
       product_id: id
-    }));
+    }))
+      .then(() => props.onClose());
+
   };
 
   if (!props.show) {

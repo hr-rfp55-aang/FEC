@@ -9,7 +9,7 @@ const AnswerEntry = (props) => {
 
   const updateAnswerHelp = () => {
     if (!answerHelp) {
-      putServer(`/qa/questions/${props.answer.answer_id}/helpful`)
+      putServer(`/qa/answers/${props.answer.answer_id}/helpful`)
         .then(() => { setAnswerHelp(true); })
         .then(() => { setAnswerHelpfulness(prevState => prevState + 1); })
         .catch((error) => console.log('answer help', error));
