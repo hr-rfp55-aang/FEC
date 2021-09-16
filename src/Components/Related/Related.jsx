@@ -3,22 +3,28 @@ import { ContextObj } from '../../ContextObj.jsx';
 import Outfits from './Outfits';
 import ProductCard from './ProductCard';
 import './styles.css';
+import { getServer, grabReviewScore, formatDate } from '../../helpers';
 
 const Related = (props) => {
 
-  const { productInfo, getServer } = useContext(ContextObj);
-  const [relatedItems, setRelatedItems] = useState([40344]);
-  const id = productInfo.id;
+  const { productId } = useContext(ContextObj);
+  const [relatedItems, setRelatedItems] = useState([]);
 
   useEffect(() => {
-    if (id) {
-      getServer(`/products/${id}/related`, (result) => setRelatedItems(result) );
+    if (productId) {
+      getServer(`/products/${productId}/related`)
+        .then( (result) => {
+          setRelatedItems(result);
+        })
+        .catch( (err) => {
+          console.log('Related err:', err);
+        });
     }
-  }, [productInfo]);
+  }, [productId]);
 
   return (
     <div className='relatedCarousel'>
-      {relatedItems.map( (item, index) => {
+      {(relatedItems.length > 0) && relatedItems.map( (item, index) => {
         return <ProductCard key={index} item={item}/>;
       })}
       <Outfits />

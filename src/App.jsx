@@ -3,60 +3,38 @@ import Details from './Components/Details/Details.jsx';
 import Questions from './Components/Questions/Questions.jsx';
 import Reviews from './Components/Reviews/Reviews.jsx';
 import Related from './Components/Related/Related.jsx';
-import axios from 'axios';
+import { getServer, grabReviewScore, formatDate } from './helpers';
 import { ContextObj } from './ContextObj';
-
-const server = 'http://localhost:3001';
 
 const App = () => {
 
+  const [productId, setProductId] = useState(40390);
   const [productInfo, setProductInfo] = useState({});
   const [ratingAvg, setRatingAvg] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  const getServer = (endpoint, callback) => {
-    axios.get(server + endpoint)
-      .then((result) => {
-        callback(result.data);
+  useEffect(() => {
+    Promise.all([
+      getServer(`/products/${productId}`),
+      getServer(`/reviews/meta/?product_id=${productId}`)
+    ])
+      .then(([pProductInfo, pReviewMeta]) => {
+        setProductInfo(pProductInfo);
+        setRatingAvg(grabReviewScore(pReviewMeta.ratings));
+        setIsLoaded(true);
       })
-      .catch((err) => {
-        console.log('axios err', err);
+      .catch ( (err) => {
+        console.log('Promise all:', err);
       });
-  };
-
-  const grabReviewScore = (ratingsObj) => {
-    var rating = 0;
-    var total = 0;
-
-    for (var key in ratingsObj) {
-      rating += Number(key) * Number(ratingsObj[key]);
-      total += Number(ratingsObj[key]);
-    }
-    setRatingAvg(Number(Math.round((rating / total) + 'e1') + 'e-1'));
-  };
-
-  useEffect(() => {
-    getServer('/products/40350', (result) => setProductInfo(result));
-  }, []);
-
-  useEffect(() => {
-    getServer('/reviews/meta/?product_id=40375', (result) => grabReviewScore(result.ratings));
-  }, [productInfo]);
-
-
-
-  const formatDate = (date) => {
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var formattedDate = new Date(date);
-    return months[formattedDate.getMonth()] + ' ' + (formattedDate.getDate() + 1) + ', ' + formattedDate.getFullYear();
-  };
+  }, [productId]);
 
   return (
     <div>
-      {productInfo.id && <ContextObj.Provider value={{ productInfo: productInfo, getServer: getServer, formatDate: formatDate, ratingAvg: ratingAvg}}>
-        <Details />
+      {isLoaded && <ContextObj.Provider value={{ productId: productId, productInfo: productInfo, ratingAvg: ratingAvg}}>
+        {/* <Details /> */}
         <Related />
-        <Questions />
-        <Reviews />
+        {/* <Questions /> */}
+        {/* <Reviews /> */}
       </ContextObj.Provider>}
     </div>
   );

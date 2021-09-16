@@ -17,14 +17,14 @@ app.get('/', (req, res) => {
 
 function getRequest(endpoint) {
   app.get(endpoint, (req, res) => {
-    atelier.getAtelier(req.url, (err, data) => {
-      if (err) {
+    atelier.getAtelier(req.url)
+      .then( (data) => {
+        res.status(200).send(data);
+      })
+      .catch( (err) => {
         console.log(`get ${req.url}: ${err}`);
         res.status(404).send(`Failed to retrieve ${req.url}`);
-      } else {
-        res.status(200).send(data);
-      }
-    });
+      });
   });
 }
 
