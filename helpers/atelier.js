@@ -25,6 +25,28 @@ let getAtelier = (endpoint, callback) => {
   });
 };
 
+let postAtelier = (endpoint, callback) => {
+
+  let options = {
+    method: 'POST',
+    url: server + endpoint,
+    headers: {
+      'User-Agent': 'request',
+      'Authorization': `${config.TOKEN}`,
+    }
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(options)
+      .then ( (result) => {
+        resolve(result.data);
+      })
+      .catch( (err) => {
+        reject(err);
+      });
+  });
+};
+
 let putAtelier = (endpoint, callback) => {
 
   let options = {
@@ -50,5 +72,6 @@ let putAtelier = (endpoint, callback) => {
 
 module.exports = {
   getAtelier: getAtelier,
-  putAtelier: putAtelier
+  putAtelier: putAtelier,
+  postAtelier: postAtelier
 };
