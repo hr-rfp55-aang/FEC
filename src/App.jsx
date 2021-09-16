@@ -8,7 +8,7 @@ import { ContextObj } from './ContextObj';
 
 const App = () => {
 
-  const [productId, setProductId] = useState(40390);
+  const [productId, setProductId] = useState(40350);
   const [productInfo, setProductInfo] = useState({});
   const [ratingAvg, setRatingAvg] = useState(0);
   const [reviewsTotal, setReviewsTotal] = useState(0);

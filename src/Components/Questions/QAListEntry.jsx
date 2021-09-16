@@ -13,7 +13,8 @@ const QAListEntry = (props) => {
 
   useEffect(() => {
     getServer(`/qa/questions/${questionId}/answers`)
-      .then((result) => setAnswers(result));
+      .then((result) => setAnswers(result))
+      .catch((error) => console.log('answers', error));
   }, [questionId]);
 
 
