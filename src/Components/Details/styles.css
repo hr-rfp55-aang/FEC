@@ -8,8 +8,8 @@
 
 .displayedPhoto {
   display: flex;
-  height: 300px;
-  width: 275px;
+  height: 500px;
+  width: 475px;
 }
 
 .thumbnailList {
@@ -29,6 +29,18 @@
   padding: 10px;
 }
 
+.styleSelector {
+  display: flex;
+}
+
+.stylePhoto {
+  display: flex;
+  height: 90px;
+  width: 80px;
+  border-radius: 60%;
+}
+
 .detailedDescription {
   display: flex;
 }
+

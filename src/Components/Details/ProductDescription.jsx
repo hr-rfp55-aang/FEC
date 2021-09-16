@@ -3,24 +3,24 @@ import { ContextObj } from '../../ContextObj.jsx';
 
 const ProductDescription = ({ productStyles }) => {
 
-  const { productInfo, getServer, ratingAvg } = useContext(ContextObj);
-  const id = productInfo.id;
+  const { productId, productInfo, ratingAvg, reviewsTotal } = useContext(ContextObj);
 
-  // console.log('In ProductInfo ', 'product: ', productInfo, 'productStyles: ', productStyles);
+  // const price = productStyles[0].original_price
+
+  //console.log('In ProductInfo ', 'product: ', productInfo, 'productStyles: ', productStyles);
 
   return (
     <div className="descriptionOverview">
       {/* Star Rating Component */}
-      <div> {ratingAvg} *** Read all 100 reviews </div>
+      <div> {ratingAvg ? ratingAvg + `*** Read all ${reviewsTotal} reviews` : 'No Ratings Available for this Product'}  </div>
       {/* Product Category */}
       <div>{productInfo.category}</div>
       {/* Product Name */}
       <div><h2>{productInfo.name}</h2></div>
       {/* Price Component */}
-      {/* <div>${productInfo.default_price}</div> */}
       <div>
-        ${productStyles.results.length > 0 &&
-          productStyles.results[0].original_price
+        ${productStyles.length > 0 &&
+          productStyles[0].original_price
         }
       </div>
       {/* Product Description Component*/}
