@@ -27,7 +27,7 @@ const Questions = (props) => {
       <QAList questions={questions}/>
       <div>
         <button onClick={() => setShowQuestions(true)}>Add A Question</button>
-        <QuestionModal onClose={() => setShowQuestions(false)} show={showQuestions} name={productInfo.name}/>
+        <QuestionModal onClose={() => setShowQuestions(false)} show={showQuestions} name={productInfo.name} productId={productId}/>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { postServer } from '../../helpers';
 
 const QuestionModal = (props) => {
   const [qModalBody, setQModalBody] = useState('');
@@ -15,6 +16,16 @@ const QuestionModal = (props) => {
 
   const qModalEmailHandler = () => {
     setQModalEmail(event.target.value);
+  };
+
+  const submitQuestion = (body, name, email, id) => {
+    console.log(body, name, email, id);
+    postServer('/qa/questions', JSON.stringify({
+      body: {body},
+      name: {name},
+      email: {email},
+      product_id: {id}
+    }));
   };
 
   if (!props.show) {
@@ -48,7 +59,7 @@ const QuestionModal = (props) => {
             <div>
               <label>
                 *Your email
-                <input type="text" placeholder="Why did you like the product or not?"></input>
+                <input onChange={qModalEmailHandler} type="text" placeholder="Why did you like the product or not?"></input>
                 <div>
                   For authentication reasons you will not be emailed
                 </div>
@@ -57,7 +68,7 @@ const QuestionModal = (props) => {
           </div>
         </div>
         <div className="modal-footer">
-          <button>Submit</button>
+          <button onClick={() => submitQuestion(qModalBody, qModalName, qModalEmail, props.productId)}>Submit</button>
         </div>
       </div>
     </div>
