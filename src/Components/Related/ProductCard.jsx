@@ -1,21 +1,26 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ContextObj } from '../../ContextObj.jsx';
 import './styles.css';
+import { getServer, grabReviewScore, formatDate } from '../../helpers';
 
 const ProductCard = (props) => {
 
-  const { productInfo, getServer } = useContext(ContextObj);
-  const id = productInfo.id;
+  const { productId } = useContext(ContextObj);
   const [carouselItem, setCarouselItem] = useState({});
   const [carouselStyle, setCarouselStyle] = useState({results: [{photos: [{'thumbnail_url': null}]}]});
 
   useEffect(() => {
-    if (id) {
-      getServer(`/products/${props.item}/`, (result) => setCarouselItem(result) );
-      getServer(`/products/${props.item}/styles`, (result) => setCarouselStyle(result) );
+    if (productId) {
+      getServer(`/products/${props.item}/`)
+        .then( (result) => {
+          setCarouselItem(result);
+        });
+      getServer(`/products/${props.item}/styles`)
+        .then( (result) => {
+          setCarouselStyle(result);
+        });
     }
-  }, [productInfo]);
-
+  }, [productId]);
 
   return (
     <div className='productCard'>Product Card {props.item}
