@@ -3,7 +3,7 @@ import { ContextObj } from '../../ContextObj.jsx';
 import ReviewPicList from './ReviewPicList.jsx';
 import { formatDate } from '../../helpers';
 
-var ReviewListEntry = ({ review, setReviews }) => {
+var ReviewListEntry = ({ review, setReviews, setCurReview }) => {
 
 
   return (
@@ -25,7 +25,7 @@ var ReviewListEntry = ({ review, setReviews }) => {
         <div className='body'>{review.body}</div>
         <div>{(review.recommend) ? 'I recomend this product' : ''}</div>
         <ReviewPicList pictures={review.photos}/>
-        <div className='helpful'>Helpful? <u onClick={()=>console.log('ohYeahhh')}>Yes({review.helpfulness})</u> | <u onClick={()=>console.log('ohYeahhh')}>Report</u> </div>
+        <div className='helpful'>Helpful? <u onClick={()=>setCurReview(review.review_id)}>Yes({review.helpfulness})</u> | <u onClick={()=>console.log('ohYeahhh')}>Report</u> </div>
       </div>
   );
 };

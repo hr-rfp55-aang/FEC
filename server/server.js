@@ -40,14 +40,14 @@ getRequest('/cart');
 
 function putRequest(endpoint) {
   app.put(endpoint, (req, res) => {
-    atelier.putAtelier(req.url, (err, data) => {
-      if (err) {
+    atelier.putAtelier(req.url)
+      .then( (data) => {
+        res.status(201).send('Item updated successfully');
+      })
+      .catch( (err) => {
         console.log(`get ${req.url}: ${err}`);
         res.status(404).send(`Failed to retrieve ${req.url}`);
-      } else {
-        res.status(201).send('successfully updated item');
-      }
-    });
+      });
   });
 }
 
