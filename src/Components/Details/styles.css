@@ -29,6 +29,12 @@
   padding: 10px;
 }
 
+.styleSelector {
+  display: flex;
+  flex-direction: column;
+}
+
 .detailedDescription {
   display: flex;
 }
+

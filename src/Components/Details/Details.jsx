@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ProductDescription from './ProductDescription.jsx';
 import PhotoGallery from './PhotoGallery';
+import StyleSelector from './StyleSelector.jsx';
 import { ContextObj } from '../../ContextObj.jsx';
 import './styles.css';
 import { getServer, grabReviewScore, formatDate } from '../../helpers';
@@ -28,7 +29,7 @@ const Details = () => {
     <div className="productOverview">
       <PhotoGallery productStyles={productStyles} currentProductStyle={currentProductStyle} />
       <ProductDescription productStyles={productStyles} />
-      {/* Style Selector Component*/}
+      <StyleSelector productStyles={productStyles}/>
       {/* Add to Cart Component*/}
     </div>
   );
