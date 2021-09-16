@@ -3,7 +3,7 @@ const config = require('../config.js');
 
 const server = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 
-let getAtelier = (endpoint, callback) => {
+let getAtelier = (endpoint) => {
 
   let options = {
     method: 'GET',
@@ -25,7 +25,7 @@ let getAtelier = (endpoint, callback) => {
   });
 };
 
-let postAtelier = (endpoint, callback) => {
+let postAtelier = (endpoint, data) => {
 
   let options = {
     method: 'POST',
@@ -33,7 +33,8 @@ let postAtelier = (endpoint, callback) => {
     headers: {
       'User-Agent': 'request',
       'Authorization': `${config.TOKEN}`,
-    }
+    },
+    data: data
   };
 
   return new Promise((resolve, reject) => {
@@ -47,7 +48,7 @@ let postAtelier = (endpoint, callback) => {
   });
 };
 
-let putAtelier = (endpoint, callback) => {
+let putAtelier = (endpoint) => {
 
   let options = {
     method: 'PUT',
