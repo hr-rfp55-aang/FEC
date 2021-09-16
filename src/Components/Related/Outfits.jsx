@@ -7,10 +7,18 @@ import { getServer, grabReviewScore, formatDate } from '../../helpers';
 const Outfits = (props) => {
 
   const { productId } = useContext(ContextObj);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, [productId]);
 
   return (
-    <div className='outfits'>
-      <ProductCard cardId={productId} />
+    <div>
+      {isLoaded &&
+        <div className='outfits'>
+          <ProductCard cardId={productId} />
+        </div>}
     </div>
   );
 };

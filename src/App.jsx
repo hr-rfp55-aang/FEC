@@ -8,7 +8,7 @@ import { ContextObj } from './ContextObj';
 
 const App = () => {
 
-  const [productId, setProductId] = useState(40350);
+  const [productId, setProductId] = useState(40390);
   const [productInfo, setProductInfo] = useState({});
   const [ratingAvg, setRatingAvg] = useState(0);
   const [reviewsTotal, setReviewsTotal] = useState(0);
@@ -32,7 +32,7 @@ const App = () => {
 
   return (
     <div>
-      {isLoaded && <ContextObj.Provider value={{ productId, productInfo, ratingAvg, reviewsTotal }}>
+      {isLoaded && <ContextObj.Provider value={{ productId, setProductId, productInfo, ratingAvg, reviewsTotal }}>
         {/* <Details /> */}
         <Related />
         <Questions />

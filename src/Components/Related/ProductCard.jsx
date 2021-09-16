@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ContextObj } from '../../ContextObj.jsx';
 import './styles.css';
-import { getServer, grabReviewScore, formatDate } from '../../helpers';
+import { getServer, grabReviewScore } from '../../helpers';
 
 const ProductCard = ({cardId}) => {
 
-  const { productId, ratingAvg } = useContext(ContextObj);
+  const { productId, setProductId, ratingAvg } = useContext(ContextObj);
 
   const [name, setName] = useState();
   const [category, setCategory] = useState();
@@ -39,7 +39,7 @@ const ProductCard = ({cardId}) => {
   return (
     <div>
       {isLoaded &&
-        <div className='productCard'>
+        <div className='productCard' onClick={() => setProductId(cardId)}>
           <div className='card-wrapper'><img className='relatedPhoto' src={thumbnail} /></div>
           <div>{category}</div>
           <div>{name}</div>
