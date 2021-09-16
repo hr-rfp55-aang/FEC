@@ -1,27 +1,38 @@
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ProductDescription from './ProductDescription.jsx';
 import PhotoGallery from './PhotoGallery';
+import StyleSelector from './StyleSelector.jsx';
 import { ContextObj } from '../../ContextObj.jsx';
 import './styles.css';
+import { getServer, grabReviewScore, formatDate } from '../../helpers';
 
 const Details = () => {
-  const [productStyles, setProductStyles] = useState({results: []});
+  const [productStyles, setProductStyles] = useState([]);
+  const [currentProductStyle, setCurrentProductStyle] = useState({ photos: [] });
 
-  const {productInfo, getServer} = useContext(ContextObj);
-  const id = productInfo.id;
+  const { productId, productInfo } = useContext(ContextObj);
 
   useEffect(() => {
-    if (id) {
-      getServer(`/products/${id}/styles`, (result) => setProductStyles(result));
+    if (productId) {
+      getServer(`/products/${productId}/styles`)
+        .then((result) => {
+          setProductStyles(result.results);
+          setCurrentProductStyle(result.results[0]);
+        })
+        .catch((err) => {
+          console.log('Styles err: ', err);
+        });
     }
-  }, [productInfo]);
+  }, [productId]);
 
   return (
     <div className="productOverview">
-      <PhotoGallery productStyles={productStyles}/>
-      <ProductDescription productStyles={productStyles}/>
-      {/* Style Selector Component*/}
-      {/* Add to Cart Component*/}
+      <PhotoGallery productStyles={productStyles} currentProductStyle={currentProductStyle} />
+      <div>
+        <ProductDescription productStyles={productStyles} />
+        <StyleSelector productStyles={productStyles} currentProductStyle={currentProductStyle} setCurrentProductStyle={setCurrentProductStyle}/>
+        {/* Add to Cart Component*/}
+      </div>
     </div>
   );
 };
