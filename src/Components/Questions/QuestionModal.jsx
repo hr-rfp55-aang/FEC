@@ -20,11 +20,11 @@ const QuestionModal = (props) => {
 
   const submitQuestion = (body, name, email, id) => {
     console.log(body, name, email, id);
-    postServer('/qa/questions', JSON.stringify({
-      body: {body},
-      name: {name},
-      email: {email},
-      product_id: {id}
+    postServer('/qa/questions', ({
+      body: body,
+      name: name,
+      email: email,
+      product_id: id
     }));
   };
 
