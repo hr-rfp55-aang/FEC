@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ProductDescription from './ProductDescription.jsx';
-import { ContextObj } from '../../ContextObj.jsx';
 
-const ThumbnailListItem = ({img, index, photo, mainPhoto, setMainPhoto, mainThumbnail, setMainThumbnail,  mainPhotoName, setMainPhotoName})=> {
-    //console.log('In thumbnaillistlitem: ', photo)
+const ThumbnailListItem = ({ index, photo, mainPhoto, setMainPhoto, mainPhotoName }) => {
+  //console.log('In thumbnaillistlitem: ', photo)
   return (
     <div>
-      <img onClick={() => { setMainPhoto(photo), setMainThumbnail(img), setMainPhotoName()}}className="thumbnailListItem" src={img} alt={mainPhotoName + index}/>
+      {/* Limit it to 7 displayed with an arrow to see more */}
+      <img onClick={() => { setMainPhoto(photo); }} className="thumbnailListItem" src={photo.thumbnail_url} alt={mainPhotoName + index} />
     </div>
   );
 };
