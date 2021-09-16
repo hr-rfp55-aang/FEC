@@ -32,7 +32,7 @@ const App = () => {
 
   return (
     <div>
-      {isLoaded && <ContextObj.Provider value={{ productId, productInfo, ratingAvg, reviewsTotal }}>
+      {isLoaded && <ContextObj.Provider value={{ productId, setProductId, productInfo, ratingAvg, reviewsTotal }}>
         {/* <Details /> */}
         <Related />
         <Questions />
