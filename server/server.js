@@ -52,6 +52,11 @@ function putRequest(endpoint) {
 }
 
 putRequest('/reviews/:review_id/helpful');
+putRequest('/reviews/:review_id/report');
+putRequest('/qa/questions/:question_id/helpful');
+putRequest('/qa/questions/:question_id/report');
+putRequest('/qa/answers/:answer_id/helpful');
+putRequest('/qa/answers/:answer_id/report');
 
 
 
