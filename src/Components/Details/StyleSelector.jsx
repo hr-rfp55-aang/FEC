@@ -8,7 +8,7 @@ const StyleSelector = ({ productStyles, currentProductStyle, setCurrentProductSt
     <div className="styleSelector">
       {/* Limit it to 4 displayed per line */}
       {productStyles.map((style, index) => {
-        return <StyleSelectorListItem style={style} currentProductStyle={currentProductStyle} setCurrentProductStyle={setCurrentProductStyle}/>;
+        return <StyleSelectorListItem key={index} style={style} currentProductStyle={currentProductStyle} setCurrentProductStyle={setCurrentProductStyle}/>;
       })}
     </div>
   );
