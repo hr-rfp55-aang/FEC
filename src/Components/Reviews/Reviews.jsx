@@ -2,21 +2,24 @@ import React, { useState, useContext, useEffect } from 'react';
 import ReviewList from './ReviewList.jsx';
 import ReviewBreakdown from './ReviewBreakdown.jsx';
 import './styles.css';
-import { ContextObj } from '../../ContextObj.jsx';
+import { getServer, grabReviewScore, formatDate } from '../../helpers';
+import { ContextObj } from '../../ContextObj';
 
 var Review = () => {
   const [reviews, setReviews] = useState([]);
   const [reviewsLimit, setLimit] = useState(2);
   const [sortStr, setsortStr] = useState('');
-  const { getServer, productInfo } = useContext(ContextObj);
+  const { productInfo } = useContext(ContextObj);
   const id = productInfo.id;
 
   useEffect(() => {
-    getServer(`/reviews/?product_id=${40380}`, (result)=> setReviews(result.results));
+    getServer(`/reviews/?product_id=${40380}`)
+      .then((result) => { setReviews(result.results); });
   }, [productInfo]);
 
   useEffect(() => {
-    getServer(`/reviews/?product_id=${40380}&sort=${sortStr}`, (result)=> setReviews(result.results));
+    getServer(`/reviews/?product_id=${40380}&sort=${sortStr}`)
+      .then((result) => { setReviews(result.results); });
   }, [sortStr]);
 
 

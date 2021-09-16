@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { ContextObj } from '../../ContextObj.jsx';
 import ReviewPicList from './ReviewPicList.jsx';
+import { formatDate } from '../../helpers';
 
 var ReviewListEntry = ({ review, setReviews }) => {
-  const { formatDate } = useContext(ContextObj);
+
 
   return (
     (review.response) ?
