@@ -37,10 +37,10 @@ const ProductCard = ({cardId}) => {
   }, []);
 
   return (
-    <div className='productCard'>
+    <div>
       {isLoaded &&
-        <div>
-          <div><img className='relatedPhoto' src={thumbnail} /></div>
+        <div className='productCard'>
+          <div className='card-wrapper'><img className='relatedPhoto' src={thumbnail} /></div>
           <div>{category}</div>
           <div>{name}</div>
           <div>${originalPrice}</div>

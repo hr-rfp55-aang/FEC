@@ -28,7 +28,7 @@ const Related = (props) => {
   return (
     <div className='related'>
       {isLoaded && <div>
-        <Carousel>
+        <Carousel show={(relatedItems.length > 4) ? 4 : relatedItems.length}>
           {(relatedItems.length > 0) && relatedItems.map( (item, index) => {
             return <ProductCard key={item} cardId={item}/>;
           })}

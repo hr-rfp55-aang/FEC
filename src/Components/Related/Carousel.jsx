@@ -5,7 +5,7 @@ import './styles.css';
 
 
 const Carousel = (props) => {
-  const {children} = props;
+  const {children, show} = props;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [carouselLength, setCarouselLength] = useState(children.length);
 
@@ -14,7 +14,7 @@ const Carousel = (props) => {
   }, [children]);
 
   const next = () => {
-    if (currentIndex < (carouselLength - 1)) {
+    if (currentIndex < (carouselLength - show)) {
       setCurrentIndex(prevState => prevState + 1 );
     }
   };
@@ -30,12 +30,12 @@ const Carousel = (props) => {
       <div className='carousel-wrapper'>
         {currentIndex > 0 && <button className='left-arrow' onClick={prev}>&lt;</button>}
         <div className='carousel-content-wrapper'>
-          <div className='carousel-content'
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+          <div className={`carousel-content show-${show}`}
+            style={{ transform: `translateX(-${currentIndex * (100 / show)}%)` }}>
             {children}
           </div>
         </div>
-        {currentIndex < (carouselLength - 1) && <button className='right-arrow' onClick={next}>&gt;</button>}
+        {currentIndex < (carouselLength - show) && <button className='right-arrow' onClick={next}>&gt;</button>}
       </div>
     </div>
   );
