@@ -12,7 +12,6 @@ const Questions = (props) => {
   const [questions, setQuestions] = useState({results: []});
   const [showQuestions, setShowQuestions] = useState(false);
 
-
   useEffect(() => {
     getServer(`/qa/questions?product_id=${productId}`)
       .then((result) => setQuestions(result))
