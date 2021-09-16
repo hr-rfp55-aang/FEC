@@ -5,17 +5,21 @@ import './styles.css';
 import {ContextObj} from '../../ContextObj';
 import QuestionSearch from './QuestionSearch.jsx';
 import QuestionModal from './QuestionModal.jsx';
-
+import { getServer, grabReviewScore, formatDate } from '../../helpers';
 
 const Questions = (props) => {
-  const {productInfo, getServer} = useContext(ContextObj);
+  const {productInfo, productId} = useContext(ContextObj);
   const [questions, setQuestions] = useState({results: []});
-  const [show, setShow] = useState(false);
-  const id = productInfo.id;
+  const [showQuestions, setShowQuestions] = useState(false);
+
 
   useEffect(() => {
-    getServer(`/qa/questions?product_id=${id}`, (result) => setQuestions(result));
-  }, [productInfo]);
+    getServer(`/qa/questions?product_id=${productId}`)
+      .then((result) => setQuestions(result))
+      .catch((error) => console.log('questions get product id', error));
+  }, [productId]);
+
+
 
   return (
     <div className='questions'>
@@ -23,8 +27,8 @@ const Questions = (props) => {
       <QuestionSearch />
       <QAList questions={questions}/>
       <div>
-        <button onClick={() => setShow(true)}>Add A Question</button>
-        <QuestionModal onClose={() => setShow(false)} show={show} name={productInfo.name}/>
+        <button onClick={() => setShowQuestions(true)}>Add A Question</button>
+        <QuestionModal onClose={() => setShowQuestions(false)} show={showQuestions} name={productInfo.name}/>
       </div>
     </div>
   );
