@@ -29,6 +29,11 @@
   padding: 10px;
 }
 
+.styleName {
+  margin: 10px;
+  padding: 10px;
+}
+
 .styleSelector {
   display: flex;
 }
