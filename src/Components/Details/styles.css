@@ -29,6 +29,11 @@
   padding: 10px;
 }
 
+.originalPrice {
+  color: red;
+  text-decoration: line-through;
+}
+
 .styleName {
   margin: 10px;
   padding: 10px;
