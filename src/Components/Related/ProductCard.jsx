@@ -13,7 +13,7 @@ const ProductCard = ({cardId}) => {
   const [originalPrice, setOriginalPrice] = useState();
   const [salePrice, setSalePrice] = useState();
   const [rating, setRating] = useState();
-  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
 
 
   useEffect(() => {
@@ -45,7 +45,6 @@ const ProductCard = ({cardId}) => {
           <div>{name}</div>
           <div>${originalPrice}</div>
           <div>{rating}</div>
-          <div></div>
         </div>}
     </div>
   );

@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import { ContextObj } from '../../ContextObj.jsx';
 import Outfits from './Outfits';
 import ProductCard from './ProductCard';
+import OutfitCard from './OutfitCard';
 import Carousel from './Carousel';
 import './styles.css';
-import { getServer, grabReviewScore, formatDate } from '../../helpers';
+import { getServer } from '../../helpers';
 
 const Related = (props) => {
 
@@ -33,7 +34,6 @@ const Related = (props) => {
             return <ProductCard key={item} cardId={item}/>;
           })}
         </Carousel>
-        <Outfits />
       </div>}
 
     </div>
