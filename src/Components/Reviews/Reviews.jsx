@@ -51,7 +51,7 @@ var Review = () => {
 
   return (
     <div>
-      <h4>Ratings & Reviews</h4>
+      <h4 id="ratingsReview">Ratings & Reviews</h4>
       <div className='reviews'>
         <ReviewBreakdown reviews={reviews} />
         <ReviewList reviews={reviews} setReviews={setReviews} setLimit={setLimit} reviewsLimit={reviewsLimit} setsortStr={setsortStr} setCurReview={setCurReview} setReport={setReport} />
