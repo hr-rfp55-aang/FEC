@@ -6,12 +6,18 @@ import AnswerModal from './AnswerModal.jsx';
 import { getServer, grabReviewScore, formatDate, putServer } from '../../helpers';
 
 const QAListEntry = (props) => {
+
+  var listButton;
+
   const {productInfo, productId} = useContext(ContextObj);
   const [answers, setAnswers] = useState({results: []});
   const [showAnswers, setShowAnswers] = useState(false);
   const [questionHelp, setQuestionHelp] = useState(false);
   const [questionHelpfulness, setQuestionHelpfulness] = useState(props.question.question_helpfulness);
   const [newAnswer, setNewAnswer] = useState('');
+  const [limit, setLimit] = useState(2);
+
+  var answerList = answers.results;
   const questionId = props.question.question_id;
 
   useEffect(() => {
@@ -21,6 +27,25 @@ const QAListEntry = (props) => {
       })
       .catch((error) => console.log('answers', error));
   }, [questionId, newAnswer]);
+
+  useEffect(() => {
+    setLimit(2);
+  }, [productId]);
+
+  const listHandler = (array) => {
+    var clone = array.slice();
+    return clone.slice(0, limit);
+  };
+
+  const increaseLimit = () => {
+    setLimit(prevState => prevState + 1000);
+  };
+
+  if (answerList.length - listHandler(answerList).length === 0) {
+    listButton = null;
+  } else {
+    listButton = <button onClick={increaseLimit}>See More Answers</button>;
+  }
 
   const updateQuestionHelp = () => {
     if (!questionHelp) {
@@ -48,8 +73,6 @@ const QAListEntry = (props) => {
     return result;
   };
 
-
-
   return (
     <div>
       <div>
@@ -59,7 +82,8 @@ const QAListEntry = (props) => {
         <span onClick={() => setShowAnswers(true)}>  |  Add Answer</span>
       </div>
       <div><AnswerModal setNewAnswer={setNewAnswer} onClose={() => setShowAnswers(false)} name={productInfo.name} question={props.question.question_body} qId={props.question.question_id} show={showAnswers}/></div>
-      <div>{sortAnswersBySeller(answers).map((answer, index) => <AnswerEntry answer={answer} key={index}/>)}</div>
+      <div>{listHandler(sortAnswersBySeller(answers)).map((answer, index) => <AnswerEntry answer={answer} key={index}/>)}</div>
+      {listButton}
     </div>
   );
 };

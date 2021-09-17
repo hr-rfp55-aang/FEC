@@ -6,20 +6,20 @@ const QAList = (props) => {
   var questionList = props.questions.results;
   var listButton;
 
-  const [limit, setLimit] = useState(4);
+  const [qLimit, setQLimit] = useState(4);
   const {productId} = useContext(ContextObj);
 
   useEffect(() => {
-    setLimit(4);
+    setQLimit(4);
   }, [productId]);
 
   const listHandler = (array) => {
     var clone = array.slice();
-    return clone.slice(0, limit);
+    return clone.slice(0, qLimit);
   };
 
   const increaseLimit = () => {
-    setLimit(prevState => prevState + 2);
+    setQLimit(prevState => prevState + 2);
   };
 
   if (questionList.length === 0) {
