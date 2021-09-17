@@ -5,13 +5,14 @@ import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 import { ContextObj } from '../../ContextObj.jsx';
 import './styles.css';
-import { getServer, grabReviewScore, formatDate } from '../../helpers';
+import { getServer } from '../../helpers';
 
 const Details = () => {
   const [productStyles, setProductStyles] = useState([]);
   const [currentProductStyle, setCurrentProductStyle] = useState({ photos: [] });
+  const [currentProductSizes, setCurrentProductSizes] = useState({});
 
-  const { productId, productInfo } = useContext(ContextObj);
+  const { productId } = useContext(ContextObj);
 
   useEffect(() => {
     if (productId) {
@@ -19,6 +20,7 @@ const Details = () => {
         .then((result) => {
           setProductStyles(result.results);
           setCurrentProductStyle(result.results[0]);
+          setCurrentProductSizes(result.results[0].skus);
         })
         .catch((err) => {
           console.log('Styles err: ', err);
@@ -28,11 +30,11 @@ const Details = () => {
 
   return (
     <div className="productOverview">
-      <PhotoGallery productStyles={productStyles} currentProductStyle={currentProductStyle} />
+      <PhotoGallery currentProductStyle={currentProductStyle} />
       <div>
-        <ProductDescription productStyles={productStyles} />
+        <ProductDescription currentProductStyle={currentProductStyle} />
         <StyleSelector productStyles={productStyles} currentProductStyle={currentProductStyle} setCurrentProductStyle={setCurrentProductStyle}/>
-        <AddToCart currentProductSizes={currentProductStyle.skus}/>
+        <AddToCart currentProductSizes={currentProductSizes}/>
       </div>
     </div>
   );
