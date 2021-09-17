@@ -1,38 +1,61 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import SizeOptions from './SizeOptions.jsx';
+import QuantityOptions from './QuantityOptions.jsx';
 
 const AddToCart = ({ currentProductSizes }) => {
 
-  const [currentSize, setCurrentSize] = useState('SELECT SIZE');
-
-
-
+  const [currentSku, setCurrentSku] = useState('');
+  const [currentQuantity, setCurrentQuantity] = useState('');
   const skus = Object.keys(currentProductSizes || {});
+  const sku = currentProductSizes[currentSku];
+  let quantities = [];
 
+  if (sku) {
+    for (let i = 1; i <= Math.min(sku.quantity, 15); i++) {
+      quantities.push(i);
+    }
+  }
   // console.log('In AddToCart ', currentProductSizes);
-
   return (
     <div>
 
-      <div className="sizeAndQuantity">
+      <form className="sizeAndQuantity">
         <div>
-          <select name="sizes" defaultValue={currentSize}>
-
+          <select name="sizes" value={currentSku} onChange={(e) => {
+            setCurrentSku(e.target.value); setCurrentQuantity('');
+          }}>
+            <option value="">SELECT SIZE</option>
             {skus.map((sku) => {
               const size = currentProductSizes[sku];
-              return <SizeOptions key={sku} sku={sku} size={size} currentSize={currentSize} setCurrentSize={setCurrentSize} />;
+              if (size.quantity > 0) {
+                return <SizeOptions key={sku} sku={sku} size={size} />;
+              }
             })}
 
           </select>
         </div>
+
         <div>
-          <select></select>
+          <select name="quantity" value={currentQuantity} onChange={(e) => {
+            setCurrentQuantity(e.target.value);
+          }}>
+            <option value="">-</option>
+            {quantities.map((quantity) => {
+              return <QuantityOptions key={quantity} quantity={quantity} />;
+            })}
+
+          </select>
         </div>
-      </div>
+      </form>
 
 
       <div>
-        <button>Add To Cart</button>
+        <button
+          onClick={() => {
+            console.log(`${currentQuantity} size ${currentProductSizes[currentSku].size}s added to cart`);
+          }} >
+          Add To Cart
+        </button>
       </div>
 
     </div>
