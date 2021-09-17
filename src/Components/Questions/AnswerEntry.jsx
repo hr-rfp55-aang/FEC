@@ -7,6 +7,8 @@ const AnswerEntry = (props) => {
   const [answerHelp, setAnswerHelp] = useState(false);
   const [answerHelpfulness, setAnswerHelpfulness] = useState(props.answer.helpfulness);
 
+  var seller;
+
   const updateAnswerHelp = () => {
     if (!answerHelp) {
       putServer(`/qa/answers/${props.answer.answer_id}/helpful`)
@@ -16,11 +18,18 @@ const AnswerEntry = (props) => {
     }
   };
 
+  if (props.answer.answerer_name === 'Seller') {
+    seller = <span style={{fontWeight: 'bold'}}>{props.answer.answerer_name}</span>;
+  } else {
+    seller = <span>by {props.answer.answerer_name}</span>;
+  }
+
   return (
     <div>
       <div>A: {props.answer.body}</div>
       <div>
-        <span>by {props.answer.answerer_name}</span>
+        <span>by </span>
+        {seller}
         <span>, {formatDate(props.answer.date)}  |  </span>
         <span>Helpful?</span>
         <span onClick={updateAnswerHelp}> Yes({answerHelpfulness})  |  </span>
