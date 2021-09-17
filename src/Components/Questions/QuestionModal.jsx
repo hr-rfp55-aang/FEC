@@ -1,18 +1,10 @@
 import React, {useState} from 'react';
-import { postServer } from '../../helpers';
+import { postServer, validateEmail } from '../../helpers';
 
 const QuestionModal = (props) => {
   const [qModalBody, setQModalBody] = useState('');
   const [qModalName, setQModalName] = useState('');
   const [qModalEmail, setQModalEmail] = useState('');
-
-  const validateEmail = (mail) => {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
-      return (true);
-    } else {
-      return (false);
-    }
-  };
 
   const qModalBodyHandler = () => {
     setQModalBody(event.target.value);
@@ -37,18 +29,19 @@ const QuestionModal = (props) => {
     if (!validEmail) {
       alert('You must enter the following: A valid email address');
     }
-    console.log({
-      body: body,
-      name: name,
-      email: email,
-      product_id: id});
-    postServer('/qa/questions', ({
 
+    postServer('/qa/questions', {
       body: body,
       name: name,
       email: email,
       product_id: id
-    }))
+    })
+      .then(() => props.setNewQuestion(JSON.stringify({
+        body: body,
+        name: name,
+        email: email,
+        product_id: id
+      })))
       .then(() => props.onClose());
 
   };
