@@ -9,6 +9,14 @@
 .card-wrapper {
   padding: 8;
 }
+
+.add {
+  width: 48px;
+  height: 48px;
+  background-color: white;
+  border: 1px solid #ddd;
+}
+
 .relatedPhoto {
   height: 150px;
   width: auto;
@@ -17,6 +25,7 @@
 }
 
 .related {
+  clear: both;
   max-width: 1200;
   margin-left: auto;
   margin-right: auto;

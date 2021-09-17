@@ -231,8 +231,15 @@ var StarRating = () => {
       </div>
     );
   }
-
-
+  return (
+    <div className='starBar'>
+      <img src='../../../assets/empty-star.svg'></img>
+      <img src='../../../assets/empty-star.svg'></img>
+      <img src='../../../assets/empty-star.svg'></img>
+      <img src='../../../assets/empty-star.svg'></img>
+      <img src='../../../assets/empty-star.svg'></img>
+    </div>
+  );
 
 };
 
