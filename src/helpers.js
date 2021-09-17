@@ -55,11 +55,20 @@ const formatDate = (date) => {
   return months[formattedDate.getMonth()] + ' ' + (formattedDate.getDate() + 1) + ', ' + formattedDate.getFullYear();
 };
 
+const validateEmail = (mail) => {
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+    return (true);
+  } else {
+    return (false);
+  }
+};
+
 
 export {
   getServer,
   grabReviewScore,
   formatDate,
   putServer,
-  postServer
+  postServer,
+  validateEmail
 };
