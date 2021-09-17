@@ -7,9 +7,64 @@ import '../../../assets/star-three-quarter.svg';
 import { ContextObj } from '../../ContextObj.jsx';
 
 
-var StarRating = () => {
+var StarRating = ({rating}) => {
   const { ratingAvg } = useContext(ContextObj);
 
+  if (rating === 1) {
+    return (
+      <div className='starBar'>
+        <img src='../../../assets/star.svg'></img>
+        <img src='../../../assets/empty-star.svg'></img>
+        <img src='../../../assets/empty-star.svg'></img>
+        <img src='../../../assets/empty-star.svg'></img>
+        <img src='../../../assets/empty-star.svg'></img>
+      </div>
+    );
+  }
+  if (rating === 2) {
+    return (
+      <div className='starBar'>
+        <img src='../../../assets/star.svg'></img>
+        <img src='../../../assets/star.svg'></img>
+        <img src='../../../assets/empty-star.svg'></img>
+        <img src='../../../assets/empty-star.svg'></img>
+        <img src='../../../assets/empty-star.svg'></img>
+      </div>
+    );
+  }
+  if (rating === 3) {
+    return (
+      <div className='starBar'>
+        <img src='../../../assets/star.svg'></img>
+        <img src='../../../assets/star.svg'></img>
+        <img src='../../../assets/star.svg'></img>
+        <img src='../../../assets/empty-star.svg'></img>
+        <img src='../../../assets/empty-star.svg'></img>
+      </div>
+    );
+  }
+  if (rating === 4) {
+    return (
+      <div className='starBar'>
+        <img src='../../../assets/star.svg'></img>
+        <img src='../../../assets/star.svg'></img>
+        <img src='../../../assets/star.svg'></img>
+        <img src='../../../assets/star.svg'></img>
+        <img src='../../../assets/empty-star.svg'></img>
+      </div>
+    );
+  }
+  if (rating === 5) {
+    return (
+      <div className='starBar'>
+        <img src='../../../assets/star.svg'></img>
+        <img src='../../../assets/star.svg'></img>
+        <img src='../../../assets/star.svg'></img>
+        <img src='../../../assets/star.svg'></img>
+        <img src='../../../assets/star.svg'></img>
+      </div>
+    );
+  }
   if (0.25 <= ratingAvg && ratingAvg < 0.50) {
     return (
       <div className='starBar'>
@@ -21,7 +76,6 @@ var StarRating = () => {
       </div>
     );
   }
-
   if (0.50 <= ratingAvg && ratingAvg < 0.75) {
     return (
       <div className='starBar'>
