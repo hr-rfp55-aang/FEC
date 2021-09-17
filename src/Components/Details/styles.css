@@ -29,6 +29,11 @@
   padding: 10px;
 }
 
+.styleName {
+  margin: 10px;
+  padding: 10px;
+}
+
 .styleSelector {
   display: flex;
 }
@@ -38,6 +43,10 @@
   height: 90px;
   width: 80px;
   border-radius: 60%;
+}
+
+.sizeAndQuantity {
+  display: flex;
 }
 
 .detailedDescription {
