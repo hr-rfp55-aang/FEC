@@ -14,7 +14,7 @@ const Questions = (props) => {
   const [newQuestion, setNewQuestion] = useState('');
 
   useEffect(() => {
-    getServer(`/qa/questions?product_id=${productId}`)
+    getServer(`/qa/questions?product_id=${productId}&count=100`)
       .then((result) => setQuestions(result))
       .catch((error) => console.log('questions get product id', error));
   }, [productId, newQuestion]);
