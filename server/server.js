@@ -58,6 +58,21 @@ putRequest('/qa/questions/:question_id/report');
 putRequest('/qa/answers/:answer_id/helpful');
 putRequest('/qa/answers/:answer_id/report');
 
+function postRequest(endpoint) {
+  app.post(endpoint, (req, res) => {
+    atelier.postAtelier(req.url, req.body)
+      .then( (data) => {
+        res.status(201).send('item created');
+      })
+      .catch( (err) => {
+        console.log(`post ${req.url}: ${err}`);
+        res.status(404).send(`Failed to retrieve ${req.url}`);
+      });
+  });
+}
+
+postRequest('/qa/questions');
+postRequest('/qa/questions/:question_id/answers');
 
 
 app.listen(PORT, () => {
