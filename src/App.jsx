@@ -15,7 +15,7 @@ const App = () => {
   const [reviewsTotal, setReviewsTotal] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [reviewMetaObj, setMeta] = useState({});
+  const [reviewMetaObj, setReviewMetaObj] = useState({});
 
   useEffect(() => {
     Promise.all([
@@ -26,7 +26,7 @@ const App = () => {
         setProductInfo(pProductInfo);
         setRatingAvg(grabReviewScore(pReviewMeta.ratings)[0]);
         setReviewsTotal(grabReviewScore(pReviewMeta.ratings)[1]);
-        setMeta(pReviewMeta);
+        setReviewMetaObj(pReviewMeta);
         setIsLoaded(true);
         setIsError(false);
       })
