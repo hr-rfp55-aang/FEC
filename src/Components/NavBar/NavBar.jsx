@@ -20,7 +20,7 @@ const NavBar = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setProductId(searchValue);
+    setProductId(Number(searchValue));
     setIsLoaded(false);
   };
 
