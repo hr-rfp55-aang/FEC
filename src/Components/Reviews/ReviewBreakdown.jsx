@@ -23,6 +23,9 @@ var ReviewBreakdown = ({ reviews }) => {
       <h5 className='starRatings'>3 stars <RatingBar rating={reviewMetaObj.ratings[3]}/></h5>
       <h5 className='starRatings'>2 stars <RatingBar rating={reviewMetaObj.ratings[2]}/></h5>
       <h5 className='starRatings'>1 stars <RatingBar rating={reviewMetaObj.ratings[1]}/></h5>
+      <div className='box-container'>
+        <div>size</div><div className='box'><div className='otherBox'></div></div><div>too small</div>
+      </div>
     </div>
   );
 };
