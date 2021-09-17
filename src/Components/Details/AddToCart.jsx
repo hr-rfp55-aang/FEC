@@ -1,14 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SizeOptions from './SizeOptions.jsx';
 import QuantityOptions from './QuantityOptions.jsx';
+import { getServer, postServer } from '../../helpers';
 
 const AddToCart = ({ currentProductSizes }) => {
 
   const [currentSku, setCurrentSku] = useState('');
   const [currentQuantity, setCurrentQuantity] = useState('');
+  const [removedFromInventory, setRemovedFromInventory] = useState({});
+  const [itemsInCart, setItemsInCart] = useState([]);
   const skus = Object.keys(currentProductSizes || {});
   const sku = currentProductSizes[currentSku];
   let quantities = [];
+
+  // // Create a Get Request for cart
+  // getServer('/cart')
+  //   .then((result) => {
+  //     setItemsInCart(result);
+  //     setRemovedFromInventory();
+  //   })
+  //   .catch((err) => {
+  //     console.log('Cart err: ', err);
+  //   });
+
+  // console.log('in add ToCart', itemsInCart);
 
   if (sku) {
     for (let i = 1; i <= Math.min(sku.quantity, 15); i++) {
@@ -52,7 +67,27 @@ const AddToCart = ({ currentProductSizes }) => {
       <div>
         <button
           onClick={() => {
-            console.log(`${currentQuantity} size ${currentProductSizes[currentSku].size}s added to cart`);
+            // console.log(`${currentQuantity} size ${currentProductSizes[currentSku].size}s added to cart`);
+
+            const removed = {};
+            removed[currentSku] = { size: currentProductSizes[currentSku].size, quantity: currentQuantity };
+
+            // console.log('In on click removed is ', removed);
+            // setRemovedFromInventory(removed);
+
+            // console.log(removedFromInventory);
+
+            // convert to a post request to cart
+
+            // postServer('/cart')
+            //   .then((result) => {
+            //     // setItemsInCart(result);
+            //     setRemovedFromInventory(result);
+            //   })
+            //   .catch((err) => {
+            //     console.log('Cart err: ', err);
+            //   });
+
           }} >
           Add To Cart
         </button>
