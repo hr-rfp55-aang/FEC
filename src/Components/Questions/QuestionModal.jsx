@@ -37,11 +37,7 @@ const QuestionModal = (props) => {
     if (!validEmail) {
       alert('You must enter the following: A valid email address');
     }
-    console.log({
-      body: body,
-      name: name,
-      email: email,
-      product_id: id});
+
     postServer('/qa/questions', ({
 
       body: body,
