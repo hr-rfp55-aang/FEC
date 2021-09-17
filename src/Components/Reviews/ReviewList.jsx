@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import ReviewListEntry from './ReviewListEntry.jsx';
 import { ContextObj } from '../../ContextObj.jsx';
 
-const ReviewList = ({ reviews, setReviews, setLimit, reviewsLimit, setsortStr, setCurReview}) => {
+const ReviewList = ({ reviews, setReviews, setLimit, reviewsLimit, setsortStr, setCurReview, setReport}) => {
   const { reviewsTotal } = useContext(ContextObj);
 
   var func = (array) => {
@@ -21,7 +21,7 @@ const ReviewList = ({ reviews, setReviews, setLimit, reviewsLimit, setsortStr, s
         <option value="newest">newest</option>
       </select>
       {func(reviews).map((review) =>
-        <ReviewListEntry review={review} setReviews={setReviews} setCurReview={setCurReview} key={review.review_id} />
+        <ReviewListEntry review={review} setReviews={setReviews} setCurReview={setCurReview} setReport={setReport} key={review.review_id} />
       )}
       <button className='moreReviews' onClick={() => setLimit(reviewsLimit + 2)}>MORE REVIEWS</button>
       <button className='addReview'>ADD REVIEW +</button>

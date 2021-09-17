@@ -15,6 +15,7 @@ const App = () => {
   const [reviewsTotal, setReviewsTotal] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [reviewMetaObj, setReviewMetaObj] = useState({});
 
   useEffect(() => {
     Promise.all([
@@ -25,6 +26,7 @@ const App = () => {
         setProductInfo(pProductInfo);
         setRatingAvg(grabReviewScore(pReviewMeta.ratings)[0]);
         setReviewsTotal(grabReviewScore(pReviewMeta.ratings)[1]);
+        setReviewMetaObj(pReviewMeta);
         setIsLoaded(true);
         setIsError(false);
       })
@@ -36,7 +38,7 @@ const App = () => {
 
   return (
     <div>
-      {isLoaded && <ContextObj.Provider value={{ productId, setProductId, productInfo, ratingAvg, reviewsTotal }}>
+      {isLoaded && <ContextObj.Provider value={{ productId, setProductId, productInfo, ratingAvg, reviewsTotal, reviewMetaObj }}>
         <NavBar />
         {!isError &&
         <div>

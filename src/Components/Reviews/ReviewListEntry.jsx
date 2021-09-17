@@ -3,7 +3,7 @@ import { ContextObj } from '../../ContextObj.jsx';
 import ReviewPicList from './ReviewPicList.jsx';
 import { formatDate } from '../../helpers';
 
-var ReviewListEntry = ({ review, setReviews, setCurReview }) => {
+var ReviewListEntry = ({ review, setReviews, setCurReview, setReport }) => {
 
 
   return (
@@ -16,7 +16,8 @@ var ReviewListEntry = ({ review, setReviews, setCurReview }) => {
         <div>{(review.recommend) ? 'I recomend this product' : ''}</div>
         <div className='response'>Response: <br></br> <br></br>{review.response}</div>
         <ReviewPicList pictures={review.photos}/>
-        <div className='helpful'>Helpful? <u>Yes({review.helpfulness})</u>  | <u>Report</u> </div>
+        <div className='helpful'>Helpful? <u onClick={()=>setCurReview(review.review_id)}>Yes({review.helpfulness})</u>
+        | <u onClick={()=>setReport(review.review_id)}>Report</u> </div>
       </div > :
       <div className='reviewEntry'>
         <div className='rating'>Rating: {review.rating}</div>
@@ -25,7 +26,8 @@ var ReviewListEntry = ({ review, setReviews, setCurReview }) => {
         <div className='body'>{review.body}</div>
         <div>{(review.recommend) ? 'I recomend this product' : ''}</div>
         <ReviewPicList pictures={review.photos}/>
-        <div className='helpful'>Helpful? <u onClick={()=>setCurReview(review.review_id)}>Yes({review.helpfulness})</u> | <u onClick={()=>console.log('ohYeahhh')}>Report</u> </div>
+        <div className='helpful'>Helpful? <u onClick={()=>setCurReview(review.review_id)}>Yes({review.helpfulness})</u>
+        | <u onClick={()=>setReport(review.review_id)}>Report</u> </div>
       </div>
   );
 };
