@@ -11,13 +11,16 @@ const QAListEntry = (props) => {
   const [showAnswers, setShowAnswers] = useState(false);
   const [questionHelp, setQuestionHelp] = useState(false);
   const [questionHelpfulness, setQuestionHelpfulness] = useState(props.question.question_helpfulness);
+  const [newAnswer, setNewAnswer] = useState('');
   const questionId = props.question.question_id;
 
   useEffect(() => {
     getServer(`/qa/questions/${questionId}/answers`)
-      .then((result) => setAnswers(result))
+      .then((result) => {
+        setAnswers(result);
+      })
       .catch((error) => console.log('answers', error));
-  }, [questionId]);
+  }, [questionId, newAnswer]);
 
   const updateQuestionHelp = () => {
     if (!questionHelp) {
@@ -36,7 +39,7 @@ const QAListEntry = (props) => {
         <span onClick={updateQuestionHelp}> Yes ({questionHelpfulness})</span>
         <span onClick={() => setShowAnswers(true)}>  |  Add Answer</span>
       </div>
-      <div><AnswerModal onClose={() => setShowAnswers(false)} name={productInfo.name} question={props.question.question_body} show={showAnswers}/></div>
+      <div><AnswerModal setNewAnswer={setNewAnswer} onClose={() => setShowAnswers(false)} name={productInfo.name} question={props.question.question_body} qId={props.question.question_id} show={showAnswers}/></div>
       <div>{answers.results.map((answer, index) => <AnswerEntry answer={answer} key={index}/>)}</div>
     </div>
   );

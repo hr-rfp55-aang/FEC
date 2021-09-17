@@ -11,12 +11,14 @@ const Questions = (props) => {
   const {productInfo, productId} = useContext(ContextObj);
   const [questions, setQuestions] = useState({results: []});
   const [showQuestions, setShowQuestions] = useState(false);
+  const [newQuestion, setNewQuestion] = useState('');
+
 
   useEffect(() => {
-    getServer(`/qa/questions?product_id=${productId}`)
+    getServer(`/qa/questions?product_id=${productId}&count=100`)
       .then((result) => setQuestions(result))
       .catch((error) => console.log('questions get product id', error));
-  }, [productId]);
+  }, [productId, newQuestion]);
 
 
 
@@ -27,7 +29,7 @@ const Questions = (props) => {
       <QAList questions={questions}/>
       <div>
         <button onClick={() => setShowQuestions(true)}>Add A Question</button>
-        <QuestionModal onClose={() => setShowQuestions(false)} show={showQuestions} name={productInfo.name} productId={productId}/>
+        <QuestionModal setNewQuestion={setNewQuestion} onClose={() => setShowQuestions(false)} show={showQuestions} name={productInfo.name} productId={productId}/>
       </div>
     </div>
   );
