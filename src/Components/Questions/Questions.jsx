@@ -12,7 +12,6 @@ const Questions = (props) => {
   const [questions, setQuestions] = useState({results: []});
   const [showQuestions, setShowQuestions] = useState(false);
 
-
   useEffect(() => {
     getServer(`/qa/questions?product_id=${productId}`)
       .then((result) => setQuestions(result))
@@ -28,7 +27,7 @@ const Questions = (props) => {
       <QAList questions={questions}/>
       <div>
         <button onClick={() => setShowQuestions(true)}>Add A Question</button>
-        <QuestionModal onClose={() => setShowQuestions(false)} show={showQuestions} name={productInfo.name}/>
+        <QuestionModal onClose={() => setShowQuestions(false)} show={showQuestions} name={productInfo.name} productId={productId}/>
       </div>
     </div>
   );

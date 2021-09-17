@@ -1,6 +1,57 @@
 import React, {useState} from 'react';
+import { postServer } from '../../helpers';
 
 const QuestionModal = (props) => {
+  const [qModalBody, setQModalBody] = useState('');
+  const [qModalName, setQModalName] = useState('');
+  const [qModalEmail, setQModalEmail] = useState('');
+
+  const validateEmail = (mail) => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+      return (true);
+    } else {
+      return (false);
+    }
+  };
+
+  const qModalBodyHandler = () => {
+    setQModalBody(event.target.value);
+  };
+
+  const qModalNameHandler = () => {
+    setQModalName(event.target.value);
+  };
+
+  const qModalEmailHandler = () => {
+    setQModalEmail(event.target.value);
+  };
+
+  const submitQuestion = (body, name, email, id) => {
+    var validEmail = validateEmail(email);
+    if (body === '') {
+      alert('You must enter the following: Question');
+    }
+    if (name === '') {
+      alert('You must enter the following: Nickname');
+    }
+    if (!validEmail) {
+      alert('You must enter the following: A valid email address');
+    }
+    console.log({
+      body: body,
+      name: name,
+      email: email,
+      product_id: id});
+    postServer('/qa/questions', ({
+
+      body: body,
+      name: name,
+      email: email,
+      product_id: id
+    }))
+      .then(() => props.onClose());
+
+  };
 
   if (!props.show) {
     return null;
@@ -18,19 +69,22 @@ const QuestionModal = (props) => {
             <div>
               <label>
                 *Your Question
-                <textarea></textarea>
+                <textarea onChange={qModalBodyHandler}></textarea>
               </label>
             </div>
             <div>
               <label>
                 *What is your nickname
-                <input type="text" placeholder="Example: jackson11!"></input>
+                <input onChange={qModalNameHandler} type="text" placeholder="Example: jackson11!"></input>
               </label>
+              <div>
+                For privacy reasons, do not use your full name or email address
+              </div>
             </div>
             <div>
               <label>
                 *Your email
-                <input type="text" placeholder="Why did you like the product or not?"></input>
+                <input onChange={qModalEmailHandler} type="text" placeholder="Why did you like the product or not?"></input>
                 <div>
                   For authentication reasons you will not be emailed
                 </div>
@@ -39,7 +93,7 @@ const QuestionModal = (props) => {
           </div>
         </div>
         <div className="modal-footer">
-          <button>Submit</button>
+          <button onClick={() => submitQuestion(qModalBody, qModalName, qModalEmail, props.productId)}>Submit</button>
         </div>
       </div>
     </div>
