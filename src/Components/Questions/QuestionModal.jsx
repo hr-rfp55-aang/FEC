@@ -38,13 +38,18 @@ const QuestionModal = (props) => {
       alert('You must enter the following: A valid email address');
     }
 
-    postServer('/qa/questions', ({
-
+    postServer('/qa/questions', {
       body: body,
       name: name,
       email: email,
       product_id: id
-    }))
+    })
+      .then(() => props.setNewQuestion(JSON.stringify({
+        body: body,
+        name: name,
+        email: email,
+        product_id: id
+      })))
       .then(() => props.onClose());
 
   };
