@@ -1,6 +1,49 @@
 import React, {useState, useEffect, useContext} from 'react';
+import { postServer, validateEmail } from '../../helpers';
+
 
 const AnswerModal = (props) => {
+  const [aModalBody, setAModalBody] = useState('');
+  const [aModalName, setAModalName] = useState('');
+  const [aModalEmail, setAModalEmail] = useState('');
+
+  const aModalBodyHandler = () => {
+    setAModalBody(event.target.value);
+  };
+
+  const aModalNameHandler = () => {
+    setAModalName(event.target.value);
+  };
+
+  const aModalEmailHandler = () => {
+    setAModalEmail(event.target.value);
+  };
+
+  const submitAnswer = (body, name, email, id) => {
+    var validEmail = validateEmail(email);
+    if (body === '') {
+      alert('You must enter the following: Question');
+    }
+    if (name === '') {
+      alert('You must enter the following: Nickname');
+    }
+    if (!validEmail) {
+      alert('You must enter the following: A valid email address');
+    }
+
+    postServer(`/qa/questions/${id}/answers`, {
+      body: body,
+      name: name,
+      email: email
+    })
+      .then(() => props.setNewAnswer(JSON.stringify({
+        body: body,
+        name: name,
+        email: email
+      })))
+      .then(() => props.onClose());
+
+  };
 
   if (!props.show) {
     return null;
@@ -18,19 +61,19 @@ const AnswerModal = (props) => {
             <div>
               <label>
                 *Your Question
-                <textarea></textarea>
+                <textarea onChange={aModalBodyHandler}></textarea>
               </label>
             </div>
             <div>
               <label>
                 *What is your nickname
-                <input type="text" placeholder="Example: jack543!"></input>
+                <input onChange={aModalNameHandler} type="text" placeholder="Example: jack543!"></input>
               </label>
             </div>
             <div>
               <label>
                 *Your email
-                <input type="text" placeholder="Example: jack@email.com"></input>
+                <input onChange={aModalEmailHandler} type="text" placeholder="Example: jack@email.com"></input>
                 <div>
                   For authentication reasons you will not be emailed
                 </div>
@@ -42,7 +85,7 @@ const AnswerModal = (props) => {
           <div>
             <button>Upload Your Photos</button>
           </div>
-          <button>Submit</button>
+          <button onClick={() => submitAnswer(aModalBody, aModalName, aModalEmail, props.qId)}>Submit</button>
         </div>
       </div>
     </div>

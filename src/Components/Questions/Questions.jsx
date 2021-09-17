@@ -13,6 +13,7 @@ const Questions = (props) => {
   const [showQuestions, setShowQuestions] = useState(false);
   const [newQuestion, setNewQuestion] = useState('');
 
+
   useEffect(() => {
     getServer(`/qa/questions?product_id=${productId}&count=100`)
       .then((result) => setQuestions(result))

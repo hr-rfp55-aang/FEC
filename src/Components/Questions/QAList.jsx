@@ -13,6 +13,7 @@ const QAList = (props) => {
   useEffect(() => {
     setLimit(4);
   }, [productId]);
+
   const listHandler = (array) => {
     var clone = array.slice();
     return clone.slice(0, limit);
@@ -21,6 +22,7 @@ const QAList = (props) => {
   const increaseLimit = () => {
     setLimit(prevState => prevState + 2);
   };
+
   if (questionList.length === 0) {
     return null;
   }

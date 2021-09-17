@@ -1,18 +1,10 @@
 import React, {useState} from 'react';
-import { postServer } from '../../helpers';
+import { postServer, validateEmail } from '../../helpers';
 
 const QuestionModal = (props) => {
   const [qModalBody, setQModalBody] = useState('');
   const [qModalName, setQModalName] = useState('');
   const [qModalEmail, setQModalEmail] = useState('');
-
-  const validateEmail = (mail) => {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
-      return (true);
-    } else {
-      return (false);
-    }
-  };
 
   const qModalBodyHandler = () => {
     setQModalBody(event.target.value);
