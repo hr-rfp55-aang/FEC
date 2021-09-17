@@ -60,7 +60,7 @@ const AnswerModal = (props) => {
           <div>
             <div>
               <label>
-                *Your Question
+                *Your Answer
                 <textarea onChange={aModalBodyHandler}></textarea>
               </label>
             </div>

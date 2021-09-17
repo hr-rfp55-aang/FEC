@@ -15,7 +15,7 @@ const QAListEntry = (props) => {
   const questionId = props.question.question_id;
 
   useEffect(() => {
-    getServer(`/qa/questions/${questionId}/answers`)
+    getServer(`/qa/questions/${questionId}/answers?count=100`)
       .then((result) => {
         setAnswers(result);
       })
@@ -31,6 +31,25 @@ const QAListEntry = (props) => {
     }
   };
 
+  const sortAnswersBySeller = (answers) => {
+    var sellers = [];
+    var result = [];
+    for (var i = 0; i < answers.results.length; i++) {
+      var answer = answers.results[i];
+      if (answer.answerer_name === 'Seller') {
+        sellers.push(answer);
+      } else {
+        result.push(answer);
+      }
+    }
+    for (var i = sellers.length - 1; i >= 0; i--) {
+      result.unshift(sellers[i]);
+    }
+    return result;
+  };
+
+
+
   return (
     <div>
       <div>
@@ -40,7 +59,7 @@ const QAListEntry = (props) => {
         <span onClick={() => setShowAnswers(true)}>  |  Add Answer</span>
       </div>
       <div><AnswerModal setNewAnswer={setNewAnswer} onClose={() => setShowAnswers(false)} name={productInfo.name} question={props.question.question_body} qId={props.question.question_id} show={showAnswers}/></div>
-      <div>{answers.results.map((answer, index) => <AnswerEntry answer={answer} key={index}/>)}</div>
+      <div>{sortAnswersBySeller(answers).map((answer, index) => <AnswerEntry answer={answer} key={index}/>)}</div>
     </div>
   );
 };

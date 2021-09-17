@@ -4,6 +4,8 @@ import {ContextObj} from '../../ContextObj';
 
 const QAList = (props) => {
   var questionList = props.questions.results;
+  var listButton;
+
   const [limit, setLimit] = useState(4);
   const {productId} = useContext(ContextObj);
 
@@ -25,17 +27,15 @@ const QAList = (props) => {
   }
 
   if (questionList.length - listHandler(questionList).length === 0) {
-    return (
-      <div>
-        {listHandler(questionList).map((question, index) => (<QAListEntry question={question} key={index} />))}
-      </div>
-    );
+    listButton = null;
+  } else {
+    listButton = <button onClick={increaseLimit}>More Answered Questions</button>;
   }
 
   return (
     <div>
       {listHandler(questionList).map((question, index) => (<QAListEntry question={question} key={index} />))}
-      <button onClick={increaseLimit}>More Answered Questions</button>
+      {listButton}
     </div>
   );
 };
