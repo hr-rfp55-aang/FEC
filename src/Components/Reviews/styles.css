@@ -150,13 +150,14 @@ svg {
 
 .rating__background {
   fill: #949492;
-  height: 30%;
+  height: 20%;
   width: 100%;
+  border: black;
 }
 
 .rating__value {
   fill: #5ce441;
-  height: 30%;
+  height: 20%;
 }
 
 .test {
