@@ -5,9 +5,9 @@ const ProductDescription = ({ currentProductStyle }) => {
 
   const { productInfo, ratingAvg, reviewsTotal } = useContext(ContextObj);
 
-  const price = currentProductStyle.sale_price ? currentProductStyle.sale_price + currentProductStyle.original_price : currentProductStyle.original_price;
+  const price = currentProductStyle.sale_price ? currentProductStyle.original_price : currentProductStyle.original_price;
 
-  // console.log('In ProductDescription ', 'product: ', productInfo, 'currentProductStyle ', currentProductStyle);
+  console.log('In ProductDescription ', 'product: ', productInfo, 'currentProductStyle ', currentProductStyle);
 
   return (
     <div className="descriptionOverview">
@@ -16,7 +16,14 @@ const ProductDescription = ({ currentProductStyle }) => {
       <div>{productInfo.category}</div>
       {/* Product Name */}
       <div><h2>{productInfo.name}</h2></div>
-      <div>${price} </div>
+      <div>
+        {currentProductStyle.sale_price ?
+          <div>
+            <span> {'$' + currentProductStyle.sale_price} </span>
+            <span className="originalPrice">${price}</span>
+          </div> : <span className="price">${price}</span>
+        }
+      </div>
       {/* Product Description */}
       <div className="detailedDescription">{productInfo.description}</div>
       {/* Share on Social Media Component */}
