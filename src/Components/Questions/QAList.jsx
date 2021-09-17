@@ -24,7 +24,7 @@ const QAList = (props) => {
     return null;
   }
 
-  if (questionList.length < 3) {
+  if (questionList.length - listHandler(questionList).length === 0) {
     return (
       <div>
         {listHandler(questionList).map((question, index) => (<QAListEntry question={question} key={index} />))}
