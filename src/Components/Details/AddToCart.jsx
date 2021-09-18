@@ -9,19 +9,19 @@ const AddToCart = ({ currentProductSizes }) => {
   const [currentQuantity, setCurrentQuantity] = useState('');
   const [removedFromInventory, setRemovedFromInventory] = useState({});
   const [itemsInCart, setItemsInCart] = useState([]);
+  const [isQuantityChosen, setIsQuantityChosen] = useState(false);
   const skus = Object.keys(currentProductSizes || {});
   const sku = currentProductSizes[currentSku];
   let quantities = [];
 
-  // // Create a Get Request for cart
-  // getServer('/cart')
-  //   .then((result) => {
-  //     setItemsInCart(result);
-  //     setRemovedFromInventory();
-  //   })
-  //   .catch((err) => {
-  //     console.log('Cart err: ', err);
-  //   });
+  useEffect(() => {
+    setIsQuantityChosen(false);
+  }, [currentQuantity]);
+
+  useEffect(( ) => {
+    setItemsInCart();
+  });
+
 
   // console.log('in add ToCart', itemsInCart);
 
@@ -32,7 +32,7 @@ const AddToCart = ({ currentProductSizes }) => {
   }
   // console.log('In AddToCart ', currentProductSizes);
   return (
-    <div>
+    <div className="addToCart">
 
       <form className="sizeAndQuantity">
         <div>
@@ -51,46 +51,62 @@ const AddToCart = ({ currentProductSizes }) => {
         </div>
 
         <div>
-          <select name="quantity" value={currentQuantity} onChange={(e) => {
+          <select id="quantityDropDown" name="quantity" value={currentQuantity} onChange={(e) => {
             setCurrentQuantity(e.target.value);
           }}>
             <option value="">-</option>
             {quantities.map((quantity) => {
               return <QuantityOptions key={quantity} quantity={quantity} />;
             })}
-
           </select>
+          <span>{isQuantityChosen && 'Please Choose a quantity!'} </span>
         </div>
       </form>
 
-
       <div>
-        <button
-          onClick={() => {
-            // console.log(`${currentQuantity} size ${currentProductSizes[currentSku].size}s added to cart`);
+        {currentSku &&
+          <button
+            onClick={() => {
+              // console.log(`${currentQuantity} size ${currentProductSizes[currentSku].size}s added to cart`);
 
-            const removed = {};
-            removed[currentSku] = { size: currentProductSizes[currentSku].size, quantity: currentQuantity };
+              if (currentQuantity === '') {
+                setIsQuantityChosen(true);
+              }
 
-            // console.log('In on click removed is ', removed);
-            // setRemovedFromInventory(removed);
+              // const removed = {};
+              // removed[currentSku] = { size: currentProductSizes[currentSku].size, quantity: currentQuantity };
 
-            // console.log(removedFromInventory);
+              // console.log('In on click removed is ', removed);
+              // setRemovedFromInventory(removed);
+              // console.log(removedFromInventory);
 
-            // convert to a post request to cart
+              // Post request for cart
+              if (currentQuantity && currentSku) {
+                postServer('/cart', {
+                  'sku_id': currentSku,
+                  'count': currentQuantity
+                })
+                  .then((result) => {
+                    console.log('in post cart request ', result);
+                    setRemovedFromInventory(result);
+                  })
+                  .catch((err) => {
+                    console.log('Cart POST err: ', err);
+                  });
+              }
 
-            // postServer('/cart')
-            //   .then((result) => {
-            //     // setItemsInCart(result);
-            //     setRemovedFromInventory(result);
-            //   })
-            //   .catch((err) => {
-            //     console.log('Cart err: ', err);
-            //   });
-
-          }} >
-          Add To Cart
-        </button>
+              // Get Request for Cart
+              getServer('/cart')
+                .then((result) => {
+                  console.log('in get cart request ', result);
+                })
+                .catch((err) => {
+                  console.log('Cart err: ', err);
+                });
+            }} >
+            Add To Cart
+          </button>
+        }
       </div>
 
     </div>
