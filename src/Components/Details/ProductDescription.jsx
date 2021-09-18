@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import StarRatings from '../Reviews/StarRatings.jsx';
 import { ContextObj } from '../../ContextObj.jsx';
 
 const ProductDescription = ({ currentProductStyle }) => {
@@ -7,15 +8,14 @@ const ProductDescription = ({ currentProductStyle }) => {
 
   const price = currentProductStyle.sale_price ? currentProductStyle.original_price : currentProductStyle.original_price;
 
-  console.log('In ProductDescription ', 'product: ', productInfo, 'currentProductStyle ', currentProductStyle);
+  // console.log('In ProductDescription ', 'product: ', productInfo, 'currentProductStyle ', currentProductStyle);
 
   return (
     <div className="descriptionOverview">
-      {/* Star Rating */}
-      <div> {ratingAvg ? ratingAvg + `*** Read all ${reviewsTotal} reviews` : 'No Ratings Available for this Product'} </div>
-      <div>{productInfo.category}</div>
-      {/* Product Name */}
-      <div><h2>{productInfo.name}</h2></div>
+      <div className="starsInDescription"> <StarRatings /> </div>
+      <a className="descriptionRating" href="#ratingsReview"> Read all {reviewsTotal} reviews </a>
+      <div className="category">{productInfo.category}</div>
+      <div className="productName">{productInfo.name}</div>
       <div>
         {currentProductStyle.sale_price ?
           <div>
@@ -24,8 +24,6 @@ const ProductDescription = ({ currentProductStyle }) => {
           </div> : <span className="price">${price}</span>
         }
       </div>
-      {/* Product Description */}
-      <div className="detailedDescription">{productInfo.description}</div>
       {/* Share on Social Media Component */}
     </div>
   );
