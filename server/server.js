@@ -73,7 +73,7 @@ function postRequest(endpoint) {
 
 postRequest('/qa/questions');
 postRequest('/qa/questions/:question_id/answers');
-
+postRequest('/cart');
 
 app.listen(PORT, () => {
   console.log(`Server listening at localhost:${PORT}!`);
