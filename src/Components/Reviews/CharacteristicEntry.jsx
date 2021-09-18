@@ -3,8 +3,6 @@ import { ContextObj } from '../../ContextObj.jsx';
 
 var CharacteristicsEntry = ({ name, CharObj }) => {
 
-  console.log(name, CharObj);
-
   var qualities = (quality) => {
     if (quality === 'Fit' || quality === 'Size') {
       return ['Too small', 'Too big', 'Perfect'];
