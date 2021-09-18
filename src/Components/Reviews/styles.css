@@ -1,5 +1,5 @@
 .reviewBreakdown {
-  margin: 0px 15px 0px 15px;
+  margin: 0px 15px 0px 65px;
   width: 25%;
 }
 
@@ -14,6 +14,10 @@
 
 .moreReviews {
   margin-right: 18px;
+}
+
+.summary {
+  color: #3d3d3d;
 }
 
 .moreReviews,
@@ -34,10 +38,10 @@ h1 {
 }
 
 h6 {
-  margin: 10px 0px;
-  color:rgb(56, 56, 56);
+  margin: 10px 0px 20px 0px;
+  color:rgb(138, 128, 128);
   font-weight: 100;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .starRatings {
@@ -52,7 +56,8 @@ h6 {
 h4 {
   color:rgb(56, 56, 56);
   font-weight: 100;
-  margin-left: 11%;
+  font-size: 20px;
+  margin-left: 14.5%;
 }
 
 .reviewEntry {
@@ -60,6 +65,7 @@ h4 {
   border-bottom-style: solid;
   border-width: thin;
   margin-bottom: 20px;
+  width: 89%;
 }
 
 .reviewList {
@@ -68,15 +74,17 @@ h4 {
 }
 
 /* Review Entry box */
-.rating {
+#rating {
   display: inline-block;
-  margin-bottom: 20px;
+  margin-bottom: 7%;
+  margin-left: -2.5%;
 }
 
 .date {
   display: inline;
   margin-left: auto;
   margin-right: 0px;
+  margin-top: 3%;
   color:grey;
   font-weight: 100;
   font-size: 12px;
@@ -178,4 +186,49 @@ h4 {
   float: top;
   margin-left: 1%;
   margin-top: 1%;
+}
+
+.box-container {
+  width: 90%;
+  height: 15px;
+  display: inline-flexbox;
+  margin-top: 15%;
+  margin-bottom: 12%;
+  color:grey;
+  margin-left: 1%;
+}
+
+.box {
+  width: 90%;
+  height: 8px;
+  background-color: #eeeee8;
+  position: inherit;
+
+}
+
+.otherBox {
+  width: 30px;
+  height: 1px;
+  position: relative;
+  width: 0;
+	height: 0;
+	border-left: 12px solid transparent;
+	border-right: 12px solid transparent;
+	border-top: 12px solid rgb(99, 96, 96);
+}
+
+.first,
+.second,
+.third {
+  font-size: 13px;
+  display: inline;
+}
+
+.third {
+  float: right;
+  margin-right: 9%;
+}
+
+.second {
+  margin-left: 20%;
 }

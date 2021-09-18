@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { ContextObj } from '../../ContextObj.jsx';
 import ReviewPicList from './ReviewPicList.jsx';
 import { formatDate } from '../../helpers';
+import StarRatings from './StarRatings.jsx';
 
 var ReviewListEntry = ({ review, setReviews, setCurReview, setReport }) => {
 
@@ -9,7 +10,7 @@ var ReviewListEntry = ({ review, setReviews, setCurReview, setReport }) => {
   return (
     (review.response) ?
       <div className='reviewEntry' >
-        <div className='rating'>Rating: {review.rating}</div>
+        <div id='rating'><StarRatings rating={review.rating}/></div>
         <div className='date'>{review.reviewer_name}, {formatDate(review.date)}</div>
         <div className='summary'><b>{review.summary}</b></div>
         <div className='body'>{review.body}</div>
@@ -20,7 +21,7 @@ var ReviewListEntry = ({ review, setReviews, setCurReview, setReport }) => {
         | <u onClick={()=>setReport(review.review_id)}>Report</u> </div>
       </div > :
       <div className='reviewEntry'>
-        <div className='rating'>Rating: {review.rating}</div>
+        <div id='rating'><StarRatings rating={review.rating}/></div>
         <div className='date'>{review.reviewer_name}, {formatDate(review.date)}</div>
         <div className='summary'><b>{review.summary}</b></div>
         <div className='body'>{review.body}</div>
