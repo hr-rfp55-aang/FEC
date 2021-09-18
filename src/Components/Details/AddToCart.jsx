@@ -1,57 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import SizeOptions from './SizeOptions.jsx';
 import QuantityOptions from './QuantityOptions.jsx';
 import { getServer, postServer } from '../../helpers';
+import { ContextObj } from '../../ContextObj.jsx';
 
 const AddToCart = ({ currentProductSizes }) => {
 
   const [currentSku, setCurrentSku] = useState('');
-  const [currentQuantity, setCurrentQuantity] = useState('');
-  const [removedFromInventory, setRemovedFromInventory] = useState({});
+  const [currentQuantity, setCurrentQuantity] = useState();
   const [itemsInCart, setItemsInCart] = useState([]);
-  const [isQuantityChosen, setIsQuantityChosen] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
   const skus = Object.keys(currentProductSizes || {});
   const sku = currentProductSizes[currentSku];
-  let quantities = [];
-
-  useEffect(() => {
-    setIsQuantityChosen(false);
-  }, [currentQuantity]);
-
-  useEffect(( ) => {
-    setItemsInCart();
+  const { productInfo } = useContext(ContextObj);
+  const isQuantityChosen = !!currentQuantity;
+  const isSizeChosen = !!currentSku;
+  const availableSizes = skus.filter((sku) => {
+    return currentProductSizes[sku].quantity > 0;
   });
-
-
-  // console.log('in add ToCart', itemsInCart);
+  const hasAvailableSizes = availableSizes.length !== 0;
+  let quantities = [];
 
   if (sku) {
     for (let i = 1; i <= Math.min(sku.quantity, 15); i++) {
       quantities.push(i);
     }
   }
-  // console.log('In AddToCart ', currentProductSizes);
+
+  useEffect(() => {
+    setCurrentSku('');
+    setCurrentQuantity();
+    setIsButtonClicked(false);
+  }, [currentProductSizes]);
+
   return (
     <div className="addToCart">
 
       <form className="sizeAndQuantity">
         <div>
-          <select name="sizes" value={currentSku} onChange={(e) => {
-            setCurrentSku(e.target.value); setCurrentQuantity('');
+          <div>{isButtonClicked && !isSizeChosen && 'Please Choose a size!'} </div>
+          <select disabled={!hasAvailableSizes} name="sizes" value={currentSku} onChange={(e) => {
+            setCurrentSku(e.target.value); setCurrentQuantity(1);
           }}>
-            <option value="">SELECT SIZE</option>
-            {skus.map((sku) => {
-              const size = currentProductSizes[sku];
-              if (size.quantity > 0) {
-                return <SizeOptions key={sku} sku={sku} size={size} />;
-              }
+            <option value="">{hasAvailableSizes ? 'SELECT SIZE' : 'OUT OF STOCK'} </option>
+            {availableSizes.map((sku) => {
+              return <SizeOptions key={sku} sku={sku} size={currentProductSizes[sku]} />;
             })}
-
           </select>
-        </div>
 
-        <div>
-          <select id="quantityDropDown" name="quantity" value={currentQuantity} onChange={(e) => {
+          <select disabled={!isSizeChosen} id="quantityDropDown" name="quantity" value={currentQuantity} onChange={(e) => {
             setCurrentQuantity(e.target.value);
           }}>
             <option value="">-</option>
@@ -59,50 +56,40 @@ const AddToCart = ({ currentProductSizes }) => {
               return <QuantityOptions key={quantity} quantity={quantity} />;
             })}
           </select>
-          <span>{isQuantityChosen && 'Please Choose a quantity!'} </span>
         </div>
       </form>
 
       <div>
-        {currentSku &&
+        {hasAvailableSizes &&
           <button
             onClick={() => {
-              // console.log(`${currentQuantity} size ${currentProductSizes[currentSku].size}s added to cart`);
+              setIsButtonClicked(true);
 
-              if (currentQuantity === '') {
-                setIsQuantityChosen(true);
-              }
+              if (isQuantityChosen && isSizeChosen) {
+                alert(`${currentQuantity} size ${currentProductSizes[currentSku].size} ${productInfo.name} now added to your cart!`);
 
-              // const removed = {};
-              // removed[currentSku] = { size: currentProductSizes[currentSku].size, quantity: currentQuantity };
-
-              // console.log('In on click removed is ', removed);
-              // setRemovedFromInventory(removed);
-              // console.log(removedFromInventory);
-
-              // Post request for cart
-              if (currentQuantity && currentSku) {
+                // Post request for cart
                 postServer('/cart', {
-                  'sku_id': currentSku,
-                  'count': currentQuantity
+                  'sku_id': currentSku
                 })
                   .then((result) => {
-                    console.log('in post cart request ', result);
-                    setRemovedFromInventory(result);
+                    // console.log('in post cart request ', result);
+                    setIsButtonClicked(false);
                   })
                   .catch((err) => {
                     console.log('Cart POST err: ', err);
                   });
-              }
 
-              // Get Request for Cart
-              getServer('/cart')
-                .then((result) => {
-                  console.log('in get cart request ', result);
-                })
-                .catch((err) => {
-                  console.log('Cart err: ', err);
-                });
+                // Get Request for Cart
+                getServer('/cart')
+                  .then((result) => {
+                    // console.log('in get cart request ', result);
+                    setItemsInCart(result);
+                  })
+                  .catch((err) => {
+                    console.log('Cart err: ', err);
+                  });
+              }
             }} >
             Add To Cart
           </button>
