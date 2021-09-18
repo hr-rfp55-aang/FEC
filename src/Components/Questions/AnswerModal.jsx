@@ -22,7 +22,7 @@ const AnswerModal = (props) => {
   const submitAnswer = (body, name, email, id) => {
     var validEmail = validateEmail(email);
     if (body === '') {
-      alert('You must enter the following: Question');
+      alert('You must enter the following: Answer');
     }
     if (name === '') {
       alert('You must enter the following: Nickname');

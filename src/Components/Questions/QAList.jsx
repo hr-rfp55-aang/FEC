@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import QAListEntry from './QAListEntry.jsx';
 import {ContextObj} from '../../ContextObj';
+import QuestionSearch from './QuestionSearch.jsx';
 
 const QAList = (props) => {
-  var questionList = props.questions.results;
+  var questionList = props.questions;
   var listButton;
 
   const [qLimit, setQLimit] = useState(4);

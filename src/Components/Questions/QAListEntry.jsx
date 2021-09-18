@@ -61,7 +61,7 @@ const QAListEntry = (props) => {
     var result = [];
     for (var i = 0; i < answers.results.length; i++) {
       var answer = answers.results[i];
-      if (answer.answerer_name === 'Seller') {
+      if (answer.answerer_name === 'Seller' || answer.answerer_name === 'seller') {
         sellers.push(answer);
       } else {
         result.push(answer);
