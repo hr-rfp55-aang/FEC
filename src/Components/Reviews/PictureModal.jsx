@@ -10,7 +10,7 @@ const PictureModal = ({ picture, pictures, picShow, onClose, setCurPicture }) =>
       return null;
     }
     return (
-      <div>
+      <div className='modalPictureBar'>
         <img className='modalPictures' onClick={()=>setCurPicture(pics[0].url)} src={pics[0].url}></img>
         {(pics[1]) ? <img className='modalPictures' onClick={()=>setCurPicture(pics[1].url)} src={pics[1].url}></img> : null}
         {(pics[2]) ? <img className='modalPictures' onClick={()=>setCurPicture(pics[2].url)} src={pics[2].url}></img> : null}
@@ -25,12 +25,12 @@ const PictureModal = ({ picture, pictures, picShow, onClose, setCurPicture }) =>
   }
 
   return (
-    <div className="modal" onClick={onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
-        <div className="modal-body">
+    <div className="pictureModal" onClick={onClose}>
+      <div className="picture-modal-content" onClick={e => e.stopPropagation()}>
+        <div className="picture-modal-body">
           <img className='modalPicture' src={picture}></img>
         </div>
-        <div className='modal-footer'>
+        <div className='picture-modal-footer'>
           {renderPics(pictures)}
         </div>
       </div>

@@ -1,3 +1,4 @@
+
 .reviewBreakdown {
   margin: 0px 15px 0px 65px;
   width: 25%;
@@ -71,6 +72,8 @@ h4 {
 .reviewList {
   width: 60%;
   margin-left: 0px;
+  /* height: 700px; */
+  /* overflow: scroll; */
 }
 
 /* Review Entry box */
@@ -122,6 +125,9 @@ h4 {
   width: 90px;
   height: 90px;
   margin-right: 3%;
+  border-style: double;
+  border-color: rgb(168, 164, 164);
+
 }
 
 .reviewsTotal,
@@ -237,20 +243,28 @@ h4 {
 }
 
 
-.modal {
+.pictureModal {
   position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   display:flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(255, 255, 255, 0);
 }
 
-.modal-content {
+.picture-modal-content {
   display: flex;
-  border-style: solid;
   height: 80%;
   width: 80%;
-  background-color:rgba(211, 211, 211, 0.787);
+  background-color:rgba(212, 211, 199, 0.979);
+  box-shadow: 10px 25px 50px 10px rgba(71, 71, 70, 0.424), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
   z-index: 5;
   justify-content: center;
+  border-style: unset;
+  /* border-radius: 2%; */
 }
 
 textarea {
@@ -265,4 +279,17 @@ textarea {
   top: 50%;
   left: 50%;
   margin-top: 5%;
+}
+
+.modalPictures {
+  display: inline;
+}
+
+.modalPictureBar {
+  display: flex;
+  flex-direction: column;
+  float: right;
+  right: 12%;
+  position: fixed;
+  margin-top: 2%;
 }
