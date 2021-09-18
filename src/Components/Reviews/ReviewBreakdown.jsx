@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { ContextObj } from '../../ContextObj.jsx';
 import StarRating from './StarRatings.jsx';
 import RatingBar from './RatingBar.jsx';
+import CharacteristicsList from './CharacteristicsList';
 
 var ReviewBreakdown = ({ reviews }) => {
   const { ratingAvg, reviewMetaObj, reviewsTotal } = useContext(ContextObj);
@@ -23,6 +24,7 @@ var ReviewBreakdown = ({ reviews }) => {
       <h5 className='starRatings'>3 stars <RatingBar rating={reviewMetaObj.ratings[3]}/></h5>
       <h5 className='starRatings'>2 stars <RatingBar rating={reviewMetaObj.ratings[2]}/></h5>
       <h5 className='starRatings'>1 stars <RatingBar rating={reviewMetaObj.ratings[1]}/></h5>
+      <CharacteristicsList />
     </div>
   );
 };
