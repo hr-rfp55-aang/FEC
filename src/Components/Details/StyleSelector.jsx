@@ -5,8 +5,8 @@ const StyleSelector = ({ productStyles, currentProductStyle, setCurrentProductSt
   // console.log('in StyleSelector ', productStyles);
 
   return (
-    <div>
-      <div className="styleName">{currentProductStyle.name}</div>
+    <div className="styles">
+      <div className="styleName"> STYLE: {currentProductStyle.name}</div>
       <div className="styleSelector">
         {/* Limit it to 4 displayed per line */}
         {productStyles.map((style, index) => {
