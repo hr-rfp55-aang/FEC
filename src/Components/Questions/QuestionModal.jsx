@@ -62,13 +62,13 @@ const QuestionModal = (props) => {
             <div>
               <label>
                 *Your Question
-                <textarea onChange={qModalBodyHandler}></textarea>
+                <textarea maxLength={1000} onChange={qModalBodyHandler}></textarea>
               </label>
             </div>
             <div>
               <label>
                 *What is your nickname
-                <input onChange={qModalNameHandler} type="text" placeholder="Example: jackson11!"></input>
+                <input maxLength={60} onChange={qModalNameHandler} type="text" placeholder="Example: jackson11!"></input>
               </label>
               <div>
                 For privacy reasons, do not use your full name or email address
@@ -77,7 +77,7 @@ const QuestionModal = (props) => {
             <div>
               <label>
                 *Your email
-                <input onChange={qModalEmailHandler} type="text" placeholder="Why did you like the product or not?"></input>
+                <input maxLength={60} onChange={qModalEmailHandler} type="text" placeholder="Why did you like the product or not?"></input>
                 <div>
                   For authentication reasons you will not be emailed
                 </div>

@@ -34,9 +34,13 @@ const QAList = (props) => {
   }
 
   return (
-    <div>
-      {listHandler(questionList).map((question, index) => (<QAListEntry question={question} key={index} />))}
-      {listButton}
+    <div >
+      <div className="qa-list">
+        {listHandler(questionList).map((question, index) => (<QAListEntry question={question} key={index} />))}
+      </div>
+      <div>
+        {listButton}
+      </div>
     </div>
   );
 };

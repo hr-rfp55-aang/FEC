@@ -3,7 +3,6 @@ import {ContextObj} from '../../ContextObj';
 import QAList from './QAList.jsx';
 
 const QuestionSearch = (props) => {
-  console.log(props.questions.results);
   const [filteredList, setFilteredList] = useState(props.questions.results);
   const [query, setQuery] = useState('');
   // need to set the state of questions on change
