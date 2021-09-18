@@ -41,11 +41,9 @@ const QAListEntry = (props) => {
     setLimit(prevState => prevState + 1000);
   };
 
-  if (answerList.length - listHandler(answerList).length === 0) {
-    listButton = null;
-  } else {
-    listButton = <button onClick={increaseLimit}>See More Answers</button>;
-  }
+  const decreaseLimit = () => {
+    setLimit(2);
+  };
 
   const updateQuestionHelp = () => {
     if (!questionHelp) {
@@ -72,6 +70,14 @@ const QAListEntry = (props) => {
     }
     return result;
   };
+
+  if (answerList.length - listHandler(answerList).length === 0 && answerList.length <= 2) {
+    listButton = null;
+  } else if (answerList.length - listHandler(answerList).length === 0 && answerList.length > 2) {
+    listButton = <button onClick={decreaseLimit}>Collapse Answers</button>;
+  } else {
+    listButton = <button onClick={increaseLimit}>See More Answers</button>;
+  }
 
   return (
     <div>
