@@ -1,0 +1,113 @@
+import React, { useState, useContext } from 'react';
+import { postServer, validateEmail } from '../../helpers';
+import { ContextObj } from '../../ContextObj.jsx';
+
+const ReviewModal = ({ submitReview, setSubmitReview }) => {
+  const [starValue, setStarValue] = useState('');
+  const [recommend, setRecommend] = useState('');
+
+  const { reviewMetaObj } = useContext(ContextObj);
+  var characteristics = Object.keys(reviewMetaObj.characteristics);
+
+  var characteristicForm = (blah) => {
+    if (blah.length === 4) {
+      return (
+        <div>
+          <form onChange={(e) => setStarValue(e.target.value)}>
+            <input type="radio" id="1Star" name="rating" value="1" />
+            <label for="1Star">*</label>
+            <input type="radio" id="2Star" name="rating" value="2" />
+            <label for="2Star">**</label>
+            <input type="radio" id="3Star" name="rating" value="3" />
+            <label for="3Star">***</label>
+            <input type="radio" id="4Star" name="rating" value="4" />
+            <label for="4Star">****</label>
+            <input type="radio" id="5Star" name="rating" value="5" />
+            <label for="5Star">*****</label>
+          </form>
+        </div>
+      );
+    }
+
+  };
+
+  if (!submitReview) {
+    return null;
+  }
+
+  return (
+    <div className="modal" onClick={() => setSubmitReview(false)}>
+      <div className="modal-content" onClick={e => e.stopPropagation()}>
+        <div className="modal-header">
+          <h2 className="modal-title">Submit Your Review</h2>
+          <h4 className="modal-subtitle">About the Product</h4>
+        </div>
+        <div className="modal-body">
+          <div>
+            <form onChange={(e) => setStarValue(e.target.value)}>
+              <input type="radio" id="1Star" name="rating" value="1" />
+              <label for="1Star">*</label>
+              <input type="radio" id="2Star" name="rating" value="2" />
+              <label for="2Star">**</label>
+              <input type="radio" id="3Star" name="rating" value="3" />
+              <label for="3Star">***</label>
+              <input type="radio" id="4Star" name="rating" value="4" />
+              <label for="4Star">****</label>
+              <input type="radio" id="5Star" name="rating" value="5" />
+              <label for="5Star">*****</label>
+            </form>
+          </div>
+          <div>
+            <form onChange={(e) => setRecommend(e.target.value)}>
+              <input type="radio" id="yes" name="recommend" value="false" />
+              <label for="yes">NO</label>
+              <input type="radio" id="no" name="recommend" value="true" />
+              <label for="no">YES</label>
+            </form>
+          </div>
+          {characteristicForm(characteristics)}
+          <div>
+            <div>
+              <label>
+                *Your Review Summary
+                <textarea ></textarea>
+              </label>
+            </div>
+            <div>
+              <label>
+                *Your Review Body
+                <textarea ></textarea>
+              </label>
+            </div>
+            <div>
+              <label>
+                *What is your nickname
+                <input type="text" placeholder="Example: jackson11!"></input>
+              </label>
+              <div>
+                For privacy reasons, do not use your full name or email address
+              </div>
+            </div>
+            <div>
+              <label>
+                *Your email
+                <input type="text" placeholder="Why did you like the product or not?"></input>
+                <div>
+                  For authentication reasons you will not be emailed
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div className="modal-footer">
+          {/* <form action="upload.php" method="post">
+            <input type="file" name="file" id="file" />
+          </form> */}
+          <button >Submit</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ReviewModal;
