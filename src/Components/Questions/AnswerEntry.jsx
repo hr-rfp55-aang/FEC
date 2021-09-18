@@ -6,7 +6,9 @@ const AnswerEntry = (props) => {
 
   const [answerHelp, setAnswerHelp] = useState(false);
   const [answerHelpfulness, setAnswerHelpfulness] = useState(props.answer.helpfulness);
+  const [reported, setReported] = useState(false);
 
+  var report;
   var seller;
 
   const updateAnswerHelp = () => {
@@ -18,10 +20,22 @@ const AnswerEntry = (props) => {
     }
   };
 
+  const reportAnswer = () => {
+    putServer(`/qa/answers/${props.answer.answer_id}/report`)
+      .then(() => { setReported(true); })
+      .catch((error) => console.log('reported', error));
+  };
+
   if (props.answer.answerer_name === 'Seller') {
     seller = <span style={{fontWeight: 'bold'}}>{props.answer.answerer_name}</span>;
   } else {
     seller = <span>by {props.answer.answerer_name}</span>;
+  }
+
+  if (reported) {
+    report = <span>Reported</span>;
+  } else {
+    report = <span onClick={reportAnswer}>Report</span>;
   }
 
   return (
@@ -33,7 +47,7 @@ const AnswerEntry = (props) => {
         <span>, {formatDate(props.answer.date)}  |  </span>
         <span>Helpful?</span>
         <span onClick={updateAnswerHelp}> Yes({answerHelpfulness})  |  </span>
-        <span>Report</span>
+        {report}
       </div>
     </div>
   );
