@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { postServer, validateEmail } from '../../helpers';
 import { ContextObj } from '../../ContextObj.jsx';
+import ReviewModalCharList from './ReviewModalCharList.jsx';
 
 const ReviewModal = ({ submitReview, setSubmitReview }) => {
   const [starValue, setStarValue] = useState('');
@@ -8,28 +9,6 @@ const ReviewModal = ({ submitReview, setSubmitReview }) => {
 
   const { reviewMetaObj } = useContext(ContextObj);
   var characteristics = Object.keys(reviewMetaObj.characteristics);
-
-  var characteristicForm = (blah) => {
-    if (blah.length === 4) {
-      return (
-        <div>
-          <form onChange={(e) => setStarValue(e.target.value)}>
-            <input type="radio" id="1Star" name="rating" value="1" />
-            <label for="1Star">*</label>
-            <input type="radio" id="2Star" name="rating" value="2" />
-            <label for="2Star">**</label>
-            <input type="radio" id="3Star" name="rating" value="3" />
-            <label for="3Star">***</label>
-            <input type="radio" id="4Star" name="rating" value="4" />
-            <label for="4Star">****</label>
-            <input type="radio" id="5Star" name="rating" value="5" />
-            <label for="5Star">*****</label>
-          </form>
-        </div>
-      );
-    }
-
-  };
 
   if (!submitReview) {
     return null;
@@ -46,26 +25,26 @@ const ReviewModal = ({ submitReview, setSubmitReview }) => {
           <div>
             <form onChange={(e) => setStarValue(e.target.value)}>
               <input type="radio" id="1Star" name="rating" value="1" />
-              <label for="1Star">*</label>
+              <label htmlFor="1Star">*</label>
               <input type="radio" id="2Star" name="rating" value="2" />
-              <label for="2Star">**</label>
+              <label htmlFor="2Star">**</label>
               <input type="radio" id="3Star" name="rating" value="3" />
-              <label for="3Star">***</label>
+              <label htmlFor="3Star">***</label>
               <input type="radio" id="4Star" name="rating" value="4" />
-              <label for="4Star">****</label>
+              <label htmlFor="4Star">****</label>
               <input type="radio" id="5Star" name="rating" value="5" />
-              <label for="5Star">*****</label>
+              <label htmlFor="5Star">*****</label>
             </form>
           </div>
           <div>
             <form onChange={(e) => setRecommend(e.target.value)}>
               <input type="radio" id="yes" name="recommend" value="false" />
-              <label for="yes">NO</label>
+              <label htmlFor="yes">NO</label>
               <input type="radio" id="no" name="recommend" value="true" />
-              <label for="no">YES</label>
+              <label htmlFor="no">YES</label>
             </form>
           </div>
-          {characteristicForm(characteristics)}
+          <ReviewModalCharList />
           <div>
             <div>
               <label>
@@ -111,3 +90,74 @@ const ReviewModal = ({ submitReview, setSubmitReview }) => {
 };
 
 export default ReviewModal;
+
+
+// var characteristicForm = (blah) => {
+//   var filters = { display: 'block' };
+
+//   return (
+//     <div>
+//       <div className='characteristic1' style={(blah[0]) ? filters : null}>
+//         <form onChange={(e) => setStarValue(e.target.value)}>
+//           <div>{blah[0]}</div>
+//           <input type="radio" id="1Star" name="rating" value="1" />
+//           <label htmlFor="1Star">*</label>
+//           <input type="radio" id="2Star" name="rating" value="2" />
+//           <label htmlFor="2Star">**</label>
+//           <input type="radio" id="3Star" name="rating" value="3" />
+//           <label htmlFor="3Star">***</label>
+//           <input type="radio" id="4Star" name="rating" value="4" />
+//           <label htmlFor="4Star">****</label>
+//           <input type="radio" id="5Star" name="rating" value="5" />
+//           <label htmlFor="5Star">*****</label>
+//         </form>
+//       </div>
+//       <div className='characteristic2' style={(blah[1]) ? filters : null}>
+//         <form onChange={(e) => setStarValue(e.target.value)}>
+//           <div>{(blah[1]) ? blah[1] : ''}</div>
+//           <input type="radio" id="1Star" name="rating" value="1" />
+//           <label htmlFor="1Star">*</label>
+//           <input type="radio" id="2Star" name="rating" value="2" />
+//           <label htmlFor="2Star">**</label>
+//           <input type="radio" id="3Star" name="rating" value="3" />
+//           <label htmlFor="3Star">***</label>
+//           <input type="radio" id="4Star" name="rating" value="4" />
+//           <label htmlFor="4Star">****</label>
+//           <input type="radio" id="5Star" name="rating" value="5" />
+//           <label htmlFor="5Star">*****</label>
+//         </form>
+//       </div>
+//       <div className='characteristic3' style={(blah[2]) ? filters : null}>
+//         <form onChange={(e) => setStarValue(e.target.value)}>
+//           <div>{(blah[2]) ? blah[2] : ''}</div>
+//           <input type="radio" id="1Star" name="rating" value="1" />
+//           <label htmlFor="1Star">*</label>
+//           <input type="radio" id="2Star" name="rating" value="2" />
+//           <label htmlFor="2Star">**</label>
+//           <input type="radio" id="3Star" name="rating" value="3" />
+//           <label htmlFor="3Star">***</label>
+//           <input type="radio" id="4Star" name="rating" value="4" />
+//           <label htmlFor="4Star">****</label>
+//           <input type="radio" id="5Star" name="rating" value="5" />
+//           <label htmlFor="5Star">*****</label>
+//         </form>
+//       </div>
+//       <div className='characteristic4' style={(blah[3]) ? filters : null}>
+//         <form onChange={(e) => setStarValue(e.target.value)}>
+//           <div>{(blah[3]) ? blah[3] : ''}</div>
+//           <input type="radio" id="1Star" name="rating" value="1" />
+//           <label htmlFor="1Star"></label>
+//           <input type="radio" id="2Star" name="rating" value="2" />
+//           <label htmlFor="2Star">**</label>
+//           <input type="radio" id="3Star" name="rating" value="3" />
+//           <label htmlFor="3Star">***</label>
+//           <input type="radio" id="4Star" name="rating" value="4" />
+//           <label htmlFor="4Star">****</label>
+//           <input type="radio" id="5Star" name="rating" value="5" />
+//           <label htmlFor="5Star">*****</label>
+//         </form>
+//       </div>
+//     </div>
+//   );
+
+// };
