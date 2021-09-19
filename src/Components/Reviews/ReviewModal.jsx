@@ -1,14 +1,42 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { postServer, validateEmail } from '../../helpers';
 import { ContextObj } from '../../ContextObj.jsx';
 import ReviewModalCharList from './ReviewModalCharList.jsx';
 
 const ReviewModal = ({ submitReview, setSubmitReview }) => {
-  const [starValue, setStarValue] = useState('');
-  const [recommend, setRecommend] = useState('');
+  const [starValue, setStarValue] = useState();
+  const [recommend, setRecommend] = useState();
+  const [summary, setSummary] = useState();
+  const [body, setBody] = useState();
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [charObj, setCharObj] = useState();
 
-  const { reviewMetaObj } = useContext(ContextObj);
-  var characteristics = Object.keys(reviewMetaObj.characteristics);
+  const { reviewMetaObj, productId } = useContext(ContextObj);
+  var keys = Object.keys(reviewMetaObj.characteristics);
+
+  useEffect(()=> {
+    var obj = {};
+
+    for (var i = 0; i < keys.length; i ++) {
+      obj[reviewMetaObj.characteristics[keys[i]].id] = null;
+    }
+    setCharObj(obj);
+  }, [reviewMetaObj]);
+
+
+  var postReview = () => {
+    postServer('/reviews', {
+      'product_id': productId,
+      'rating': starValue,
+      'summary': summary,
+      'body': body,
+      'recommend': recommend,
+      'name': name,
+      'email': email,
+      'characteristics': charObj
+    });
+  };
 
   if (!submitReview) {
     return null;
@@ -23,45 +51,45 @@ const ReviewModal = ({ submitReview, setSubmitReview }) => {
         </div>
         <div className="modal-body">
           <div>
-            <form onChange={(e) => setStarValue(e.target.value)}>
-              <input type="radio" id="1Star" name="rating" value="1" />
-              <label htmlFor="1Star">*</label>
-              <input type="radio" id="2Star" name="rating" value="2" />
-              <label htmlFor="2Star">**</label>
-              <input type="radio" id="3Star" name="rating" value="3" />
-              <label htmlFor="3Star">***</label>
-              <input type="radio" id="4Star" name="rating" value="4" />
-              <label htmlFor="4Star">****</label>
-              <input type="radio" id="5Star" name="rating" value="5" />
-              <label htmlFor="5Star">*****</label>
+            <form onChange={(e) => setStarValue(Number(e.target.value))}>
+              <input type="radio" id="1Star" name="rating" value={1} />
+              <label htmfor="1Star">*</label>
+              <input type="radio" id="2Star" name="rating" value={2} />
+              <label htmfor="2Star">**</label>
+              <input type="radio" id="3Star" name="rating" value={3} />
+              <label htmfor="3Star">***</label>
+              <input type="radio" id="4Star" name="rating" value={4} />
+              <label htmfor="4Star">****</label>
+              <input type="radio" id="5Star" name="rating" value={5} />
+              <label htmfor="5Star">*****</label>
             </form>
           </div>
           <div>
-            <form onChange={(e) => setRecommend(e.target.value)}>
-              <input type="radio" id="yes" name="recommend" value="false" />
-              <label htmlFor="yes">NO</label>
-              <input type="radio" id="no" name="recommend" value="true" />
-              <label htmlFor="no">YES</label>
+            <form onChange={(e) => setRecommend(JSON.parse(e.target.value))}>
+              <input type="radio" id="yes" name="recommend" value={false} />
+              <label htmfor="yes">NO</label>
+              <input type="radio" id="no" name="recommend" value={true} />
+              <label htmfor="no">YES</label>
             </form>
           </div>
-          <ReviewModalCharList />
+          <ReviewModalCharList charObj={charObj} setCharObj={setCharObj}/>
           <div>
             <div>
               <label>
                 *Your Review Summary
-                <textarea ></textarea>
+                <textarea onChange={(e)=> setSummary(e.target.value)}></textarea>
               </label>
             </div>
             <div>
               <label>
                 *Your Review Body
-                <textarea ></textarea>
+                <textarea onChange={(e)=> setBody(e.target.value)}></textarea>
               </label>
             </div>
             <div>
               <label>
                 *What is your nickname
-                <input type="text" placeholder="Example: jackson11!"></input>
+                <input type="text" placeholder="Example: jackson11!" onChange={(e)=> setName(e.target.value)}></input>
               </label>
               <div>
                 For privacy reasons, do not use your full name or email address
@@ -70,7 +98,7 @@ const ReviewModal = ({ submitReview, setSubmitReview }) => {
             <div>
               <label>
                 *Your email
-                <input type="text" placeholder="Why did you like the product or not?"></input>
+                <input type="text" placeholder="Why did you like the product or not?" onChange={(e)=>setEmail(e.target.value)}></input>
                 <div>
                   For authentication reasons you will not be emailed
                 </div>
@@ -82,7 +110,7 @@ const ReviewModal = ({ submitReview, setSubmitReview }) => {
           {/* <form action="upload.php" method="post">
             <input type="file" name="file" id="file" />
           </form> */}
-          <button >Submit</button>
+          <button onClick={()=> postReview()}>Submit</button>
         </div>
       </div>
     </div>
@@ -90,74 +118,3 @@ const ReviewModal = ({ submitReview, setSubmitReview }) => {
 };
 
 export default ReviewModal;
-
-
-// var characteristicForm = (blah) => {
-//   var filters = { display: 'block' };
-
-//   return (
-//     <div>
-//       <div className='characteristic1' style={(blah[0]) ? filters : null}>
-//         <form onChange={(e) => setStarValue(e.target.value)}>
-//           <div>{blah[0]}</div>
-//           <input type="radio" id="1Star" name="rating" value="1" />
-//           <label htmlFor="1Star">*</label>
-//           <input type="radio" id="2Star" name="rating" value="2" />
-//           <label htmlFor="2Star">**</label>
-//           <input type="radio" id="3Star" name="rating" value="3" />
-//           <label htmlFor="3Star">***</label>
-//           <input type="radio" id="4Star" name="rating" value="4" />
-//           <label htmlFor="4Star">****</label>
-//           <input type="radio" id="5Star" name="rating" value="5" />
-//           <label htmlFor="5Star">*****</label>
-//         </form>
-//       </div>
-//       <div className='characteristic2' style={(blah[1]) ? filters : null}>
-//         <form onChange={(e) => setStarValue(e.target.value)}>
-//           <div>{(blah[1]) ? blah[1] : ''}</div>
-//           <input type="radio" id="1Star" name="rating" value="1" />
-//           <label htmlFor="1Star">*</label>
-//           <input type="radio" id="2Star" name="rating" value="2" />
-//           <label htmlFor="2Star">**</label>
-//           <input type="radio" id="3Star" name="rating" value="3" />
-//           <label htmlFor="3Star">***</label>
-//           <input type="radio" id="4Star" name="rating" value="4" />
-//           <label htmlFor="4Star">****</label>
-//           <input type="radio" id="5Star" name="rating" value="5" />
-//           <label htmlFor="5Star">*****</label>
-//         </form>
-//       </div>
-//       <div className='characteristic3' style={(blah[2]) ? filters : null}>
-//         <form onChange={(e) => setStarValue(e.target.value)}>
-//           <div>{(blah[2]) ? blah[2] : ''}</div>
-//           <input type="radio" id="1Star" name="rating" value="1" />
-//           <label htmlFor="1Star">*</label>
-//           <input type="radio" id="2Star" name="rating" value="2" />
-//           <label htmlFor="2Star">**</label>
-//           <input type="radio" id="3Star" name="rating" value="3" />
-//           <label htmlFor="3Star">***</label>
-//           <input type="radio" id="4Star" name="rating" value="4" />
-//           <label htmlFor="4Star">****</label>
-//           <input type="radio" id="5Star" name="rating" value="5" />
-//           <label htmlFor="5Star">*****</label>
-//         </form>
-//       </div>
-//       <div className='characteristic4' style={(blah[3]) ? filters : null}>
-//         <form onChange={(e) => setStarValue(e.target.value)}>
-//           <div>{(blah[3]) ? blah[3] : ''}</div>
-//           <input type="radio" id="1Star" name="rating" value="1" />
-//           <label htmlFor="1Star"></label>
-//           <input type="radio" id="2Star" name="rating" value="2" />
-//           <label htmlFor="2Star">**</label>
-//           <input type="radio" id="3Star" name="rating" value="3" />
-//           <label htmlFor="3Star">***</label>
-//           <input type="radio" id="4Star" name="rating" value="4" />
-//           <label htmlFor="4Star">****</label>
-//           <input type="radio" id="5Star" name="rating" value="5" />
-//           <label htmlFor="5Star">*****</label>
-//         </form>
-//       </div>
-//     </div>
-//   );
-
-// };

@@ -45,7 +45,7 @@ function putRequest(endpoint) {
         res.status(201).send('Item updated successfully');
       })
       .catch( (err) => {
-        console.log(`get ${req.url}: ${err}`);
+        console.log(`put ${req.url}: ${err}`);
         res.status(404).send(`Failed to retrieve ${req.url}`);
       });
   });
@@ -60,6 +60,7 @@ putRequest('/qa/answers/:answer_id/report');
 
 function postRequest(endpoint) {
   app.post(endpoint, (req, res) => {
+    console.log(req.body);
     atelier.postAtelier(req.url, req.body)
       .then( (data) => {
         res.status(201).send('item created');
@@ -73,6 +74,7 @@ function postRequest(endpoint) {
 
 postRequest('/qa/questions');
 postRequest('/qa/questions/:question_id/answers');
+postRequest('/reviews');
 
 
 app.listen(PORT, () => {

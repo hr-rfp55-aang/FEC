@@ -2,8 +2,7 @@ import React, { useState, useContext } from 'react';
 import { postServer, validateEmail } from '../../helpers';
 import { ContextObj } from '../../ContextObj.jsx';
 
-const ReviewModalCharEntry = ({ name, charObj }) => {
-
+const ReviewModalCharEntry = ({ name, charObject, setCharValues, charValues, setCharObj, charObj}) => {
   var qualities = (quality) => {
     if (quality === 'Size') {
       return ['A size too small', '1/2 size to small', 'Perfect', '1/2 size too big', 'A size too wide'];
@@ -30,7 +29,7 @@ const ReviewModalCharEntry = ({ name, charObj }) => {
   return (
     <div>
       <div>{name}</div>
-      <form className='charRadios'>
+      <form className='charRadios' onChange={(e)=> { var id = charObject.id; setCharObj({ ...charObj, [id]: Number(e.target.value)}); }}>
         <input type="radio" name="rating" value="1" />
         <input type="radio" name="rating" value="2" />
         <input type="radio" name="rating" value="3" />
