@@ -14,18 +14,61 @@
 
 .displayedPhoto {
   display: flex;
-  height: 500px;
-  width: 475px;
+  height: 600px;
+  width: 575px;
 }
+
+.MIleftArrow, .MIrightArrow {
+  position: absolute;
+  z-index: 1;
+  top: 350px;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 24px;
+  opacity: 70%
+  /* background-color: white;
+  border: 1px solid #ddd; */
+}
+
+.MIleftArrow {
+  left: 100px;
+}
+
+.MIrightArrow {
+  left: 500px;
+}
+
+/* .thumbnailList {
+  display: flex;
+  flex-direction: column;
+} */
 
 .thumbnailList {
   display: flex;
   flex-direction: column;
+  /* flex-wrap: wrap; */
+  /* max-width: 1200; */
+  /* margin-left: 'auto';
+  margin-right: 'auto'; */
+  /* margin-top: auto; */
+  /* margin-bottom: auto; */
+  /* margin-top: 64; */
+  height: 585px;
+  overflow-y: scroll;
+  /* overflow-y: hidden; */
+  position: absolute;
+  z-index: 1;
 }
 
 .thumbnailListItem {
-  height: 90px;
-  width: 80px;
+  height: 80px;
+  width: 70px;
+  border: solid transparent;
+}
+
+.productMainPhotoThumbnail {
+  border: solid brown;
 }
 
 .descriptionOverview {
@@ -35,14 +78,13 @@
   padding: 10px;
 }
 
-.starsInDescription {
-  display: flex;
-  flex-direction:row ;
+.starsInDescription .starBar {
+  position: static;
 }
 
 .descriptionRating {
   font-size: 12px;
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 
 .category {
@@ -57,14 +99,17 @@
 .slogan {
   text-transform: uppercase;
   font-weight: bold;
-  margin: 120px;
-  padding: 10px;
+  padding-top: 10px;
 }
 
 .detailedDescription {
-  margin: 0 0 30px 50px;
-  padding: 10px;
+  padding-top: 10px;
 }
+
+.descriptionAndFeatures {
+  display: flex;
+}
+
 .styleName {
   /* margin: 10px; */
   padding: 0 0 20px 0;
@@ -77,13 +122,34 @@
 
 .styleSelector {
   display: flex;
+  width: 375px;
+  flex-wrap: wrap;
+}
+
+.productStyle{
+  position: relative;
 }
 
 .stylePhoto {
   display: flex;
   height: 90px;
   width: 80px;
-  border-radius: 60%;
+  border-radius: 60% ;
+  padding: 5px;
+}
+
+.checkMark {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  right: 10px;
+  background-color: white;
+  border-radius: 100px;
+  height: 18px;
+  width: 18px;
+  text-align: center;
+  vertical-align: center;
+  border: 1px solid black;
 }
 
 .addToCart {
@@ -99,3 +165,71 @@
   display: flex;
 }
 
+/* ThumbnailCarousel Styling */
+
+.ThumbnailCarousel-container {
+  /* width: 100%; */
+  /* max-width: 80px; */
+  /* margin: auto; */
+  /* display: flex;
+  flex-direction: column; */
+  height: 560px;
+}
+
+.ThumbnailCarousel-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+.ThumbnailCarousel-content-wrapper {
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+}
+
+.ThumbnailCarousel-content {
+  height: 585px;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction:column;
+  transition: all 250ms linear;
+  -ms-overflow-style: none;
+  /* hide scrollbar in IE and Edge */
+  scrollbar-width: none;
+  /* hide scrollbar in Firefox */
+}
+
+/* hide scrollbar in webkit browser */
+.ThumbnailCarousel-content::-webkit-scrollbar, .ThumbnailCarousel-content::-webkit-scrollbar {
+  display: none;
+}
+
+.ThumbnailCarousel-content > * {
+  /* width: 100%;
+  height: 100%; */
+  flex-shrink: 0;
+  flex-grow: 1;
+}
+
+/* ThumbnailCarousel Arrow Button Styling */
+.up-arrow, .down-arrow {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  width: 25px;
+  height: 45px;
+  border-radius: 24px;
+  background-color: white;
+  border: 1px solid #ddd;
+  left: 80px;
+}
+
+/* .up-arrow {
+  left: 24px;
+}
+
+.down-arrow {
+
+} */
