@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { postServer, validateEmail } from '../../helpers';
+import { postServer, validateEmail, getServer } from '../../helpers';
 import { ContextObj } from '../../ContextObj.jsx';
 import ReviewModalCharList from './ReviewModalCharList.jsx';
 
@@ -15,10 +15,10 @@ const ReviewModal = ({ submitReview, setSubmitReview }) => {
   const { reviewMetaObj, productId } = useContext(ContextObj);
   var keys = Object.keys(reviewMetaObj.characteristics);
 
-  useEffect(()=> {
+  useEffect(() => {
     var obj = {};
 
-    for (var i = 0; i < keys.length; i ++) {
+    for (var i = 0; i < keys.length; i++) {
       obj[reviewMetaObj.characteristics[keys[i]].id] = null;
     }
     setCharObj(obj);
@@ -35,7 +35,10 @@ const ReviewModal = ({ submitReview, setSubmitReview }) => {
       'name': name,
       'email': email,
       'characteristics': charObj
-    });
+    })
+      .then(() => getServer(`/reviews/?product_id=${productId}&count=100`))
+      .then(() => setSubmitReview(false));
+      // .then(()=>getServer(`/reviews/meta/?product_id=${productId}`));
   };
 
   if (!submitReview) {
@@ -72,24 +75,24 @@ const ReviewModal = ({ submitReview, setSubmitReview }) => {
               <label htmfor="no">YES</label>
             </form>
           </div>
-          <ReviewModalCharList charObj={charObj} setCharObj={setCharObj}/>
+          <ReviewModalCharList charObj={charObj} setCharObj={setCharObj} />
           <div>
             <div>
               <label>
                 *Your Review Summary
-                <textarea onChange={(e)=> setSummary(e.target.value)}></textarea>
+                <textarea onChange={(e) => setSummary(e.target.value)}></textarea>
               </label>
             </div>
             <div>
               <label>
                 *Your Review Body
-                <textarea onChange={(e)=> setBody(e.target.value)}></textarea>
+                <textarea onChange={(e) => setBody(e.target.value)}></textarea>
               </label>
             </div>
             <div>
               <label>
                 *What is your nickname
-                <input type="text" placeholder="Example: jackson11!" onChange={(e)=> setName(e.target.value)}></input>
+                <input type="text" placeholder="Example: jackson11!" onChange={(e) => setName(e.target.value)}></input>
               </label>
               <div>
                 For privacy reasons, do not use your full name or email address
@@ -98,7 +101,7 @@ const ReviewModal = ({ submitReview, setSubmitReview }) => {
             <div>
               <label>
                 *Your email
-                <input type="text" placeholder="Why did you like the product or not?" onChange={(e)=>setEmail(e.target.value)}></input>
+                <input type="text" placeholder="Why did you like the product or not?" onChange={(e) => setEmail(e.target.value)}></input>
                 <div>
                   For authentication reasons you will not be emailed
                 </div>
@@ -110,7 +113,7 @@ const ReviewModal = ({ submitReview, setSubmitReview }) => {
           {/* <form action="upload.php" method="post">
             <input type="file" name="file" id="file" />
           </form> */}
-          <button onClick={()=> postReview()}>Submit</button>
+          <button onClick={() => postReview()}>Submit</button>
         </div>
       </div>
     </div>
