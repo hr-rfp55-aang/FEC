@@ -33,6 +33,43 @@ const AddToCart = ({ currentProductSizes }) => {
     setIsButtonClicked(false);
   }, [currentProductSizes]);
 
+  // console.log('in add ToCart', itemsInCart, 'currentSku ', currentSku);
+  // console.log('currentProductSizes are In AddToCart ', currentProductSizes);
+  // console.log('itemsInCart are In AddToCart ', itemsInCart);
+  // console.log('currentSku in AddToCart ', currentSku);
+
+  // const isSkuMatch = (skuFromUpdate) => {
+  //   for (let j = 0; j < skus.length; j++) {
+  //     console.log ('skuFromUpdate === skus[j] ', skuFromUpdate === skus[j], skuFromUpdate, skus[j]);
+  //     if (skuFromUpdate === skus[j]) {
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // };
+
+  // const updateInventory = () => {
+  //   let updatedProductSizes = currentProductSizes;
+
+  //   if (itemsInCart.length > 0) {
+
+  //     for (let i = 0; i < itemsInCart.length; i++) {
+  //       if (isSkuMatch(itemsInCart[i].sku_id)) {
+  //         updatedProductSizes[itemsInCart[i].sku_id].quantity -= Number(itemsInCart[i].count);
+  //         console.log('In for loop for reducing stock ', updatedProductSizes[itemsInCart[i].sku_id].quantity);
+  //       } else { console.log('In update inventory nothing is happening :('); }
+  //     }
+
+  //   }
+
+  //   console.log('updated product Sizes is ', updatedProductSizes);
+  //   return updatedProductSizes;
+  // };
+
+  // useEffect(() => {
+  //   setCurrentProductSizes(updateInventory());
+  // }, [itemsInCart]);
+
   return (
     <div className="addToCart">
 
