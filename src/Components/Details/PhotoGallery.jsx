@@ -15,21 +15,71 @@ const PhotoGallery = ({ currentProductStyle }) => {
   useEffect(() => {
     setMainPhoto(currentProductStyle.photos[0] || {});
   }, [currentProductStyle]);
-  // console.log('In Photo Gallery ', currentProductStyle);
+  console.log('In Photo Gallery ', currentProductStyle);
+
+  // const [currentIndex, setCurrentIndex] = useState(0);
+  // const [length, setLength] = useState(children.length);
+
+  // const next = () => {
+  //   if (currentIndex < (length - 1)) {
+  //     setCurrentIndex(prevState => prevState + 1);
+  //   }
+  // };
+
+  // const prev = () => {
+  //   if (currentIndex > 0) {
+  //     setCurrentIndex(prevState => prevState - 1);
+  //   }
+  // };
+
+  // // Set the length to match current children from props
+  // useEffect(() => {
+  //   setLength(children.length);
+  // }, [children]);
 
   return (
     <div>
       <div className="productPhotos">
-        <ThumbnailList productPhotos={currentProductStyle.photos} mainPhoto={mainPhoto} setMainPhoto={setMainPhoto} mainPhotoName={mainPhotoName} />
-
+        <ThumbnailList productPhotos={currentProductStyle.photos} mainPhoto={mainPhoto} setMainPhoto={setMainPhoto} mainPhotoName={mainPhotoName} currentProductStyle={currentProductStyle} />
+        <div>
+          {
+            <button className="MIleftArrow">
+              &larr;
+            </button>
+          }
+        </div>
         <div>
           <img className="displayedPhoto" src={mainPhoto.url} alt={mainPhotoName} />
         </div>
+        <div>
+          {
+            <button className="MIrightArrow">
+              &rarr;
+            </button>
+          }
+        </div>
+
       </div>
 
       {/* Product Description */}
-      <span className="slogan">{productInfo.slogan}</span>
-      <span className="detailedDescription"> {productInfo.description}</span>
+
+      <div className="descriptionAndFeatures">
+
+        <div>
+          <div className="slogan">{productInfo.slogan}</div>
+          <span className="detailedDescription"> {productInfo.description}</span>
+        </div>
+
+        <div>
+          <ul>
+            {productInfo.features.map((feature) => {
+              return <li>{feature.feature}: {feature.value} </li>;
+            })}
+          </ul>
+        </div>
+
+      </div>
+
     </div>
   );
 };
