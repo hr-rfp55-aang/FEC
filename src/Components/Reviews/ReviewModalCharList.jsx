@@ -6,7 +6,7 @@ var ReviewModalCharList = ({ setCharValues, charValues, charObj, setCharObj}) =>
 
   const { reviewMetaObj } = useContext(ContextObj);
   var characteristics = Object.keys(reviewMetaObj.characteristics);
-  console.log(reviewMetaObj);
+
 
 
   return (

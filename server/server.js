@@ -60,7 +60,6 @@ putRequest('/qa/answers/:answer_id/report');
 
 function postRequest(endpoint) {
   app.post(endpoint, (req, res) => {
-    console.log(req.body);
     atelier.postAtelier(req.url, req.body)
       .then( (data) => {
         res.status(201).send('item created');
