@@ -1,35 +1,46 @@
 import React, { useState, useEffect, useContext } from 'react';
 import QAListEntry from './QAListEntry.jsx';
 import {ContextObj} from '../../ContextObj';
+import QuestionSearch from './QuestionSearch.jsx';
 
 const QAList = (props) => {
-  // set a state of the questions limit starting at 4
-  // everytime the button gets clicked, increase that state by 2
-  // slice the questions list from 0 to
-  var questionList = props.questions.results;
-  const [limit, setLimit] = useState(4);
+  var questionList = props.questions;
+  var listButton;
+
+  const [qLimit, setQLimit] = useState(4);
   const {productId} = useContext(ContextObj);
 
   useEffect(() => {
-    setLimit(4);
+    setQLimit(4);
   }, [productId]);
 
   const listHandler = (array) => {
     var clone = array.slice();
-    return clone.slice(0, limit);
+    return clone.slice(0, qLimit);
   };
 
   const increaseLimit = () => {
-    setLimit(prevState => prevState + 2);
+    setQLimit(prevState => prevState + 2);
   };
 
   if (questionList.length === 0) {
     return null;
   }
+
+  if (questionList.length - listHandler(questionList).length === 0) {
+    listButton = null;
+  } else {
+    listButton = <button onClick={increaseLimit}>More Answered Questions</button>;
+  }
+
   return (
-    <div>
-      {listHandler(questionList).map((question, index) => (<QAListEntry question={question} key={index} />))}
-      <button onClick={increaseLimit}>More Answered Questions</button>
+    <div >
+      <div className="qa-list">
+        {listHandler(questionList).map((question, index) => (<QAListEntry question={question} key={index} />))}
+      </div>
+      <div>
+        {listButton}
+      </div>
     </div>
   );
 };
