@@ -22,7 +22,7 @@ const AnswerModal = (props) => {
   const submitAnswer = (body, name, email, id) => {
     var validEmail = validateEmail(email);
     if (body === '') {
-      alert('You must enter the following: Question');
+      alert('You must enter the following: Answer');
     }
     if (name === '') {
       alert('You must enter the following: Nickname');
@@ -60,20 +60,20 @@ const AnswerModal = (props) => {
           <div>
             <div>
               <label>
-                *Your Question
-                <textarea onChange={aModalBodyHandler}></textarea>
+                *Your Answer
+                <textarea maxLength={1000} onChange={aModalBodyHandler}></textarea>
               </label>
             </div>
             <div>
               <label>
                 *What is your nickname
-                <input onChange={aModalNameHandler} type="text" placeholder="Example: jack543!"></input>
+                <input maxLength={60} onChange={aModalNameHandler} type="text" placeholder="Example: jack543!"></input>
               </label>
             </div>
             <div>
               <label>
                 *Your email
-                <input onChange={aModalEmailHandler} type="text" placeholder="Example: jack@email.com"></input>
+                <input maxLength={60} onChange={aModalEmailHandler} type="text" placeholder="Example: jack@email.com"></input>
                 <div>
                   For authentication reasons you will not be emailed
                 </div>
