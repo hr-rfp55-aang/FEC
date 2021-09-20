@@ -54,34 +54,36 @@ const QuestionModal = (props) => {
     <div className="modal" onClick={props.onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <h2 className="modal-title">Ask Your Question</h2>
-          <h4 className="modal-subtitle">About the {props.name}</h4>
+          <span className="modal-title">Ask Your Question </span>
+          <span className="modal-subtitle"> about the {props.name}</span>
         </div>
         <div className="modal-body">
           <div>
             <div>
-              <label>
-                *Your Question
-                <textarea maxLength={1000} onChange={qModalBodyHandler}></textarea>
+              <label >
+                * Your Question
               </label>
+              <textarea className="modal-text" maxLength={1000} onChange={qModalBodyHandler}></textarea>
+
             </div>
             <div>
               <label>
-                *What is your nickname
-                <input maxLength={60} onChange={qModalNameHandler} type="text" placeholder="Example: jackson11!"></input>
+                * What is your nickname
+                <input className="modal-text" maxLength={60} onChange={qModalNameHandler} type="text" placeholder="Example: jackson11!"></input>
               </label>
-              <div>
+              <div className="warning">
                 For privacy reasons, do not use your full name or email address
               </div>
             </div>
             <div>
               <label>
-                *Your email
-                <input maxLength={60} onChange={qModalEmailHandler} type="text" placeholder="Why did you like the product or not?"></input>
-                <div>
-                  For authentication reasons you will not be emailed
-                </div>
+                * Your email
+                <input className="modal-text email-text-box" maxLength={60} onChange={qModalEmailHandler} type="text" placeholder="Why did you like the product or not?"></input>
               </label>
+              <div className="warning">
+                  For authentication reasons you will not be emailed
+              </div>
+              <div className="warning">* Indicates a required field</div>
             </div>
           </div>
         </div>

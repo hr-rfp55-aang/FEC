@@ -74,7 +74,7 @@ const AnswerModal = (props) => {
               <label>
                 *Your email
                 <input maxLength={60} onChange={aModalEmailHandler} type="text" placeholder="Example: jack@email.com"></input>
-                <div>
+                <div className='warning'>
                   For authentication reasons you will not be emailed
                 </div>
               </label>

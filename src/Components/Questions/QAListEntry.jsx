@@ -74,18 +74,21 @@ const QAListEntry = (props) => {
   if (answerList.length - listHandler(answerList).length === 0 && answerList.length <= 2) {
     listButton = null;
   } else if (answerList.length - listHandler(answerList).length === 0 && answerList.length > 2) {
-    listButton = <button onClick={decreaseLimit}>Collapse Answers</button>;
+    listButton = <div className="link" onClick={decreaseLimit}>Collapse Answers</div>;
   } else {
-    listButton = <button onClick={increaseLimit}>See More Answers</button>;
+    listButton = <div className="link" onClick={increaseLimit}>See More Answers</div>;
   }
 
   return (
-    <div>
-      <div>
+    <div className="QAEntry">
+      <div className="qEntry">
         Q: {props.question.question_body}
-        <span>  |  Helpful?</span>
-        <span onClick={updateQuestionHelp}> Yes ({questionHelpfulness})</span>
-        <span onClick={() => setShowAnswers(true)}>  |  Add Answer</span>
+        <div>
+          <span>    Helpful?</span>
+          <span className="link" onClick={updateQuestionHelp}> Yes ({questionHelpfulness})</span>
+          <span> | </span>
+          <span className="link" onClick={() => setShowAnswers(true)}> Add Answer</span>
+        </div>
       </div>
       <div><AnswerModal setNewAnswer={setNewAnswer} onClose={() => setShowAnswers(false)} name={productInfo.name} question={props.question.question_body} qId={props.question.question_id} show={showAnswers}/></div>
       <div>{listHandler(sortAnswersBySeller(answers)).map((answer, index) => <AnswerEntry answer={answer} key={index}/>)}</div>
