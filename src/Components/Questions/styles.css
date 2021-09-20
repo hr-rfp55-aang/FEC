@@ -9,8 +9,8 @@
 }
 
 .add-question {
-  margin-top: 320px;
-
+  margin-top: 340px;
+  margin-left: -170px;
 }
 
 .title {
@@ -21,6 +21,9 @@
 
 .qa-list-container {
   padding-left: 10%;
+  width: 500px;
+  margin-left: -50px;
+  margin-top: 10px;
 }
 
 .qa-list {
@@ -106,6 +109,7 @@ label {
 
 .search-text-box {
   width: 300px;
+  margin-left: 100px;
 }
 
 .question-form {
