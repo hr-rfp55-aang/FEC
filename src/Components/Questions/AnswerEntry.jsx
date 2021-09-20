@@ -35,7 +35,7 @@ const AnswerEntry = (props) => {
   if (reported) {
     report = <span>Reported</span>;
   } else {
-    report = <span className="link" span onClick={reportAnswer}>Report</span>;
+    report = <span className="link" onClick={reportAnswer}>Report</span>;
   }
 
   return (
