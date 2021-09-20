@@ -35,18 +35,17 @@ const AnswerEntry = (props) => {
   if (reported) {
     report = <span>Reported</span>;
   } else {
-    report = <span onClick={reportAnswer}>Report</span>;
+    report = <span className="link" span onClick={reportAnswer}>Report</span>;
   }
 
   return (
-    <div>
+    <div className="aEntry">
       <div>A: {props.answer.body}</div>
       <div>
-        <span>by </span>
         {seller}
         <span>, {formatDate(props.answer.date)}  |  </span>
         <span>Helpful?</span>
-        <span onClick={updateAnswerHelp}> Yes({answerHelpfulness})  |  </span>
+        <span className="link" onClick={updateAnswerHelp}> Yes({answerHelpfulness})</span>  <span>| </span>
         {report}
       </div>
     </div>

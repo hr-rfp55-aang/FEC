@@ -34,7 +34,7 @@ const QAList = (props) => {
   }
 
   return (
-    <div >
+    <div className='qa-list-container'>
       <div className="qa-list">
         {listHandler(questionList).map((question, index) => (<QAListEntry question={question} key={index} />))}
       </div>
