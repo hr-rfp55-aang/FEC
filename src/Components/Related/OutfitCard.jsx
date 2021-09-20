@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import { ContextObj } from '../../ContextObj.jsx';
 import './styles.css';
 import { getServer, grabReviewScore } from '../../helpers';
-import '../../../assets/empty-star.svg';
+import '../../../assets/outfits-x.svg';
 
-const star = '../../../assets/empty-star.svg';
+const actionImg = '../../../assets/outfits-x.svg';
 
 const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
 
@@ -40,6 +40,19 @@ const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
     });
   };
 
+  const saleDiv = () => {
+    if (cardInfo.salePrice) {
+      return (
+        <div>
+          <span style='text-decoration: line-through'>${cardInfo.originalPrice}</span>
+          <span style='color: red'>${cardInfo.salePrice}</span>
+        </div>
+      );
+    } else {
+      return (<div>${cardInfo.originalPrice}</div>);
+    }
+  };
+
   if (cardInfo.productId === 'Add') {
     return (
       <div>
@@ -56,13 +69,12 @@ const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
   return (
     <div>
       <div className='productCard'>
-        <img className='actionButton'src={star} onClick={() => removeOutfit(cardInfo.productId)}/>
+        <img className='actionButton'src={actionImg} onClick={() => removeOutfit(cardInfo.productId)}/>
         <div className='card-wrapper' onClick={() => setProductId(cardInfo.productId)}><img className='relatedPhoto' src={cardInfo.thumbnail} /></div>
         <div onClick={() => setProductId(cardInfo.productId)}>
           <div>{cardInfo.category}</div>
           <div>{cardInfo.name}</div>
-          <div>${cardInfo.originalPrice}</div>
-          <div>{cardInfo.rating}</div>
+          {saleDiv()}
           <div></div>
         </div>
       </div>

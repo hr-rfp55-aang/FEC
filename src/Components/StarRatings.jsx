@@ -34,21 +34,20 @@ const StarRating = ({rating}) => {
       starArr.push(0);
     }
   }
-  console.log(starArr);
 
   return (
     <div className='starBar'>
-      {starArr.map((star) => {
+      {starArr.map((star, index) => {
         if (star === 1) {
-          return (<img src={fullSvg} />);
+          return (<img src={fullSvg} key={index}/>);
         } else if (star === 0.25) {
-          return (<img src={quarterSvg} />);
+          return (<img src={quarterSvg} key={index}/>);
         } else if (star === 0.5) {
-          return (<img src={halfSvg} />);
+          return (<img src={halfSvg} key={index}/>);
         } else if (star === 0.75) {
-          return (<img src={threeQuarterSvg} />);
+          return (<img src={threeQuarterSvg} key={index}/>);
         } else {
-          return (<img src={emptySvg} />);
+          return (<img src={emptySvg} key={index}/>);
         }
       })}
     </div>

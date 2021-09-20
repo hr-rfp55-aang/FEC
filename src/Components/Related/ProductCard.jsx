@@ -4,9 +4,9 @@ import './styles.css';
 import { getServer, grabReviewScore } from '../../helpers';
 import ComparisonModal from './ComparisonModal';
 import '../../../assets/empty-star.svg';
-import StarRating from '../Reviews/StarRatings';
+import StarRating from '../StarRatings';
 
-const star = '../../../assets/empty-star.svg';
+const actionImg = '../../../assets/related-star.svg';
 const ProductCard = ({cardId}) => {
 
   const { productId, setProductId, ratingAvg } = useContext(ContextObj);
@@ -57,7 +57,7 @@ const ProductCard = ({cardId}) => {
       {isLoaded &&
         <div className='productCard' >
           <ComparisonModal show={modalShow} onClose={() => setModalShow(false)} cardInfo={cardInfo}/>
-          <img className='actionButton'src={star} onClick={() => setModalShow(true)} />
+          <img className='actionButton'src={actionImg} onClick={() => setModalShow(true)} />
           <div className='card-wrapper' onClick={() => setProductId(cardId)}>
             <img className='relatedPhoto' src={cardInfo.thumbnail} /></div>
           <div onClick={() => setProductId(cardId)}>
@@ -65,6 +65,7 @@ const ProductCard = ({cardId}) => {
             <div>{cardInfo.name}</div>
             {saleDiv()}
             <div>{cardInfo.rating} stars</div>
+            <StarRating rating={cardInfo.rating} />
           </div>
         </div>}
     </div>

@@ -12,7 +12,7 @@ const ComparisonModal = ({show, cardInfo, onClose}) => {
   }
 
   return (
-    <div className='modal' onClick={onClose}>
+    <div className='comparison-modal' onClick={onClose}>
       <div className='modal-content' onClick={(e) => e.stopPropagation()}>
         <table>
           <thead>
