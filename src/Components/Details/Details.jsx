@@ -9,8 +9,8 @@ import { getServer } from '../../helpers';
 
 const Details = () => {
   const [productStyles, setProductStyles] = useState([]);
-  const [currentProductStyle, setCurrentProductStyle] = useState({ photos: [] });
-  const [currentProductSizes, setCurrentProductSizes] = useState({});
+  const [currentProductStyle, setCurrentProductStyle] = useState({ photos: [], skus: {} });
+  const currentProductSizes = currentProductStyle.skus;
 
   const { productId } = useContext(ContextObj);
 
@@ -20,7 +20,6 @@ const Details = () => {
         .then((result) => {
           setProductStyles(result.results);
           setCurrentProductStyle(result.results[0]);
-          setCurrentProductSizes(result.results[0].skus);
         })
         .catch((err) => {
           console.log('Styles err: ', err);
@@ -34,7 +33,7 @@ const Details = () => {
       <div>
         <ProductDescription currentProductStyle={currentProductStyle} />
         <StyleSelector productStyles={productStyles} currentProductStyle={currentProductStyle} setCurrentProductStyle={setCurrentProductStyle}/>
-        <AddToCart currentProductSizes={currentProductSizes}/>
+        <AddToCart currentProductSizes={currentProductSizes} />
       </div>
     </div>
   );
