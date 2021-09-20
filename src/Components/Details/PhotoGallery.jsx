@@ -66,7 +66,7 @@ const PhotoGallery = ({ currentProductStyle }) => {
         <div>
           <ul>
             {productInfo.features.map((feature) => {
-              return <li>{feature.feature}: {feature.value} </li>;
+              return <li key={feature.feature}>{feature.feature}: {feature.value} </li>;
             })}
           </ul>
         </div>
