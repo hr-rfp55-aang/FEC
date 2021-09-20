@@ -10,7 +10,7 @@ var ReviewListEntry = ({ review, setReviews, setCurReview, setReport }) => {
     return (
       <div className='checkMark'>
         <FaCheck size={14} color={'#525252'}/>
-        <div className='iRecommend'>I recomend this product</div>
+        <div className='iRecommend'>I recommend this product</div>
       </div>
     );
   };

@@ -5,7 +5,7 @@ const StyleSelectorListItem = ({style, currentProductStyle, setCurrentProductSty
 
   return (
     <div className="productStyle">
-      {currentProductStyle.style_id === style.style_id && <span className="checkMark"> &#10003; </span>}
+      {currentProductStyle.style_id === style.style_id && <span className="styleCheckMark"> &#10003; </span>}
       <img className="stylePhoto" src={style.photos[0].thumbnail_url} alt={style.name} onClick={() => { setCurrentProductStyle(style); }}/>
     </div>
   );
