@@ -1,0 +1,12 @@
+.topHeader {
+  display: flex;
+}
+
+.title {
+  margin: 20px;
+  font-style: italic;
+}
+
+.searchBar {
+ margin: 10px 0 0 30px
+}

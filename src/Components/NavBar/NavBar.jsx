@@ -25,9 +25,10 @@ const NavBar = (props) => {
   };
 
   return (
-    <div>
+    <div className="topHeader">
+      <h2 className="title">ProjectCatwalk</h2>
       {isLoaded &&
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="searchBar">
         <div>Search Product Id:</div>
         <div>
           <input value={searchValue} onChange={handleChange} />

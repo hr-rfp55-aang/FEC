@@ -2,6 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import { ContextObj } from '../../ContextObj.jsx';
 import './styles.css';
 import { getServer, grabReviewScore } from '../../helpers';
+import '../../../assets/outfits-x.svg';
+
+const actionImg = '../../../assets/outfits-x.svg';
 
 const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
 
@@ -15,13 +18,39 @@ const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
       thumbnail: stylesInfo.results[0].photos[0].thumbnail_url,
       originalPrice: stylesInfo.results[0].original_price,
       salePrice: stylesInfo.results[0].sale_price,
-      rating: ratingAvg
+      rating: ratingAvg,
     };
     setMyOutfits(prevState => {
       let temp = prevState.slice();
       temp.push(itemDetails);
       return temp;
     });
+  };
+
+  const removeOutfit = (id) => {
+    setMyOutfits(prevState => {
+      let temp = prevState.slice();
+      for (let i = 1; i < prevState.length; i++) {
+        if (prevState[i].productId === id) {
+          temp = temp.slice(0, i).concat(temp.slice(i + 1));
+          break;
+        }
+      }
+      return temp;
+    });
+  };
+
+  const saleDiv = () => {
+    if (cardInfo.salePrice) {
+      return (
+        <div>
+          <span style='text-decoration: line-through'>${cardInfo.originalPrice}</span>
+          <span style='color: red'>${cardInfo.salePrice}</span>
+        </div>
+      );
+    } else {
+      return (<div>${cardInfo.originalPrice}</div>);
+    }
   };
 
   if (cardInfo.productId === 'Add') {
@@ -39,13 +68,15 @@ const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
 
   return (
     <div>
-      <div className='productCard' onClick={() => setProductId(cardInfo.productId)}>
-        <div className='card-wrapper'><img className='relatedPhoto' src={cardInfo.thumbnail} /></div>
-        <div>{cardInfo.category}</div>
-        <div>{cardInfo.name}</div>
-        <div>${cardInfo.originalPrice}</div>
-        <div>{cardInfo.rating}</div>
-        <div></div>
+      <div className='productCard'>
+        <img className='actionButton'src={actionImg} onClick={() => removeOutfit(cardInfo.productId)}/>
+        <div className='card-wrapper' onClick={() => setProductId(cardInfo.productId)}><img className='relatedPhoto' src={cardInfo.thumbnail} /></div>
+        <div onClick={() => setProductId(cardInfo.productId)}>
+          <div>{cardInfo.category}</div>
+          <div>{cardInfo.name}</div>
+          {saleDiv()}
+          <div></div>
+        </div>
       </div>
     </div>
   );

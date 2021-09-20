@@ -1,10 +1,33 @@
 .questions {
   clear: both;
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+  width: 80%;
+  padding-left: 15%;
+  padding-right: 10%;
+}
+
+.add-question {
+  margin-top: 320px;
+
+}
+
+.title {
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+}
+
+.qa-list-container {
+  padding-left: 10%;
 }
 
 .qa-list {
-  max-height: 500px;
   overflow-y: scroll;
+  max-height: 300px;
+  width: 100%;
+
 }
 
 .modal {
@@ -20,10 +43,116 @@
 }
 
 .modal-content {
-  border-style: solid;
-  background-color:rgb(132, 0, 255, .5);
+  display: flex;
+  height: 40%;
+  width: 40%;
+  background-color:rgba(212, 211, 199, 0.979);
+  box-shadow: 10px 25px 50px 10px rgba(71, 71, 70, 0.424), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
+  z-index: 5;
+  justify-content: center;
+  border-style: unset;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  /* border-style: dashed; */
+}
+
+.modal-title {
+  /* border-style: dashed; */
+  display:flex;
+  font-size: 30px;
+}
+
+.modal-subtitle {
+  display: flex;
+  margin-left: 7px;
+  margin-top: 13px;
 }
 
 textarea {
   resize: none;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 75px;
+  margin-bottom: 40px;
+}
+
+.warning {
+  font-size: small;
+  font-style: italic;
+}
+
+label {
+  font-size: 20px;
+}
+
+.email-text-box {
+  width: 230px;
+}
+
+.search-text-box {
+  width: 300px;
+}
+
+.question-form {
+ display: flex;
+ flex-direction: column;
+ justify-content: space-evenly;
+}
+
+.modal-text {
+ margin-left: 10px;
+}
+
+button {
+  border-style: solid;
+  background-color: white;
+  height: 50px;
+  width: 150px;
+  font-weight: 600;
+  border-width: thin;
+  cursor: pointer;
+}
+
+.link {
+  color: blue;
+  text-decoration:underline;
+  cursor: pointer;
+}
+
+.QAEntry {
+  border-top: white;
+  border-left: white;
+  border-right: white;
+  border-bottom: black;
+  border-style: solid;
+}
+
+.qEntry {
+  border-top: white;
+  border-left: white;
+  border-right: white;
+  border-bottom: rgb(207, 207, 207);
+  border-style: dotted;
+  padding-bottom: 10px;
+  padding-top: 10px
+}
+
+.aEntry {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
