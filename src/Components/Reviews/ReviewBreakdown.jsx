@@ -16,7 +16,7 @@ var ReviewBreakdown = ({ reviews }) => {
     <div className='reviewBreakdown'>
       <div>
         <h1>{ratingAvg}</h1>
-        <StarRating />
+        <StarRating className='breakdownStars'/>
       </div>
       <h6>{recommendedPercent(reviewMetaObj.recommended.true)}% of reviewers recomend this product</h6>
       <h5 className='starRatings'>5 stars <RatingBar rating={reviewMetaObj.ratings[5]}/></h5>

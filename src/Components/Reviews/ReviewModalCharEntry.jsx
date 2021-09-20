@@ -28,7 +28,7 @@ const ReviewModalCharEntry = ({ name, charObject, setCharValues, charValues, set
   };
   return (
     <div className='characteristics-form'>
-      <div className='charRadios-title'>{name}</div>
+      <div className='charRadios-title'><u>{name}</u></div>
       <form className='charRadios' onChange={(e)=> { var id = charObject.id; setCharObj({ ...charObj, [id]: Number(e.target.value)}); }}>
         <input type="radio" name="rating" value="1" />
         <input type="radio" name="rating" value="2" />

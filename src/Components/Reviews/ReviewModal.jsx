@@ -2,9 +2,12 @@ import React, { useState, useContext, useEffect } from 'react';
 import { postServer, validateEmail, getServer } from '../../helpers';
 import { ContextObj } from '../../ContextObj.jsx';
 import ReviewModalCharList from './ReviewModalCharList.jsx';
+import star from '../../../assets/star.svg';
+import { FaStar } from 'react-icons/fa';
 
 const ReviewModal = ({ submitReview, setSubmitReview, setReviews }) => {
   const [starValue, setStarValue] = useState();
+  const [hover, setHover] = useState(null);
   const [recommend, setRecommend] = useState();
   const [summary, setSummary] = useState();
   const [body, setBody] = useState();
@@ -12,7 +15,7 @@ const ReviewModal = ({ submitReview, setSubmitReview, setReviews }) => {
   const [email, setEmail] = useState();
   const [charObj, setCharObj] = useState();
 
-  const { reviewMetaObj, setReviewMeta, productId } = useContext(ContextObj);
+  const { reviewMetaObj, setReviewMeta, productId, productInfo } = useContext(ContextObj);
   var keys = Object.keys(reviewMetaObj.characteristics);
 
   useEffect(() => {
@@ -45,36 +48,47 @@ const ReviewModal = ({ submitReview, setSubmitReview, setReviews }) => {
     return null;
   }
 
+  const starPhrase = (rating) => {
+    if (rating === 1) { return 'Poor'; }
+    if (rating === 2) { return 'Fair'; }
+    if (rating === 3) { return 'Average'; }
+    if (rating === 4) { return 'Good'; }
+    if (rating === 5) { return 'Great'; }
+  };
+
   return (
-    <div className="review-modal" onClick={() => setSubmitReview(false)}>
+    <div className="review-modal" onClick={() => { setSubmitReview(false), setHover(null), setStarValue(null); }}>
       <div className="review-modal-content" onClick={e => e.stopPropagation()}>
         <div className="review-modal-header">
           <h2 className="review-modal-title">Submit Your Review</h2>
-          <h4 className="review-modal-subtitle">About the Product</h4>
+          <h4 className="review-modal-subtitle">About the {productInfo.name}</h4>
         </div>
         <div className="review-modal-body">
           <div className='form'>
             <h5 className='overall-rating'>Overall Rating:</h5>
             <form className='overall-stars' onChange={(e) => setStarValue(Number(e.target.value))}>
-              <input type="radio" id="1Star" name="rating" value={1} />
-              <label htmfor="1Star">*</label>
-              <input type="radio" id="2Star" name="rating" value={2} />
-              <label htmfor="2Star">**</label>
-              <input type="radio" id="3Star" name="rating" value={3} />
-              <label htmfor="3Star">***</label>
-              <input type="radio" id="4Star" name="rating" value={4} />
-              <label htmfor="4Star">****</label>
-              <input type="radio" id="5Star" name="rating" value={5} />
-              <label htmfor="5Star">*****</label>
+              {[...Array(5)].map((star, i) => {
+                const ratingValue = i + 1;
+
+                return (
+                  <label key={i}>
+                    <input type='radio' className='radio-star' name='rating' value={ratingValue}
+                      key={i} />
+                    <FaStar onMouseEnter={() => setHover(ratingValue)} onMouseLeave={() => setHover(null)}
+                      color={ratingValue <= (hover || starValue) ? 'yellow' : 'grey'} />
+                  </label>
+                );
+              })}
+              <div className='starPhrase'>{starPhrase(starValue)}</div>
             </form>
           </div>
           <div className='form'>
             <h5 className='recommend-title' >Do you recommend this product?</h5>
             <form className='recommend-form' onChange={(e) => setRecommend(JSON.parse(e.target.value))}>
-              <input type="radio" id="yes" name="recommend" value={false} />
-              <label htmfor="yes">No</label>
               <input type="radio" id="no" name="recommend" value={true} />
               <label htmfor="no">Yes</label>
+              <input type="radio" id="yes" name="recommend" value={false} />
+              <label htmfor="yes">No</label>
             </form>
           </div>
           <ReviewModalCharList charObj={charObj} setCharObj={setCharObj} />

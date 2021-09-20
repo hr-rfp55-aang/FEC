@@ -72,8 +72,8 @@ h6 {
 .reviewList {
   width: 60%;
   margin-left: 0px;
-  /* height: 700px; */
-  /* overflow: scroll; */
+  height: 700px;
+
 }
 
 /* Review Entry box */
@@ -319,7 +319,7 @@ h6 {
   /* display: flex; */
   height: 95%;
   width: 50%;
-  background-color:rgb(212, 211, 199);
+  background-color:rgb(195, 214, 241);
   box-shadow: 10px 25px 50px 10px rgba(71, 71, 70, 0.424), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
   z-index: 5;
   justify-content: center;
@@ -343,10 +343,13 @@ h6 {
   margin-bottom: 2%;
 }
 
-.overall-stars,
-.recommend-form {
+.overall-stars {
   margin: 0;
   margin-left: 3%;
+}
+
+.recommend-form {
+  margin-left: -4%;
 }
 
 .overall-rating,
@@ -412,11 +415,30 @@ textarea {
 
 .submit-review {
   border-style: solid;
-  background-color: rgb(147, 164, 129);
+  background-color: rgb(115, 177, 141);
   height: 50px;
   width: 150px;
   font-weight: 600;
   border-width: thin;
   margin: 2% 25% 2% 36%;
   position: absolute;
+}
+
+.radio-star {
+  display: none;
+}
+
+.starPhrase {
+  margin-left: 25%;
+}
+
+.iRecommend {
+  display: inline;
+  margin-left: 1%;
+  color: rgb(104, 103, 103);
+  margin-bottom: 25px;
+}
+
+.checkMark {
+  margin-bottom: 2%;
 }
