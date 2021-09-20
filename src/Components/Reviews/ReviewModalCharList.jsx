@@ -11,6 +11,7 @@ var ReviewModalCharList = ({ setCharValues, charValues, charObj, setCharObj}) =>
 
   return (
     <div>
+      {/* <div>Rate for Following characteristics</div> */}
       {characteristics.map((characteristic, index) =>
         <ReviewModalCharEntry name={characteristic} setCharObj={setCharObj} charObject={reviewMetaObj.characteristics[characteristic]}
           key={index} setCharValues={setCharValues} charValues={charValues} charObj={charObj}/>

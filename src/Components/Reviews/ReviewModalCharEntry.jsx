@@ -21,14 +21,14 @@ const ReviewModalCharEntry = ({ name, charObject, setCharValues, charValues, set
     }
 
     if (quality === 'Comfort') {
-      return ['Uncomfortable', 'Slightly uncomfortable', 'Ok', 'Comfortable', 'Perfect'];
+      return ['distressing', 'Uncomfortable', 'fine', 'Comfortable', 'Perfect'];
     }
 
     return ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'];
   };
   return (
-    <div>
-      <div>{name}</div>
+    <div className='characteristics-form'>
+      <div className='charRadios-title'>{name}</div>
       <form className='charRadios' onChange={(e)=> { var id = charObject.id; setCharObj({ ...charObj, [id]: Number(e.target.value)}); }}>
         <input type="radio" name="rating" value="1" />
         <input type="radio" name="rating" value="2" />

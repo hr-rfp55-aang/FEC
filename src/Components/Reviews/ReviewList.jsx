@@ -28,7 +28,7 @@ const ReviewList = ({ reviews, setReviews, setLimit, reviewsLimit, setsortStr, s
       )}
       <button className='moreReviews' onClick={() => setLimit(reviewsLimit + 2)}>MORE REVIEWS</button>
       <button className='addReview' onClick={()=> setSubmitReview(true)}>ADD REVIEW +</button>
-      <ReviewModal submitReview={submitReview} setSubmitReview={setSubmitReview}/>
+      <ReviewModal submitReview={submitReview} setSubmitReview={setSubmitReview} setReviews={setReviews}/>
     </div>
   );
 };

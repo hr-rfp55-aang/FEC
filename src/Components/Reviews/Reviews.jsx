@@ -12,6 +12,7 @@ var Review = () => {
   const [curReview, setCurReview] = useState('');
   const [report, setReport] = useState('');
   const { productInfo, productId } = useContext(ContextObj);
+  console.log(productInfo);
 
 
   useEffect(() => {
