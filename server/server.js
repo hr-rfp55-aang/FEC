@@ -45,7 +45,7 @@ function putRequest(endpoint) {
         res.status(201).send('Item updated successfully');
       })
       .catch( (err) => {
-        console.log(`get ${req.url}: ${err}`);
+        console.log(`put ${req.url}: ${err}`);
         res.status(404).send(`Failed to retrieve ${req.url}`);
       });
   });
@@ -73,6 +73,8 @@ function postRequest(endpoint) {
 
 postRequest('/qa/questions');
 postRequest('/qa/questions/:question_id/answers');
+postRequest('/reviews');
+
 postRequest('/cart');
 
 app.listen(PORT, () => {

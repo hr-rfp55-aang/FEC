@@ -11,7 +11,9 @@ var Review = () => {
   const [sortStr, setsortStr] = useState('');
   const [curReview, setCurReview] = useState('');
   const [report, setReport] = useState('');
+
   const { productInfo, productId } = useContext(ContextObj);
+
 
 
   useEffect(() => {
@@ -29,7 +31,6 @@ var Review = () => {
       putServer(`/reviews/${curReview}/helpful`)
         .then(() => getServer(`/reviews/?product_id=${productId}&sort=${sortStr}&count=100`))
         .then((result) => { setReviews(result.results); });
-      console.log('put');
     } else if (curReview !== '') {
       putServer(`/reviews/${curReview}/helpful`)
         .then(() => getServer(`/reviews/?product_id=${productId}&count=100`))
