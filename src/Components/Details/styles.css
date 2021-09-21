@@ -183,6 +183,17 @@
   display: flex;
 }
 
+.socialMediaInfo {
+  display: flex;
+  margin: 20px;
+}
+
+.socialMediaIcon {
+  height: 50px;
+  width: 50px;
+  padding: 5px;
+}
+
 /* Modal Styling */
 
 .mainPhotoModal {
