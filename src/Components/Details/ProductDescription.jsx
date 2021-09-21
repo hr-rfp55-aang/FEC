@@ -24,8 +24,7 @@ const ProductDescription = ({ currentProductStyle }) => {
             <span className="originalPrice">${price}</span>
           </div> : <span className="price">${price}</span>
         }
-      </div>
-      {/* Share on Social Media Component */}
+      </div >
     </div>
   );
 };
