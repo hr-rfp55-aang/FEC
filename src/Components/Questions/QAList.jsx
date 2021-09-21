@@ -30,7 +30,7 @@ const QAList = (props) => {
   if (questionList.length - listHandler(questionList).length === 0) {
     listButton = <div className="emptyDiv"></div>;
   } else {
-    listButton = <button onClick={increaseLimit}>More Answered Questions</button>;
+    listButton = <div className="listButton"><button className="q-button" onClick={increaseLimit}>More Answered Questions</button></div>;
   }
 
   return (
@@ -39,6 +39,7 @@ const QAList = (props) => {
         {listHandler(questionList).map((question, index) => (<QAListEntry question={question} key={index} />))}
       </div>
       <div>
+        {props.addQuestion}
         {listButton}
       </div>
     </div>
