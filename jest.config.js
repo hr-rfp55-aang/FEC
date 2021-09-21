@@ -17,7 +17,8 @@ module.exports = {
   "transform": {
     "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
     "^.+\\.scss$": "jest-scss-transform",
-    "^.+\\.css$": "<rootDir>/jest/mocks/cssMock.js"
+    "^.+\\.css$": "<rootDir>/jest/mocks/cssMock.js",
+    "^.+\\.svg$": "<rootDir>/jest/mocks/svgTransform.js"
   },
   "transformIgnorePatterns": [
     "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",

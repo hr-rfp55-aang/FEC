@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from 'react';
 import { postServer, validateEmail, getServer } from '../../helpers';
 import { ContextObj } from '../../ContextObj.jsx';
 import ReviewModalCharList from './ReviewModalCharList.jsx';
-import star from '../../../assets/star.svg';
 import { FaStar } from 'react-icons/fa';
 
 const ReviewModal = ({ submitReview, setSubmitReview, setReviews }) => {
