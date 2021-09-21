@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ContextObj } from '../../ContextObj.jsx';
 import './styles.css';
-import '../../../assets/empty-star.svg';
+
 
 const ComparisonModal = ({show, cardInfo, onClose}) => {
 
