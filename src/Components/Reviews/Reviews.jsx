@@ -18,23 +18,27 @@ var Review = () => {
 
   useEffect(() => {
     getServer(`/reviews/?product_id=${productId}&count=100`)
-      .then((result) => { setReviews(result.results); });
+      .then((result) => { setReviews(result.results); })
+      .catch( (err) => { console.log('Put review: ', err); });
   }, [productInfo]);
 
   useEffect(() => {
     getServer(`/reviews/?product_id=${productId}&sort=${sortStr}&count=100`)
-      .then((result) => { setReviews(result.results); });
+      .then((result) => { setReviews(result.results); })
+      .catch( (err) => { console.log('Put review: ', err); });
   }, [sortStr]);
 
   useEffect(() => {
     if (curReview !== '' && sortStr !== '') {
       putServer(`/reviews/${curReview}/helpful`)
         .then(() => getServer(`/reviews/?product_id=${productId}&sort=${sortStr}&count=100`))
-        .then((result) => { setReviews(result.results); });
+        .then((result) => { setReviews(result.results); })
+        .catch( (err) => { console.log('Put review: ', err); });
     } else if (curReview !== '') {
       putServer(`/reviews/${curReview}/helpful`)
         .then(() => getServer(`/reviews/?product_id=${productId}&count=100`))
-        .then((result) => { setReviews(result.results); });
+        .then((result) => { setReviews(result.results); })
+        .catch( (err) => { console.log('Put review: ', err); });
     }
   }, [curReview]);
 
@@ -42,11 +46,13 @@ var Review = () => {
     if (report !== '' && sortStr !== '') {
       putServer(`/reviews/${report}/report`)
         .then(() => getServer(`/reviews/?product_id=${productId}&sort=${sortStr}&count=100`))
-        .then((result) => { setReviews(result.results); });
+        .then((result) => { setReviews(result.results); })
+        .catch( (err) => { console.log('Put review: ', err); });
     } else if (report !== '') {
       putServer(`/reviews/${report}/report`)
         .then(() => getServer(`/reviews/?product_id=${productId}&count=100`))
-        .then((result) => { setReviews(result.results); });
+        .then((result) => { setReviews(result.results); })
+        .catch( (err) => { console.log('Put review: ', err); });
     }
   }, [report]);
 
