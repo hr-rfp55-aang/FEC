@@ -74,16 +74,16 @@ const QAListEntry = (props) => {
   if (answerList.length - listHandler(answerList).length === 0 && answerList.length <= 2) {
     listButton = null;
   } else if (answerList.length - listHandler(answerList).length === 0 && answerList.length > 2) {
-    listButton = <div className="link" onClick={decreaseLimit}>Collapse Answers</div>;
+    listButton = <button className="q-button" onClick={decreaseLimit}>Collapse Answers</button>;
   } else {
-    listButton = <div className="link" onClick={increaseLimit}>See More Answers</div>;
+    listButton = <button className="q-button" onClick={increaseLimit}>See More Answers</button>;
   }
 
   return (
     <div className="QAEntry">
       <div className="qEntry">
-        Q: {props.question.question_body}
-        <div>
+        <span className="qLetter">Q:</span> <span className="qText">{props.question.question_body}</span>
+        <div className="sellerSig">
           <span>    Helpful?</span>
           <span className="link" onClick={updateQuestionHelp}> Yes ({questionHelpfulness})</span>
           <span> | </span>
