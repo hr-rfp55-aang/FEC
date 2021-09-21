@@ -32,8 +32,16 @@ const Details = () => {
       <PhotoGallery currentProductStyle={currentProductStyle} />
       <div>
         <ProductDescription currentProductStyle={currentProductStyle} />
-        <StyleSelector productStyles={productStyles} currentProductStyle={currentProductStyle} setCurrentProductStyle={setCurrentProductStyle}/>
+        <StyleSelector productStyles={productStyles} currentProductStyle={currentProductStyle} setCurrentProductStyle={setCurrentProductStyle} />
         <AddToCart currentProductSizes={currentProductSizes} />
+        <div className="socialMediaInfo">
+          <a href="https://twitter.com/?lang=en">
+            <img className="socialMediaIcon" src={'../../../assets/twitter.jpeg'} /> </a>
+          <a href="https://www.facebook.com/">
+            <img className="socialMediaIcon" src={'../../../assets/facebook.jpeg'} /> </a>
+          <a href="https://www.pinterest.com/">
+            <img className="socialMediaIcon" src={'../../../assets/pinterest.jpeg'} /> </a>
+        </div>
       </div>
     </div>
   );
