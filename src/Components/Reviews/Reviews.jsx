@@ -19,13 +19,13 @@ var Review = () => {
   useEffect(() => {
     getServer(`/reviews/?product_id=${productId}&count=100`)
       .then((result) => { setReviews(result.results); })
-      .catch( (err) => { console.log('Put review: ', err); });
+      .catch( (err) => { console.log('Get review: ', err); });
   }, [productInfo]);
 
   useEffect(() => {
     getServer(`/reviews/?product_id=${productId}&sort=${sortStr}&count=100`)
       .then((result) => { setReviews(result.results); })
-      .catch( (err) => { console.log('Put review: ', err); });
+      .catch( (err) => { console.log('Get review: ', err); });
   }, [sortStr]);
 
   useEffect(() => {
