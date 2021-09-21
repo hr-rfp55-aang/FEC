@@ -83,7 +83,7 @@ const QAListEntry = (props) => {
     <div className="QAEntry">
       <div className="qEntry">
         Q: {props.question.question_body}
-        <div>
+        <div className="clickable">
           <span>    Helpful?</span>
           <span className="link" onClick={updateQuestionHelp}> Yes ({questionHelpfulness})</span>
           <span> | </span>

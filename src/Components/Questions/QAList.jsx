@@ -28,13 +28,13 @@ const QAList = (props) => {
   }
 
   if (questionList.length - listHandler(questionList).length === 0) {
-    listButton = null;
+    listButton = <div className="emptyDiv"></div>;
   } else {
     listButton = <button onClick={increaseLimit}>More Answered Questions</button>;
   }
 
   return (
-    <div className='qa-list-container'>
+    <div className="qa-list-grid">
       <div className="qa-list">
         {listHandler(questionList).map((question, index) => (<QAListEntry question={question} key={index} />))}
       </div>
