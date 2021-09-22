@@ -5,7 +5,7 @@ import QAList from './QAList.jsx';
 const QuestionSearch = (props) => {
   const [filteredList, setFilteredList] = useState(props.questions.results);
   const [query, setQuery] = useState('');
-  // need to set the state of questions on change
+
   const searchHandler = (array) => {
     var search = event.target.value;
     setQuery(search);
@@ -28,11 +28,9 @@ const QuestionSearch = (props) => {
   };
 
   return (
-    <div>
-      <input type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={searchHandler}></input>
-      <div>
-        <QAList questions={filterQuestions(props.questions.results)}/>
-      </div>
+    <div className="searchGrid">
+      <input className="search-text-box" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={searchHandler}></input>
+      <QAList addQuestion={props.addQuestion} questions={filterQuestions(props.questions.results)}/>
     </div>
   );
 };

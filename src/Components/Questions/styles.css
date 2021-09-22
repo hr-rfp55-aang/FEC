@@ -1,10 +1,49 @@
 .questions {
   clear: both;
+  display: grid;
+  grid-template-columns: 15% 20% auto 15%;
+  grid-template-rows: 60px auto 52px;
+}
+
+.listButton {
+  margin-left: 150px;
+  margin-top: -50px;
+}
+
+.add-question {
+  grid-column: 2;
+  /* grid-row: 2; */
+  margin-top: 6px;
+}
+
+.title {
+  font-size: 25px;
+}
+
+.qa-list-container {
+  display: grid;
+  grid-template-rows: auto 21px;
+  justify-self: center;
+  grid-column: 2/4;
+  width: 100%;
+  grid-row: 2/3;
+}
+
+.qa-list-grid {
+  grid-row: 2;
+  grid-column: 2/3;
 }
 
 .qa-list {
-  max-height: 500px;
   overflow-y: scroll;
+  max-height: 80vh;
+  width: 100%;
+  grid-row: 2;
+  grid-column: 2/3;
+}
+
+.emptyDiv {
+  height: 50px;
 }
 
 .modal {
@@ -20,10 +59,154 @@
 }
 
 .modal-content {
-  border-style: solid;
-  background-color:rgb(132, 0, 255, .5);
+  display: flex;
+  height: 40%;
+  width: 40%;
+  background-color:rgba(212, 211, 199, 0.979);
+  box-shadow: 10px 25px 50px 10px rgba(71, 71, 70, 0.424), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
+  z-index: 5;
+  justify-content: center;
+  border-style: unset;
+  flex-direction: column;
 }
+
+/* .modal-header {
+
+ } */
+
+/* .modal-title {
+
+ } */
+
+/* .modal-subtitle {
+
+} */
 
 textarea {
   resize: none;
+}
+/*
+.modal-body {
+
+} */
+
+/* .modal-footer {
+
+} */
+
+.warning {
+  font-size: small;
+  font-style: italic;
+}
+
+label {
+  font-size: 20px;
+}
+
+.email-text-box {
+  width: 230px;
+}
+
+.searchGrid {
+  display:grid;
+  grid-template-rows: 10% auto;
+  grid-template-columns: 10% auto 10%;
+  grid-column: 1/4;
+  grid-row: 1/3;
+}
+
+.search-text-box {
+  justify-self: center;
+  font-size: 25px;
+  height: 50px;
+  width: 90%;
+  grid-column: 2/3;
+}
+
+.question-form {
+ display: flex;
+ flex-direction: column;
+ justify-content: space-evenly;
+}
+
+.modal-text {
+ margin-left: 10px;
+}
+
+.q-button {
+  border-style: solid;
+  background-color: white;
+  height: 50px;
+  width: 150px;
+  font-weight: 600;
+  border-width: thin;
+  cursor: pointer;
+}
+
+.q-button:hover {
+  background-color: rgb(182, 182, 182);
+}
+
+.link {
+  color: blue;
+  text-decoration:underline;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: red;
+}
+
+.clickable {
+
+}
+
+.QAEntry {
+  grid-template-columns: 2;
+}
+
+.qEntry {
+  display: grid;
+  border-top: white;
+  border-left: white;
+  border-right: white;
+  border-bottom: 1px rgb(207, 207, 207);
+  border-style: solid;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  grid-template-columns: 5% auto;
+}
+
+.aEntry {
+  display: grid;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  grid-template-columns: 5% auto;
+  grid-template-rows: 70% 30%;
+  border: 1px dotted rgb(143, 143, 143);
+  border-top: white;
+  border-left: white;
+  border-right: white;
+}
+
+.qLetter {
+  font-size: 25px;
+}
+
+.qText{
+  margin-top: 4px;
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.sellerSig {
+  font-size: 15px ;
+  justify-self: end;
+  margin-right: 5px;
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.moreAnswers {
+
 }

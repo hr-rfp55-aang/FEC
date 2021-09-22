@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ReviewListEntry from './ReviewListEntry.jsx';
 import { ContextObj } from '../../ContextObj.jsx';
+import ReviewModal from './ReviewModal.jsx';
 
 const ReviewList = ({ reviews, setReviews, setLimit, reviewsLimit, setsortStr, setCurReview, setReport}) => {
   const { reviewsTotal } = useContext(ContextObj);
+
+  const [submitReview, setSubmitReview] = useState(false);
 
   var func = (array) => {
     var temp = array.slice();
@@ -24,7 +27,8 @@ const ReviewList = ({ reviews, setReviews, setLimit, reviewsLimit, setsortStr, s
         <ReviewListEntry review={review} setReviews={setReviews} setCurReview={setCurReview} setReport={setReport} key={review.review_id} />
       )}
       <button className='moreReviews' onClick={() => setLimit(reviewsLimit + 2)}>MORE REVIEWS</button>
-      <button className='addReview'>ADD REVIEW +</button>
+      <button className='addReview' onClick={()=> setSubmitReview(true)}>ADD REVIEW +</button>
+      <ReviewModal submitReview={submitReview} setSubmitReview={setSubmitReview} setReviews={setReviews}/>
     </div>
   );
 };
