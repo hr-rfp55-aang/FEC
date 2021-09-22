@@ -12,27 +12,18 @@ const Details = () => {
   const [currentProductStyle, setCurrentProductStyle] = useState({ photos: [], skus: {} });
   const currentProductSizes = currentProductStyle.skus;
 
-  const { productId } = useContext(ContextObj);
+  const { productId, stylesInfo } = useContext(ContextObj);
 
   useEffect(() => {
-    if (productId) {
-      getServer(`/products/${productId}/styles`)
-        .then((result) => {
-          setProductStyles(result.results);
-          setCurrentProductStyle(result.results[0]);
-        })
-        .catch((err) => {
-          console.log('Styles err: ', err);
-        });
-    }
+    setCurrentProductStyle(stylesInfo.results[0]);
   }, [productId]);
 
   return (
     <div className="productOverview">
-      <PhotoGallery currentProductStyle={currentProductStyle} />
+      <PhotoGallery currentProductStyle={currentProductStyle} stylesInfo={stylesInfo.results}/>
       <div>
         <ProductDescription currentProductStyle={currentProductStyle} />
-        <StyleSelector productStyles={productStyles} currentProductStyle={currentProductStyle} setCurrentProductStyle={setCurrentProductStyle} />
+        <StyleSelector productStyles={stylesInfo.results} currentProductStyle={currentProductStyle} setCurrentProductStyle={setCurrentProductStyle} />
         <AddToCart currentProductSizes={currentProductSizes} />
         <div className="socialMediaInfo">
           <a href="https://twitter.com/?lang=en">
