@@ -16,7 +16,7 @@ const Details = () => {
 
   useEffect(() => {
     setCurrentProductStyle(stylesInfo.results[0]);
-  }, [productId]);
+  }, [productId, stylesInfo]);
 
   return (
     <div className="productOverview">
