@@ -6,6 +6,9 @@ import StarRatings from './StarRatings.jsx';
 import {FaCheck} from 'react-icons/fa';
 
 var ReviewListEntry = ({ review, setReviews, setCurReview, setReport }) => {
+
+  const [seeMore, setSeeMore] = useState(false);
+
   var recommedCheck = () => {
     return (
       <div className='checkMark'>
@@ -15,28 +18,41 @@ var ReviewListEntry = ({ review, setReviews, setCurReview, setReport }) => {
     );
   };
 
+  var limitCharacters = (reviewBody) => {
+    if (reviewBody.length > 250) {
+      return (
+        <div className='body'>{review.body.substr(0, 250) + '...'}<br></br>
+          <span className='seeMore' onClick={()=>setSeeMore(true)}>  See more...</span></div>
+      );
+    } else {
+      return (
+        <div className='body'>{review.body}</div>
+      );
+    }
+  };
+
   return (
     (review.response) ?
       <div className='reviewEntry' >
         <div id='rating'><StarRatings rating={review.rating}/></div>
         <div className='date'>{review.reviewer_name}, {formatDate(review.date)}</div>
         <div className='summary'><b>{review.summary}</b></div>
-        <div className='body'>{review.body}</div>
+        {!seeMore ? limitCharacters(review.body) : <div className='body'>{review.body}</div>}
         <div>{(review.recommend) ? (recommedCheck()) : ''}</div>
         <div className='response'>Response: <br></br> <br></br>{review.response}</div>
         <ReviewPicList pictures={review.photos}/>
-        <div className='helpful'>Helpful? <u onClick={()=>setCurReview(review.review_id)}>Yes({review.helpfulness})</u>
-        | <u onClick={()=>setReport(review.review_id)}>Report</u> </div>
+        <div className='helpful'>Helpful? <u className='helpReport' onClick={()=>setCurReview(review.review_id)}>Yes({review.helpfulness})</u>
+        | <u className='helpReport' onClick={()=>setReport(review.review_id)}>Report</u> </div>
       </div > :
       <div className='reviewEntry'>
         <div id='rating'><StarRatings rating={review.rating}/></div>
         <div className='date'>{review.reviewer_name}, {formatDate(review.date)}</div>
         <div className='summary'><b>{review.summary}</b></div>
-        <div className='body'>{review.body}</div>
+        {!seeMore ? limitCharacters(review.body) : <div className='body'>{review.body}</div>}
         <div>{(review.recommend) ? (recommedCheck()) : ''}</div>
         <ReviewPicList pictures={review.photos}/>
-        <div className='helpful'>Helpful? <u onClick={()=>setCurReview(review.review_id)}>Yes({review.helpfulness})</u>
-        | <u onClick={()=>setReport(review.review_id)}>Report</u> </div>
+        <div className='helpful'>Helpful? <u className='helpReport' onClick={()=>setCurReview(review.review_id)}>Yes({review.helpfulness})</u>
+        | <u className='helpReport' onClick={()=>setReport(review.review_id)}>Report</u> </div>
       </div>
   );
 };
