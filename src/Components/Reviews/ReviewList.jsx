@@ -3,12 +3,12 @@ import ReviewListEntry from './ReviewListEntry.jsx';
 import { ContextObj } from '../../ContextObj.jsx';
 import ReviewModal from './ReviewModal.jsx';
 
-const ReviewList = ({ reviews, setReviews, setLimit, reviewsLimit, setsortStr, setCurReview, setReport}) => {
+const ReviewList = ({ reviews, setReviews, setLimit, reviewsLimit, setsortStr, setCurReview, setReport, filters}) => {
   const { reviewsTotal } = useContext(ContextObj);
 
   const [submitReview, setSubmitReview] = useState(false);
 
-  var func = (array) => {
+  var limitReviews = (array) => {
     var temp = array.slice();
     temp = temp.splice(0, reviewsLimit);
     return temp;
@@ -23,7 +23,13 @@ const ReviewList = ({ reviews, setReviews, setLimit, reviewsLimit, setsortStr, s
         <option value="helpful">helpfulness</option>
         <option value="newest">newest</option>
       </select>
-      {func(reviews).map((review) =>
+      {limitReviews(reviews).filter((value) => {
+        if (!filters.length) {
+          return value;
+        } else if (filters.indexOf(value.rating) !== -1) {
+          return value;
+        }
+      }).map((review) =>
         <ReviewListEntry review={review} setReviews={setReviews} setCurReview={setCurReview} setReport={setReport} key={review.review_id} />
       )}
       <button className='moreReviews' onClick={() => setLimit(reviewsLimit + 2)}>MORE REVIEWS</button>

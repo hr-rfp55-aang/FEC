@@ -11,9 +11,22 @@ var Review = () => {
   const [sortStr, setsortStr] = useState('');
   const [curReview, setCurReview] = useState('');
   const [report, setReport] = useState('');
+  const [filters, setFilters] = useState([]);
 
   const { productInfo, productId } = useContext(ContextObj);
 
+  var handleStarFilters = (rating) => {
+
+    const currentIndex = filters.indexOf(rating);
+    const newFilters = [...filters];
+    if (currentIndex === -1) {
+      newFilters.push(rating);
+    } else {
+      newFilters.splice(currentIndex, 1);
+    }
+
+    setFilters(newFilters);
+  };
 
 
   useEffect(() => {
@@ -60,8 +73,8 @@ var Review = () => {
     <div>
       <h4 id="ratingsReview">Ratings & Reviews</h4>
       <div className='reviews'>
-        <ReviewBreakdown reviews={reviews} />
-        <ReviewList reviews={reviews} setReviews={setReviews} setLimit={setLimit} reviewsLimit={reviewsLimit} setsortStr={setsortStr} setCurReview={setCurReview} setReport={setReport} />
+        <ReviewBreakdown reviews={reviews} handleStarFilters={handleStarFilters}/>
+        <ReviewList reviews={reviews} setReviews={setReviews} setLimit={setLimit} reviewsLimit={reviewsLimit} setsortStr={setsortStr} setCurReview={setCurReview} setReport={setReport} filters={filters}/>
       </div>
     </div>
   );
