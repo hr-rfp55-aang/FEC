@@ -6,10 +6,6 @@ const ProductDescription = ({ currentProductStyle }) => {
 
   const { productInfo, ratingAvg, reviewsTotal } = useContext(ContextObj);
 
-  const price = currentProductStyle.sale_price ? currentProductStyle.original_price : currentProductStyle.original_price;
-
-  // console.log('In ProductDescription ', 'product: ', productInfo, 'currentProductStyle ', currentProductStyle);
-
   return (
     <div className="descriptionOverview">
       <div className="starsInDescription"> <StarRatings />
@@ -21,8 +17,8 @@ const ProductDescription = ({ currentProductStyle }) => {
         {currentProductStyle.sale_price ?
           <div>
             <span> {'$' + currentProductStyle.sale_price} </span>
-            <span className="originalPrice">${price}</span>
-          </div> : <span className="price">${price}</span>
+            <span className="originalPrice">${currentProductStyle.original_price}</span>
+          </div> : <span className="price">${currentProductStyle.original_price}</span>
         }
       </div >
     </div>
