@@ -2,6 +2,7 @@ import React from 'react';
 import {render, cleanup, fireEvent, waitFor, screen} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Outfits from './Outfits';
+import Related from './Related';
 import { ContextObj } from '../../ContextObj.jsx';
 
 describe('Related', () => {
@@ -47,14 +48,36 @@ describe('Related', () => {
     40346
   ];
 
-  test('Does outfits render add outfit', () => {
-    const { getByText } = render(
+  const renderRelated = () => {
+    render(
       <ContextObj.Provider value={{ productId, productInfo, stylesInfo, ratingAvg }}>
+        <Related />
         <Outfits />
       </ContextObj.Provider>);
+  };
 
-    const firstRelated = screen.getByText(/ADD OUTFIT/i);
 
-    expect(getByText(/ADD OUTFIT/i)).toBeInTheDocument();
+
+  test('Does outfits render add outfit', () => {
+    renderRelated();
+    const addOutfitTest = screen.getByText(/ADD OUTFIT/i);
+
+    expect(addOutfitTest).toBeInTheDocument();
+  });
+
+  test('Does create product card', () => {
+    renderRelated();
+    // await screen.findByText(/stars/i);
+    // expect(screen.getByText(/Camo Onesie/)).toBeInTheDocument();
+
+    waitFor(() =>
+      screen.findByText(/stars/i)
+    )
+      .then( (result) => {
+        expect(screen.getByText(/Camo Onesie/)).toBeInTheDocument();
+      })
+      .catch( (err) => {
+        console.log(err);
+      });
   });
 });
