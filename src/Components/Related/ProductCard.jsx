@@ -65,8 +65,9 @@ const ProductCard = ({cardId}) => {
             <div>{cardInfo.name}</div>
             {saleDiv()}
             <div>{cardInfo.rating} stars</div>
-            <StarRating rating={cardInfo.rating} />
-          </div>
+            <div className='starLeft'>
+              <StarRating rating={cardInfo.rating} />
+            </div></div>
         </div>}
     </div>
   );

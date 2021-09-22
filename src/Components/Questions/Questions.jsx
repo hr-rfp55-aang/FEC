@@ -26,10 +26,7 @@ const Questions = (props) => {
     <div className='questions'>
       <div className="title">Questions & Answers</div>
       <div className="qa-list-container">
-        <QuestionSearch questions={questions}/>
-      </div>
-      <div className="add-question">
-        <button onClick={() => setShowQuestions(true)}>Add A Question</button>
+        <QuestionSearch questions={questions} addQuestion={<button className="q-button" onClick={() => setShowQuestions(true)}>Add A Question</button>}/>
         <QuestionModal setNewQuestion={setNewQuestion} onClose={() => setShowQuestions(false)} show={showQuestions} name={productInfo.name} productId={productId}/>
       </div>
     </div>
