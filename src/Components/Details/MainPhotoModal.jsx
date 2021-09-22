@@ -1,11 +1,11 @@
 import React from 'react';
 
-const MainImageModal = ({ mainPhoto, closeMainPhotoModal, enlargeMainPhoto, productPhotos, currentProductStyle, setMainPhoto, mainPhotoName, index, photos, getNextImage, getPreviousImage}) => {
+const MainPhotoModal = ({ mainPhoto, closeMainPhotoModal, enlargeMainPhoto, productPhotos, currentProductStyle, setMainPhoto, mainPhotoName, index, photos, getNextImage, getPreviousImage}) => {
 
   const showOrHide = enlargeMainPhoto ? 'modal display-block' : 'modal display-none';
 
   const modalThumbnails = productPhotos.map((photo, index) => {
-    return <img onClick={() => { setMainPhoto(photo); }}
+    return <img onClick={() => { setMainPhoto(photo); }} key={index}
       className={mainPhoto.url === photo.url ? 'productMainPhotoThumbnail thumbnailListItem' : 'thumbnailListItem'} src={photo.thumbnail_url} alt={mainPhotoName + index} />;
   });
 
@@ -46,4 +46,4 @@ const MainImageModal = ({ mainPhoto, closeMainPhotoModal, enlargeMainPhoto, prod
   );
 };
 
-export default MainImageModal;
+export default MainPhotoModal;
