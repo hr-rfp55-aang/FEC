@@ -24,7 +24,8 @@
 
 .buttonToEnlarge {
   position: absolute;
-  width: 40px;
+  width: 25px;
+  height: 30px;
   border: none;
   border-radius: 90px;
   right: 15px;
@@ -235,6 +236,27 @@
   z-index: 2;
   /* top: 50%;
   left: 50%; */
+}
+
+.modalLeftArrow, .modalRightArrow {
+  position: absolute;
+  z-index: 3;
+  top: 900px;
+  /* transform: translateY(-50%); */
+  width: 40px;
+  height: 40px;
+  border-radius: 24px;
+  opacity: 70%
+  /* background-color: white;
+  border: 1px solid #ddd; */
+}
+
+.modalLeftArrow{
+  left: 100px;
+}
+
+.modalRightArrow {
+  left: 700px;
 }
 
 /* ThumbnailCarousel Styling */
