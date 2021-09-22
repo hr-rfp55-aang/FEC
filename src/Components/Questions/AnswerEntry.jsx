@@ -26,28 +26,39 @@ const AnswerEntry = (props) => {
       .catch((error) => console.log('reported', error));
   };
 
-  if (props.answer.answerer_name === 'Seller') {
-    seller = <span style={{fontWeight: 'bold'}}>{props.answer.answerer_name}</span>;
-  } else {
-    seller = <span>by {props.answer.answerer_name}</span>;
-  }
-
   if (reported) {
     report = <span>Reported</span>;
   } else {
     report = <span className="link" onClick={reportAnswer}>Report</span>;
   }
 
+  if (props.answer.answerer_name === 'Seller' || props.answer.answerer_name === 'seller') {
+    seller =
+    <div className="sellerSig">
+      <span>by</span> <span style={{fontWeight: 'bold'}}> {props.answer.answerer_name}</span>
+      <span>, {formatDate(props.answer.date)}  |  </span>
+      <span>Helpful?</span>
+      <span className="link" onClick={updateAnswerHelp}> Yes({answerHelpfulness})</span>  <span>| </span>
+      {report}
+    </div>;
+  } else {
+    seller =
+    <div className="sellerSig">
+      <span>by {props.answer.answerer_name}</span>
+      <span>, {formatDate(props.answer.date)}  |  </span>
+      <span>Helpful?</span>
+      <span className="link" onClick={updateAnswerHelp}> Yes({answerHelpfulness})</span>  <span>| </span>
+      {report}
+    </div>;
+  }
+
   return (
     <div className="aEntry">
-      <div>A: {props.answer.body}</div>
-      <div>
-        {seller}
-        <span>, {formatDate(props.answer.date)}  |  </span>
-        <span>Helpful?</span>
-        <span className="link" onClick={updateAnswerHelp}> Yes({answerHelpfulness})</span>  <span>| </span>
-        {report}
+      <span className="qLetter">A:</span>
+      <div className="qText">
+        {props.answer.body}
       </div>
+      {seller}
     </div>
   );
 };

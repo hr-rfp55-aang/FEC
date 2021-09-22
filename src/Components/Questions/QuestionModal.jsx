@@ -58,7 +58,7 @@ const QuestionModal = (props) => {
           <span className="modal-subtitle"> about the {props.name}</span>
         </div>
         <div className="modal-body">
-          <div>
+          <div className="question-form">
             <div>
               <label >
                 * Your Question
