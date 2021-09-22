@@ -36,7 +36,7 @@
 
 .qa-list {
   overflow-y: scroll;
-  max-height: 80vh;
+  max-height: 65vh;
   width: 100%;
   grid-row: 2;
   grid-column: 2/3;
@@ -140,21 +140,21 @@ label {
   width: 150px;
   font-weight: 600;
   border-width: thin;
+  border-color: rgb(223, 223, 223);
   cursor: pointer;
 }
 
 .q-button:hover {
-  background-color: rgb(182, 182, 182);
+  background-color: rgb(223, 223, 223);
 }
 
 .link {
-  color: blue;
   text-decoration:underline;
   cursor: pointer;
 }
 
 .link:hover {
-  color: red;
+  font-weight: bold;
 }
 
 .clickable {
@@ -162,7 +162,7 @@ label {
 }
 
 .QAEntry {
-  grid-template-columns: 2;
+
 }
 
 .qEntry {
@@ -170,7 +170,7 @@ label {
   border-top: white;
   border-left: white;
   border-right: white;
-  border-bottom: 1px rgb(207, 207, 207);
+  border-bottom: 4px rgb(223, 223, 223);
   border-style: solid;
   padding-bottom: 10px;
   padding-top: 10px;
@@ -183,7 +183,7 @@ label {
   padding-bottom: 10px;
   grid-template-columns: 5% auto;
   grid-template-rows: 70% 30%;
-  border: 1px dotted rgb(143, 143, 143);
+  border: 1px solid rgb(223, 223, 223);
   border-top: white;
   border-left: white;
   border-right: white;
@@ -208,5 +208,11 @@ label {
 }
 
 .moreAnswers {
+  font-size: large;
+  cursor: pointer;
+  background-color: rgb(223, 223, 223);
+}
 
+.moreAnswers:hover {
+  font-weight: bold;
 }
