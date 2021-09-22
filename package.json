@@ -8,7 +8,9 @@
     "dev": "concurrently \"npm run devNode\" \"npm run devBuild\"",
     "build": "vite build",
     "serve": "vite preview",
-    "test": "jest"
+    "test": "jest -env=jsdom",
+    "prod:node": "node server/server.js",
+    "prod:vite": "vite preview --host --port=8080"
   },
   "dependencies": {
     "axios": "^0.21.4",
