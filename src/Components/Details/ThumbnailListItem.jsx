@@ -5,7 +5,6 @@ const ThumbnailListItem = ({ index, photo, mainPhoto, setMainPhoto, mainPhotoNam
   // console.log('In thumbnaillistlitem: ', mainPhoto)
   return (
     <div >
-      {/* Limit it to 7 displayed with an arrow to see more */}
       <img onClick={() => { setMainPhoto(photo); }}
         className={mainPhoto.url === photo.url ? 'productMainPhotoThumbnail thumbnailListItem' :
           'thumbnailListItem'}
