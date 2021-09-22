@@ -99,7 +99,7 @@ describe('Details', () => {
     expect(getByText(/Questions & Answers/i)).toBeInTheDocument();
   });
 
-  test('', () => {
+  test('renders AnswerEntry component', () => {
     const { getByText } = render(
       <ContextObj.Provider value={{ productId, productInfo, answers }}>
         <AnswerEntry answer={answers.results[0]}/>
