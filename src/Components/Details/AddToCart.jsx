@@ -75,8 +75,8 @@ const AddToCart = ({ currentProductSizes }) => {
 
       <form className="sizeAndQuantity">
         <div>
-          <div>{isButtonClicked && !isSizeChosen && 'Select a size!'} </div>
-          <select disabled={!hasAvailableSizes} name="sizes" value={currentSku} onChange={(e) => {
+          <div>{isButtonClicked && !isSizeChosen && 'Select a size!'}</div>
+          <select size={isButtonClicked && !isSizeChosen && availableSizes.length} disabled={!hasAvailableSizes} name="sizes" value={currentSku} onChange={(e) => {
             setCurrentSku(e.target.value); setCurrentQuantity(1);
           }}>
             <option value="">{hasAvailableSizes ? 'SELECT SIZE' : 'OUT OF STOCK'} </option>
