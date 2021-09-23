@@ -9,10 +9,11 @@ const ReviewModal = ({ submitReview, setSubmitReview, setReviews }) => {
   const [hover, setHover] = useState(null);
   const [recommend, setRecommend] = useState();
   const [summary, setSummary] = useState();
-  const [body, setBody] = useState();
+  const [body, setBody] = useState('');
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [charObj, setCharObj] = useState();
+  const [bodyCharCount, setBodyCharCount] = useState(0);
 
   const { reviewMetaObj, setReviewMeta, productId, productInfo } = useContext(ContextObj);
   var keys = Object.keys(reviewMetaObj.characteristics);
@@ -26,6 +27,9 @@ const ReviewModal = ({ submitReview, setSubmitReview, setReviews }) => {
     setCharObj(obj);
   }, [reviewMetaObj]);
 
+  // useEffect(() => {
+  //   setBodyCharCount(body.length);
+  // }, [body]);
 
   var postReview = () => {
     postServer('/reviews', {
@@ -97,8 +101,9 @@ const ReviewModal = ({ submitReview, setSubmitReview, setReviews }) => {
           </div>
           <div className='body-form'>
             *Your Review Body
-            <textarea className='body-input' onChange={(e) => setBody(e.target.value)} placeholder='Why did you like the product or not?'></textarea>
+            <textarea className='body-input' onChange={(e) => { setBody(e.target.value), setBodyCharCount(e.target.value.length); }} placeholder='Why did you like the product or not?'></textarea>
           </div>
+          {(body.length < 50) ? <div className='minimumChars'>{50 - body.length + ' remaining characters to reach minimum'}</div> : <div className='minimumChars'>minimum reached</div>}
           <div className='name-form'>
             *What is your nickname
             <input className='name-input' type="text" placeholder="Example: jackson11!" onChange={(e) => setName(e.target.value)}></input>

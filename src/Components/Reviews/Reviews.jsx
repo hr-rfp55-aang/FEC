@@ -12,8 +12,9 @@ var Review = () => {
   const [curReview, setCurReview] = useState('');
   const [report, setReport] = useState('');
   const [filters, setFilters] = useState([]);
+  const [submitReview, setSubmitReview] = useState(false);
 
-  const { productInfo, productId } = useContext(ContextObj);
+  const { productInfo, productId, reviewsTotal } = useContext(ContextObj);
 
   var handleStarFilters = (rating) => {
 
@@ -32,13 +33,13 @@ var Review = () => {
   useEffect(() => {
     getServer(`/reviews/?product_id=${productId}&count=100`)
       .then((result) => { setReviews(result.results); })
-      .catch( (err) => { console.log('Get review: ', err); });
+      .catch((err) => { console.log('Get review: ', err); });
   }, [productInfo]);
 
   useEffect(() => {
     getServer(`/reviews/?product_id=${productId}&sort=${sortStr}&count=100`)
       .then((result) => { setReviews(result.results); })
-      .catch( (err) => { console.log('Get review: ', err); });
+      .catch((err) => { console.log('Get review: ', err); });
   }, [sortStr]);
 
   useEffect(() => {
@@ -46,12 +47,12 @@ var Review = () => {
       putServer(`/reviews/${curReview}/helpful`)
         .then(() => getServer(`/reviews/?product_id=${productId}&sort=${sortStr}&count=100`))
         .then((result) => { setReviews(result.results); })
-        .catch( (err) => { console.log('Put review: ', err); });
+        .catch((err) => { console.log('Put review: ', err); });
     } else if (curReview !== '') {
       putServer(`/reviews/${curReview}/helpful`)
         .then(() => getServer(`/reviews/?product_id=${productId}&count=100`))
         .then((result) => { setReviews(result.results); })
-        .catch( (err) => { console.log('Put review: ', err); });
+        .catch((err) => { console.log('Put review: ', err); });
     }
   }, [curReview]);
 
@@ -60,21 +61,31 @@ var Review = () => {
       putServer(`/reviews/${report}/report`)
         .then(() => getServer(`/reviews/?product_id=${productId}&sort=${sortStr}&count=100`))
         .then((result) => { setReviews(result.results); })
-        .catch( (err) => { console.log('Put review: ', err); });
+        .catch((err) => { console.log('Put review: ', err); });
     } else if (report !== '') {
       putServer(`/reviews/${report}/report`)
         .then(() => getServer(`/reviews/?product_id=${productId}&count=100`))
         .then((result) => { setReviews(result.results); })
-        .catch( (err) => { console.log('Put review: ', err); });
+        .catch((err) => { console.log('Put review: ', err); });
     }
   }, [report]);
 
   return (
     <div>
       <h4 id="ratingsReview">Ratings & Reviews</h4>
+      <div className='reviewsTotal'>{reviews.length} reviews, sorted by</div>
+      <select className='dropDown' name="selectList" onChange={(e) => setsortStr(e.target.value)}>
+        <option value="relevance">relevance</option>
+        <option value="helpful">helpfulness</option>
+        <option value="newest">newest</option>
+      </select>
       <div className='reviews'>
-        <ReviewBreakdown reviews={reviews} handleStarFilters={handleStarFilters}/>
-        <ReviewList reviews={reviews} setReviews={setReviews} setLimit={setLimit} reviewsLimit={reviewsLimit} setsortStr={setsortStr} setCurReview={setCurReview} setReport={setReport} filters={filters}/>
+        <ReviewBreakdown reviews={reviews} handleStarFilters={handleStarFilters} filters={filters} setFilters={setFilters} />
+        <ReviewList reviews={reviews} setReviews={setReviews} setLimit={setLimit} reviewsLimit={reviewsLimit} setsortStr={setsortStr} setCurReview={setCurReview} setReport={setReport} filters={filters} submitReview={submitReview} setSubmitReview={setSubmitReview} />
+      </div>
+      <div className='reviewBtnBox'>
+        <button className='moreReviews' onClick={() => setLimit(reviewsLimit + 2)}>MORE REVIEWS</button>
+        <button className='addReview' onClick={() => setSubmitReview(true)}>ADD REVIEW +</button>
       </div>
     </div>
   );

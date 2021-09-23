@@ -22,7 +22,7 @@ var ReviewListEntry = ({ review, setReviews, setCurReview, setReport }) => {
     if (reviewBody.length > 250) {
       return (
         <div className='body'>{review.body.substr(0, 250) + '...'}<br></br>
-          <span className='seeMore' onClick={()=>setSeeMore(true)}>  See more...</span></div>
+          <span className='seeMore' onClick={()=>setSeeMore(true)}>  show more...</span></div>
       );
     } else {
       return (
