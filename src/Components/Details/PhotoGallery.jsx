@@ -10,6 +10,7 @@ const PhotoGallery = ({ currentProductStyle }) => {
   const photos = currentProductStyle.photos;
   const index = photos.findIndex(photo => photo.url === mainPhoto.url);
   const [enlargeMainPhoto, setEnlargeMainPhoto] = useState(false);
+  const [isMainPhotoZoomedIn, setIsMainPhotoZoomedIn] = useState(false);
   // console.log('In Photo Gallery ', currentProductStyle);
 
   useEffect(() => {
@@ -54,7 +55,7 @@ const PhotoGallery = ({ currentProductStyle }) => {
 
       </div>
 
-      <MainPhotoModal mainPhoto={mainPhoto} enlargeMainPhoto={enlargeMainPhoto} closeMainPhotoModal={() => setEnlargeMainPhoto(false)} productPhotos={currentProductStyle.photos} setMainPhoto={setMainPhoto} mainPhotoName={mainPhotoName} index={index} photos={photos} getNextImage={getNextImage} getPreviousImage={getPreviousImage}/>
+      <MainPhotoModal mainPhoto={mainPhoto} enlargeMainPhoto={enlargeMainPhoto} closeMainPhotoModal={() => { setEnlargeMainPhoto(false); setIsMainPhotoZoomedIn(false); } } productPhotos={currentProductStyle.photos} setMainPhoto={setMainPhoto} mainPhotoName={mainPhotoName} index={index} photos={photos} getNextImage={getNextImage} getPreviousImage={getPreviousImage} isMainPhotoZoomedIn={isMainPhotoZoomedIn} setIsMainPhotoZoomedIn={setIsMainPhotoZoomedIn}/>
 
       {/* Product Description */}
       <div className="descriptionAndFeatures">
