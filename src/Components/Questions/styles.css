@@ -59,21 +59,7 @@
   background-color: rgba(255, 255, 255, 0);
 }
 
-.q-modal-content {
-  display: grid;
-  height: 50%;
-  width: 40%;
-  background-color:rgba(212, 211, 199, 0.979);
-  box-shadow: 10px 25px 50px 10px rgba(71, 71, 70, 0.424), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
-  z-index: 5;
-  justify-content: center;
-  border-style: unset;
-  flex-direction: column;
-  grid-template-rows: 10% auto 15%;
-  grid-template-columns: 40% 60%;
-  overflow-y: auto;
-  overflow-x:inherit
-}
+
 
 .a-modal-content {
   display: grid;
@@ -87,36 +73,6 @@
   overflow-y: auto;
   overflow-x:inherit;
   grid-template-rows: 25% 60% 15%;
-}
-
-.q-modal-header {
-  justify-self: center;
-  font-size: larger;
-  margin-top: auto;
-  grid-column: 1/3;
-}
-
-.q-modal-text {
-  margin-left: 38px;
-}
-
-.q-modal-subtitle {
-  font-style: italic;
-}
-
-.q-modal-body {
-  margin-left: 5%;
-  height: 100%;
-  grid-column: 1/3;
-  justify-self: center;
-}
-
-.q-modal-footer {
-  display: grid;
-  grid-template-columns: 30% auto;
-  grid-template-rows: 30% 30% 30%;
-  grid-column: 1/3;
-  margin-left: 25%;
 }
 
 .nameText {
