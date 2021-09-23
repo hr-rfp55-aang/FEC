@@ -12,28 +12,27 @@ const Details = () => {
   const [currentProductStyle, setCurrentProductStyle] = useState({ photos: [], skus: {} });
   const currentProductSizes = currentProductStyle.skus;
 
-  const { productId } = useContext(ContextObj);
+  const { productId, stylesInfo } = useContext(ContextObj);
 
   useEffect(() => {
-    if (productId) {
-      getServer(`/products/${productId}/styles`)
-        .then((result) => {
-          setProductStyles(result.results);
-          setCurrentProductStyle(result.results[0]);
-        })
-        .catch((err) => {
-          console.log('Styles err: ', err);
-        });
-    }
-  }, [productId]);
+    setCurrentProductStyle(stylesInfo.results[0]);
+  }, [productId, stylesInfo]);
 
   return (
     <div className="productOverview">
-      <PhotoGallery currentProductStyle={currentProductStyle} />
-      <div>
+      <PhotoGallery currentProductStyle={currentProductStyle} stylesInfo={stylesInfo.results}/>
+      <div className="descriptionOverviewContainer">
         <ProductDescription currentProductStyle={currentProductStyle} />
-        <StyleSelector productStyles={productStyles} currentProductStyle={currentProductStyle} setCurrentProductStyle={setCurrentProductStyle}/>
+        <StyleSelector productStyles={stylesInfo.results} currentProductStyle={currentProductStyle} setCurrentProductStyle={setCurrentProductStyle} />
         <AddToCart currentProductSizes={currentProductSizes} />
+        <div className="socialMediaInfo">
+          <a href="https://twitter.com/?lang=en">
+            <img className="socialMediaIcon" src={'../../../assets/twitter.jpeg'} /> </a>
+          <a href="https://www.facebook.com/">
+            <img className="socialMediaIcon" src={'../../../assets/facebook.jpeg'} /> </a>
+          <a href="https://www.pinterest.com/">
+            <img className="socialMediaIcon" src={'../../../assets/pinterest.jpeg'} /> </a>
+        </div>
       </div>
     </div>
   );
