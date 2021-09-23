@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import StarRatings from '../Reviews/StarRatings.jsx';
+import StarRatings from '../StarRatings.jsx';
 import { ContextObj } from '../../ContextObj.jsx';
 
 const ProductDescription = ({ currentProductStyle }) => {
@@ -8,7 +8,7 @@ const ProductDescription = ({ currentProductStyle }) => {
 
   return (
     <div className="descriptionOverview">
-      <div className="starsInDescription"> <StarRatings />
+      <div className="starsInDescription"> <StarRatings rating={ratingAvg}/>
         <a className="descriptionRating" href="#ratingsReview"> Read all {reviewsTotal} reviews </a>
       </div>
       <div className="category">{productInfo.category}</div>
