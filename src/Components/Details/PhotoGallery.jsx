@@ -54,7 +54,7 @@ const PhotoGallery = ({ currentProductStyle }) => {
 
       </div>
 
-      <MainPhotoModal mainPhoto={mainPhoto} enlargeMainPhoto={enlargeMainPhoto} closeMainPhotoModal={() => setEnlargeMainPhoto(false)} productPhotos={currentProductStyle.photos} setMainPhoto={setMainPhoto} mainPhotoName={mainPhotoName} currentProductStyle={currentProductStyle} index={index} photos={photos} getNextImage={getNextImage} getPreviousImage={getPreviousImage}/>
+      <MainPhotoModal mainPhoto={mainPhoto} enlargeMainPhoto={enlargeMainPhoto} closeMainPhotoModal={() => setEnlargeMainPhoto(false)} productPhotos={currentProductStyle.photos} setMainPhoto={setMainPhoto} mainPhotoName={mainPhotoName} index={index} photos={photos} getNextImage={getNextImage} getPreviousImage={getPreviousImage}/>
 
       {/* Product Description */}
       <div className="descriptionAndFeatures">
