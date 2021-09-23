@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-const MainPhotoModal = ({ mainPhoto, closeMainPhotoModal, enlargeMainPhoto, productPhotos, currentProductStyle, setMainPhoto, mainPhotoName, index, photos, getNextImage, getPreviousImage}) => {
-
+const MainPhotoModal = ({ mainPhoto, closeMainPhotoModal, enlargeMainPhoto, productPhotos, setMainPhoto, mainPhotoName, index, photos, getNextImage, getPreviousImage }) => {
+  const [isMainPhotoZoomedIn, setIsMainPhotoZoomedIn] = useState(false);
   const showOrHide = enlargeMainPhoto ? 'modal display-block' : 'modal display-none';
-
   const modalThumbnails = productPhotos.map((photo, index) => {
     return <img onClick={() => { setMainPhoto(photo); }} key={index}
       className={mainPhoto.url === photo.url ? 'productMainPhotoThumbnail thumbnailListItem' : 'thumbnailListItem'} src={photo.thumbnail_url} alt={mainPhotoName + index} />;
@@ -24,7 +23,9 @@ const MainPhotoModal = ({ mainPhoto, closeMainPhotoModal, enlargeMainPhoto, prod
                     </button> : null
                 }
               </div>
-              <img className='modalMainPhoto' src={mainPhoto.url}></img>
+              <img className='modalMainPhoto' src={mainPhoto.url} onClick={() => { setIsMainPhotoZoomedIn(true); }}>
+              </img>
+              {isMainPhotoZoomedIn ? <img className='modalZoomedInMainPhoto' src={mainPhoto.url} onClick={() => { setIsMainPhotoZoomedIn(false); }}></img> : null}
               <div>
                 {
                   index < photos.length - 1 ?
