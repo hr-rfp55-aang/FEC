@@ -91,7 +91,7 @@ const QAListEntry = (props) => {
         </div>
       </div>
       <div><AnswerModal setNewAnswer={setNewAnswer} onClose={() => setShowAnswers(false)} name={productInfo.name} question={props.question.question_body} qId={props.question.question_id} show={showAnswers}/></div>
-      <div>{listHandler(sortAnswersBySeller(answers)).map((answer, index) => <AnswerEntry answer={answer} key={index}/>)}</div>
+      <div className="answerList">{listHandler(sortAnswersBySeller(answers)).map((answer, index) => <AnswerEntry answer={answer} key={index}/>)}</div>
       {listButton}
     </div>
   );

@@ -19,16 +19,6 @@ const QuestionModal = (props) => {
   };
 
   const submitQuestion = (body, name, email, id) => {
-    var validEmail = validateEmail(email);
-    if (body === '') {
-      alert('You must enter the following: Question');
-    }
-    if (name === '') {
-      alert('You must enter the following: Nickname');
-    }
-    if (!validEmail) {
-      alert('You must enter the following: A valid email address');
-    }
 
     postServer('/qa/questions', {
       body: body,
@@ -49,27 +39,48 @@ const QuestionModal = (props) => {
   if (!props.show) {
     return null;
   }
+  var qWarning;
+  var nWarning;
+  var eWarning;
+
+  if (qModalBody.length > 1) {
+    qWarning = null;
+  } else {
+    qWarning = <span className="qWarningText">Please ask a question</span>;
+  }
+
+  if (qModalName.length > 1) {
+    nWarning = null;
+  } else {
+    nWarning = <span className='nameText'>Please enter your nickname</span>;
+  }
+
+
+  if (validateEmail(qModalEmail)) {
+    eWarning = null;
+  } else {
+    eWarning = <span className='emailText'>Please enter a valid email</span>;
+  }
 
   return (
-    <div className="modal" onClick={props.onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
-        <div className="modal-header">
-          <span className="modal-title">Ask Your Question </span>
-          <span className="modal-subtitle"> about the {props.name}</span>
+    <div className="q-modal" onClick={props.onClose}>
+      <div className="q-modal-content" onClick={e => e.stopPropagation()}>
+        <div className="q-modal-header">
+          <span className="q-modal-title">Ask Your Question about the </span>
+          <span className="q-modal-subtitle"> {props.name}</span>
         </div>
-        <div className="modal-body">
+        <div className="q-modal-body">
           <div className="question-form">
-            <div>
-              <label >
-                * Your Question
+            <div className="question-grid">
+              <label className="q-label">
+                * Your Question:
               </label>
-              <textarea className="modal-text" maxLength={1000} onChange={qModalBodyHandler}></textarea>
-
+              <textarea type="text" className="modal-text-box" maxLength={1000} onChange={qModalBodyHandler}></textarea>
             </div>
             <div>
               <label>
-                * What is your nickname
-                <input className="modal-text" maxLength={60} onChange={qModalNameHandler} type="text" placeholder="Example: jackson11!"></input>
+                * What is your nickname?
+                <input className="q-modal-text" maxLength={60} onChange={qModalNameHandler} type="text" placeholder="Example: jackson11!"></input>
               </label>
               <div className="warning">
                 For privacy reasons, do not use your full name or email address
@@ -77,8 +88,8 @@ const QuestionModal = (props) => {
             </div>
             <div>
               <label>
-                * Your email
-                <input className="modal-text email-text-box" maxLength={60} onChange={qModalEmailHandler} type="text" placeholder="Why did you like the product or not?"></input>
+                * Your email:
+                <input className="q-modal-text email-text-box" maxLength={60} onChange={qModalEmailHandler} type="text" placeholder="Why did you like the product or not?"></input>
               </label>
               <div className="warning">
                   For authentication reasons you will not be emailed
@@ -87,8 +98,9 @@ const QuestionModal = (props) => {
             </div>
           </div>
         </div>
-        <div className="modal-footer">
-          <button onClick={() => submitQuestion(qModalBody, qModalName, qModalEmail, props.productId)}>Submit</button>
+        <div className="q-modal-footer">
+          <button className="q-button" onClick={() => submitQuestion(qModalBody, qModalName, qModalEmail, props.productId)}>Submit</button>
+          {qWarning} {nWarning} {eWarning}
         </div>
       </div>
     </div>
