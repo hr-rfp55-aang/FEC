@@ -20,16 +20,6 @@ const AnswerModal = (props) => {
   };
 
   const submitAnswer = (body, name, email, id) => {
-    var validEmail = validateEmail(email);
-    if (body === '') {
-      alert('You must enter the following: Answer');
-    }
-    if (name === '') {
-      alert('You must enter the following: Nickname');
-    }
-    if (!validEmail) {
-      alert('You must enter the following: A valid email address');
-    }
 
     postServer(`/qa/questions/${id}/answers`, {
       body: body,
@@ -56,7 +46,7 @@ const AnswerModal = (props) => {
   if (aModalBody.length > 1) {
     aWarning = null;
   } else {
-    aWarning = <span className="aWarningText">Please ask a question</span>;
+    aWarning = <span className="aWarningText">Please provide an answer</span>;
   }
 
   if (aModalName.length > 1) {
@@ -85,6 +75,7 @@ const AnswerModal = (props) => {
               *Your Answer:
             </label>
             <textarea className="a-textarea" maxLength={1000} onChange={aModalBodyHandler}></textarea>
+            <button className="uploadBtn">upload images</button>
           </div>
           <div className="a-name">
             <label className="a-label">
