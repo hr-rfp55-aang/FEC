@@ -32,7 +32,7 @@ const MainPhotoModal = ({ mainPhoto, closeMainPhotoModal, enlargeMainPhoto, prod
               <div>
                 {
                   index > 0 ?
-                    <button onClick={getPreviousImage} className="modalLeftArrow">
+                    <button onClick={getPreviousImage} className="modalLeftArrow" aria-label="Modal Left Arrow">
                       &larr;
                     </button> : null
                 }
@@ -48,7 +48,7 @@ const MainPhotoModal = ({ mainPhoto, closeMainPhotoModal, enlargeMainPhoto, prod
               <div>
                 {
                   index < photos.length - 1 ?
-                    <button onClick={getNextImage} className="modalRightArrow">
+                    <button onClick={getNextImage} className="modalRightArrow" aria-label="Modal Right Arrow">
                       &rarr;
                     </button> : null
                 }
