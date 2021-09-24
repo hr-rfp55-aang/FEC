@@ -8,6 +8,7 @@ import { getServer, grabReviewScore, formatDate, putServer } from '../../helpers
 const QAListEntry = (props) => {
 
   var listButton;
+  var questionBody = props.question.question_body;
 
   const {productInfo, productId} = useContext(ContextObj);
   const [answers, setAnswers] = useState({results: []});
@@ -71,6 +72,24 @@ const QAListEntry = (props) => {
     return result;
   };
 
+  const highlightSearch = (string) => {
+    var clone = string.toLowerCase().slice();
+    var query = props.query.toLowerCase();
+    var result;
+    if (props.query.length >= 3) {
+      var index = clone.indexOf(query);
+      if (index > -1) {
+        result = <div>
+          <span>{string.slice(0, index)}</span>
+          <span className="highlight"><b>{string.slice(index, index + query.length)}</b></span>
+          <span>{string.slice(index + query.length)}</span>
+        </div>;
+      }
+      return result;
+    }
+    return string;
+  };
+
   if (answerList.length - listHandler(answerList).length === 0 && answerList.length <= 2) {
     listButton = null;
   } else if (answerList.length - listHandler(answerList).length === 0 && answerList.length > 2) {
@@ -82,7 +101,7 @@ const QAListEntry = (props) => {
   return (
     <div className="QAEntry">
       <div className="qEntry">
-        <span className="qLetter">Q:</span> <span className="qText">{props.question.question_body}</span>
+        <span className="qLetter">Q:</span> <span className="qText">{highlightSearch(questionBody)}</span>
         <div className="sellerSig">
           <span>    Helpful?</span>
           <span className="link" onClick={updateQuestionHelp}> Yes ({questionHelpfulness})</span>
@@ -93,6 +112,7 @@ const QAListEntry = (props) => {
       <div><AnswerModal setNewAnswer={setNewAnswer} onClose={() => setShowAnswers(false)} name={productInfo.name} question={props.question.question_body} qId={props.question.question_id} show={showAnswers}/></div>
       <div className="answerList">{listHandler(sortAnswersBySeller(answers)).map((answer, index) => <AnswerEntry answer={answer} key={index}/>)}</div>
       {listButton}
+      {console.log(props.query)}
     </div>
   );
 };

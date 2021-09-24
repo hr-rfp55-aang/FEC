@@ -43,13 +43,13 @@ const AnswerModal = (props) => {
   var nWarning;
   var eWarning;
 
-  if (aModalBody.length > 1) {
+  if (aModalBody.length > 0) {
     aWarning = null;
   } else {
     aWarning = <span className="aWarningText">Please provide an answer</span>;
   }
 
-  if (aModalName.length > 1) {
+  if (aModalName.length > 0) {
     nWarning = null;
   } else {
     nWarning = <span className='aNameText'>Please enter your nickname</span>;
@@ -75,7 +75,7 @@ const AnswerModal = (props) => {
               *Your Answer:
             </label>
             <textarea className="a-textarea" maxLength={1000} onChange={aModalBodyHandler}></textarea>
-            <button className="uploadBtn">upload images</button>
+            {/* <button className="uploadBtn">upload images</button> */}
           </div>
           <div className="a-name">
             <label className="a-label">
@@ -99,7 +99,6 @@ const AnswerModal = (props) => {
         </div>
         <div className="a-modal-footer">
           <div>
-            {/* <button>Upload Your Photos</button> */}
           </div>
           <button className="a-button" onClick={() => submitAnswer(aModalBody, aModalName, aModalEmail, props.qId)}>Submit</button>
           {aWarning} {nWarning} {eWarning}

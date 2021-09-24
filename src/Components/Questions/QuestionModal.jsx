@@ -43,13 +43,13 @@ const QuestionModal = (props) => {
   var nWarning;
   var eWarning;
 
-  if (qModalBody.length > 1) {
+  if (qModalBody.length > 0) {
     qWarning = null;
   } else {
     qWarning = <span className="aWarningText">Please ask a question</span>;
   }
 
-  if (qModalName.length > 1) {
+  if (qModalName.length > 0) {
     nWarning = null;
   } else {
     nWarning = <span className='aNameText'>Please enter your nickname</span>;
