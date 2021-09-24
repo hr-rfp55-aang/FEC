@@ -3,10 +3,10 @@ import { ContextObj } from '../../ContextObj.jsx';
 import './styles.css';
 import { getServer, grabReviewScore } from '../../helpers';
 import ComparisonModal from './ComparisonModal';
-import '../../../assets/empty-star.svg';
+import actionImg from '../../assets/empty-star.svg';
 import StarRating from '../StarRatings';
 
-const actionImg = '../../../assets/related-star.svg';
+// const actionImg = '../../assets/related-star.svg';
 const ProductCard = ({cardId}) => {
 
   const { productId, setProductId, ratingAvg } = useContext(ContextObj);
