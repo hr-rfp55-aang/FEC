@@ -145,10 +145,10 @@ const ReviewModal = ({ submitReview, setSubmitReview, setReviews, uploadPics, se
         </div>
         <div className="review-modal-footer">
           <div className='submitPhotosHeader'>
-            <div>Submit photos</div>
+            <div className='submitPhotosTitle'>Submit photos</div>
             <button onClick={() => uploadPhotos()}>Upload Photo</button>
           </div>
-          {(uploadPics.length > 0) ? renderPics(uploadPics) : null}
+          {(uploadPics.length > 0) ? renderPics(uploadPics) : <div className='emptySubmitPhotos'></div>}
           <button className='submit-review' onClick={() => postReview()}>Submit</button>
         </div>
       </div>
