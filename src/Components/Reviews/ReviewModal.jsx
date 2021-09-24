@@ -124,11 +124,11 @@ const ReviewModal = ({ submitReview, setSubmitReview, setReviews, uploadPics, se
     }
     return (
       <div className='submitModalPictureBar'>
-        <img className='submitModalPictures' src={pics[0]}></img>
-        {(pics[1]) ? <img className='submitModalPictures' src={pics[1]}></img> : null}
-        {(pics[2]) ? <img className='submitModalPictures' src={pics[2]}></img> : null}
-        {(pics[3]) ? <img className='submitModalPictures' src={pics[3]}></img> : null}
-        {(pics[4]) ? <img className='submitModalPictures' src={pics[4]}></img> : null}
+        <img className='submitModalPictures' src={pics[0]} alt='picture 1'></img>
+        {(pics[1]) ? <img className='submitModalPictures' alt='picture 2' src={pics[1]}></img> : null}
+        {(pics[2]) ? <img className='submitModalPictures' alt='picture 3' src={pics[2]}></img> : null}
+        {(pics[3]) ? <img className='submitModalPictures' alt='picture 4' src={pics[3]}></img> : null}
+        {(pics[4]) ? <img className='submitModalPictures' alt='picture 5' src={pics[4]}></img> : null}
       </div>
     );
   };

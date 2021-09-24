@@ -25,13 +25,16 @@ const NavBar = (props) => {
   };
 
   return (
-    <div className="topHeader">
-      <h2 className="title">TrouserBrowser</h2>
-      {isLoaded &&
-      <form onSubmit={handleSubmit} className="searchBar">
-        <label htmlFor='navSearchBar'>Search Product Id:</label><br />
-        <input id='navSearchBar' name='navSearchBar' value={searchValue} onChange={handleChange} placeholder='Product Id...'/>
-      </form>}
+    <div>
+      <div className="topHeader">
+        <h2 className="title">TrouserBrowser</h2>
+        {isLoaded &&
+          <form onSubmit={handleSubmit} className="searchBar">
+            <label className='navSearchBarTitle' htmlFor='navSearchBar'>Search Product Id:</label><br />
+            <input id='navSearchBar' name='navSearchBar' value={searchValue} onChange={handleChange} placeholder='Product Id...' />
+          </form>}
+      </div>
+      <div className='saleBar'><div className='salePhrase'>TROUSER BROWSER POWER HOUR: UP TO 70% Off Select Styles</div></div>
     </div>
   );
 
