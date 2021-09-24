@@ -41,7 +41,7 @@ const MainPhotoModal = ({ mainPhoto, closeMainPhotoModal, enlargeMainPhoto, prod
               </img> */}
               {isMainPhotoZoomedIn ?
                 <div className="zoomedInContainer">
-                  <img className='modalZoomedInMainPhoto' style={zoomStyles} src={mainPhoto.url} onClick={() => { setIsMainPhotoZoomedIn(false); }} onMouseMove={(e) => { console.log(mousePosition); setMousePosition({ x: e.clientX, y: e.clientY }); }} ></img>
+                  <img className='modalZoomedInMainPhoto' style={zoomStyles} src={mainPhoto.url} onClick={() => { setIsMainPhotoZoomedIn(false); }} onMouseMove={(e) => { setMousePosition({ x: e.clientX, y: e.clientY }); }} ></img>
                 </div>
                 : <img className='modalMainPhoto' src={mainPhoto.url} onClick={() => { setIsMainPhotoZoomedIn(true); }}>
                 </img>}
