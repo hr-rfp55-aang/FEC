@@ -6,6 +6,9 @@ import AddToCart from './AddToCart.jsx';
 import { ContextObj } from '../../ContextObj.jsx';
 import './styles.css';
 import { getServer } from '../../helpers';
+import facebook from '../../assets/facebook.jpeg';
+import twitter from '../../assets/twitter.jpeg';
+import pinterest from '../../assets/pinterest.jpeg';
 
 const Details = () => {
   const [productStyles, setProductStyles] = useState([]);
@@ -27,11 +30,11 @@ const Details = () => {
         <AddToCart currentProductSizes={currentProductSizes} />
         <div className="socialMediaInfo">
           <a href="https://twitter.com/?lang=en">
-            <img className="socialMediaIcon" src={'../../../assets/twitter.jpeg'} alt="Add to Twitter"/> </a>
+            <img className="socialMediaIcon" src={twitter} alt="Add to Twitter"/> </a>
           <a href="https://www.facebook.com/">
-            <img className="socialMediaIcon" src={'../../../assets/facebook.jpeg'} alt="Add to Facebook"/> </a>
+            <img className="socialMediaIcon" src={facebook} alt="Add to Facebook"/> </a>
           <a href="https://www.pinterest.com/">
-            <img className="socialMediaIcon" src={'../../../assets/pinterest.jpeg'} alt="Add to Pinterest"/> </a>
+            <img className="socialMediaIcon" src={pinterest} alt="Add to Pinterest"/> </a>
         </div>
       </div>
     </div>
