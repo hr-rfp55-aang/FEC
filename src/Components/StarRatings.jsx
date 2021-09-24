@@ -1,21 +1,14 @@
 import React, { useContext } from 'react';
-import '../../assets/empty-star.svg';
-import '../../assets/star.svg';
-import '../../assets/star-one-quarter.svg';
-import '../../assets/star-half.svg';
-import '../../assets/star-three-quarter.svg';
+import emptySvg from '../assets/empty-star.svg';
+import fullSvg from '../assets/star.svg';
+import quarterSvg from '../assets/star-one-quarter.svg';
+import halfSvg from '../assets/star-half.svg';
+import threeQuarterSvg from '../assets/star-three-quarter.svg';
 import { ContextObj } from '../ContextObj.jsx';
 
 
 const StarRating = ({rating}) => {
   const { ratingAvg } = useContext(ContextObj);
-
-  const emptySvg = '../../assets/empty-star.svg';
-  const fullSvg = '../../assets/star.svg';
-  const quarterSvg = '../../assets/star-one-quarter.svg';
-  const halfSvg = '../../assets/star-half.svg';
-  const threeQuarterSvg = '../../assets/star-three-quarter.svg';
-
 
   let ratingRounded = Math.round(rating * 4) / 4;
   let fullStars = Math.floor(ratingRounded);
@@ -39,15 +32,15 @@ const StarRating = ({rating}) => {
     <div className='starBar'>
       {starArr.map((star, index) => {
         if (star === 1) {
-          return (<img src={fullSvg} key={index}/>);
+          return (<img src={fullSvg} key={index} alt='full star'/>);
         } else if (star === 0.25) {
-          return (<img src={quarterSvg} key={index}/>);
+          return (<img src={quarterSvg} key={index} alt='quarter star'/>);
         } else if (star === 0.5) {
-          return (<img src={halfSvg} key={index}/>);
+          return (<img src={halfSvg} key={index} alt='half star'/>);
         } else if (star === 0.75) {
-          return (<img src={threeQuarterSvg} key={index}/>);
+          return (<img src={threeQuarterSvg} key={index} alt='three quarter star'/>);
         } else {
-          return (<img src={emptySvg} key={index}/>);
+          return (<img src={emptySvg} key={index} alt='empty star'/>);
         }
       })}
     </div>
