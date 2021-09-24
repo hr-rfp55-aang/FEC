@@ -9,6 +9,33 @@ const ComparisonModal = ({show, cardInfo, onClose}) => {
 
   const { productId, productInfo, stylesInfo, ratingAvg } = useContext(ContextObj);
 
+  let comparison = {};
+  for (let i = 0; i < productInfo.features.length; i++) {
+    comparison[productInfo.features[i].feature] = [productInfo.features[i].value, null];
+  }
+  for (let i = 0; i < cardInfo.features.length; i++) {
+    if (comparison[cardInfo.features[i].feature] === undefined) {
+      comparison[cardInfo.features[i].feature] = [null, cardInfo.features[i].value];
+    } else {
+      comparison[cardInfo.features[i].feature][1] = cardInfo.features[i].value;
+    }
+  }
+
+  const comparisonArr = [];
+  for (const [key, value] of Object.entries(comparison)) {
+    comparisonArr.push([key, value]);
+  }
+
+  const createRow = () => {
+    return (
+      <tr>
+        <td>{value[0]}</td>
+        <td>{key}</td>
+        <td>{value[1]}</td>
+      </tr>
+    );
+  };
+
   if (!show) {
     return null;
   }
@@ -31,21 +58,13 @@ const ComparisonModal = ({show, cardInfo, onClose}) => {
                 <td>Category</td>
                 <td>{cardInfo.category}</td>
               </tr>
-              <tr>
-                <td>{stylesInfo.results[0].original_price}</td>
-                <td>Original Price</td>
-                <td>{cardInfo.originalPrice}</td>
-              </tr>
-              <tr>
-                <td>{stylesInfo.results[0].sale_price}</td>
-                <td>Sale Price</td>
-                <td>{cardInfo.salePrice}</td>
-              </tr>
-              <tr>
-                <td>{ratingAvg}</td>
-                <td>Rating</td>
-                <td>{cardInfo.rating}</td>
-              </tr>
+              {comparisonArr.map( (element, index) => {
+                return (<tr key={index}>
+                  <td>{element[1][0]}</td>
+                  <td>{element[0]}</td>
+                  <td>{element[1][1]}</td>
+                </tr>);
+              })}
             </tbody>
           </table>
         </div>

@@ -32,6 +32,7 @@ const ProductCard = ({cardId}) => {
           originalPrice: styles.results[0].original_price,
           salePrice: styles.results[0].sale_price,
           rating: grabReviewScore(reviewMeta.ratings)[0],
+          features: product.features
         });
         setIsLoaded(true);
       })

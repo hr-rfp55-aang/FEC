@@ -11,21 +11,31 @@ const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
 
   const { productId, productInfo, setProductId, ratingAvg, stylesInfo, reviewMetaObj } = useContext(ContextObj);
 
+  const [isOutfitAdded, setIsOutfitAdded] = useState(false);
+
+  useEffect(() => {
+    setIsOutfitAdded(false);
+  }, [productId]);
+
   const addOutfit = (id) => {
-    let itemDetails = {
-      productId: productId,
-      name: productInfo.name,
-      category: productInfo.category,
-      thumbnail: stylesInfo.results[0].photos[0].thumbnail_url,
-      originalPrice: stylesInfo.results[0].original_price,
-      salePrice: stylesInfo.results[0].sale_price,
-      rating: ratingAvg,
-    };
-    setMyOutfits(prevState => {
-      let temp = prevState.slice();
-      temp.push(itemDetails);
-      return temp;
-    });
+    if (!isOutfitAdded) {
+      setIsOutfitAdded(true);
+      let itemDetails = {
+        productId: productId,
+        name: productInfo.name,
+        category: productInfo.category,
+        thumbnail: stylesInfo.results[0].photos[0].thumbnail_url,
+        originalPrice: stylesInfo.results[0].original_price,
+        salePrice: stylesInfo.results[0].sale_price,
+        rating: ratingAvg,
+        features: productInfo.features
+      };
+      setMyOutfits(prevState => {
+        let temp = prevState.slice();
+        temp.push(itemDetails);
+        return temp;
+      });
+    }
   };
 
   const removeOutfit = (id) => {
