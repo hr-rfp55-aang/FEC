@@ -3,8 +3,9 @@ import { postServer, validateEmail, getServer } from '../../helpers';
 import { ContextObj } from '../../ContextObj.jsx';
 import ReviewModalCharList from './ReviewModalCharList.jsx';
 import { FaStar } from 'react-icons/fa';
+import Client from './filestack.config.js';
 
-const ReviewModal = ({ submitReview, setSubmitReview, setReviews }) => {
+const ReviewModal = ({ submitReview, setSubmitReview, setReviews, uploadPics, setUploadPics }) => {
   const [starValue, setStarValue] = useState();
   const [hover, setHover] = useState(null);
   const [recommend, setRecommend] = useState();
@@ -57,6 +58,29 @@ const ReviewModal = ({ submitReview, setSubmitReview, setReviews }) => {
     if (rating === 3) { return 'Average'; }
     if (rating === 4) { return 'Good'; }
     if (rating === 5) { return 'Great'; }
+  };
+
+  const uploadPhotos = () => {
+    const photos = [...uploadPics];
+    const options = {
+      onUploadDone: (res) => { console.log(res); photos.push(res.filesUploaded[0].url); setUploadPics(photos); }
+    };
+    Client.picker(options).open();
+  };
+
+  var renderPics = (pics) => {
+    if (pics.length === 0) {
+      return null;
+    }
+    return (
+      <div className='submitModalPictureBar'>
+        <img className='submitModalPictures' src={pics[0]}></img>
+        {(pics[1]) ? <img className='submitModalPictures' src={pics[1]}></img> : null}
+        {(pics[2]) ? <img className='submitModalPictures' src={pics[2]}></img> : null}
+        {(pics[3]) ? <img className='submitModalPictures' src={pics[3]}></img> : null}
+        {(pics[4]) ? <img className='submitModalPictures' src={pics[4]}></img> : null}
+      </div>
+    );
   };
 
   return (
@@ -120,9 +144,11 @@ const ReviewModal = ({ submitReview, setSubmitReview, setReviews }) => {
           </p>
         </div>
         <div className="review-modal-footer">
-          {/* <form action="upload.php" method="post">
-            <input type="file" name="file" id="file" />
-          </form> */}
+          <div className='submitPhotosHeader'>
+            <div>Submit photos</div>
+            <button onClick={() => uploadPhotos()}>Upload Photo</button>
+          </div>
+          {(uploadPics.length > 0) ? renderPics(uploadPics) : null}
           <button className='submit-review' onClick={() => postReview()}>Submit</button>
         </div>
       </div>

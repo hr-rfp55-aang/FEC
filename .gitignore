@@ -6,3 +6,4 @@ dist-ssr
 .eslintrc.js
 config.js
 coverage
+src/Components/Reviews/filestack.config.js

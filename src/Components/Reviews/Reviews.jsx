@@ -13,6 +13,7 @@ var Review = () => {
   const [report, setReport] = useState('');
   const [filters, setFilters] = useState([]);
   const [submitReview, setSubmitReview] = useState(false);
+  const [uploadPics, setUploadPics] = useState([]);
 
   const { productInfo, productId, reviewsTotal } = useContext(ContextObj);
 
@@ -81,7 +82,8 @@ var Review = () => {
       </select>
       <div className='reviews'>
         <ReviewBreakdown reviews={reviews} handleStarFilters={handleStarFilters} filters={filters} setFilters={setFilters} />
-        <ReviewList reviews={reviews} setReviews={setReviews} setLimit={setLimit} reviewsLimit={reviewsLimit} setsortStr={setsortStr} setCurReview={setCurReview} setReport={setReport} filters={filters} submitReview={submitReview} setSubmitReview={setSubmitReview} />
+        <ReviewList reviews={reviews} setReviews={setReviews} setLimit={setLimit} reviewsLimit={reviewsLimit} setsortStr={setsortStr} setCurReview={setCurReview} setReport={setReport} filters={filters} submitReview={submitReview} setSubmitReview={setSubmitReview}
+          uploadPics={uploadPics} setUploadPics={setUploadPics} />
       </div>
       <div className='reviewBtnBox'>
         <button className='moreReviews' onClick={() => setLimit(reviewsLimit + 2)}>MORE REVIEWS</button>

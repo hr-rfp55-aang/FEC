@@ -3,7 +3,8 @@ import ReviewListEntry from './ReviewListEntry.jsx';
 import { ContextObj } from '../../ContextObj.jsx';
 import ReviewModal from './ReviewModal.jsx';
 
-const ReviewList = ({ reviews, setReviews, setLimit, reviewsLimit, setsortStr, setCurReview, setReport, filters, setSubmitReview, submitReview}) => {
+const ReviewList = ({ reviews, setReviews, setLimit, reviewsLimit, setsortStr, setCurReview,
+  setReport, filters, setSubmitReview, submitReview, uploadPics, setUploadPics}) => {
   const { reviewsTotal } = useContext(ContextObj);
 
   var limitReviews = (array) => {
@@ -24,7 +25,8 @@ const ReviewList = ({ reviews, setReviews, setLimit, reviewsLimit, setsortStr, s
       }).map((review) =>
         <ReviewListEntry review={review} setReviews={setReviews} setCurReview={setCurReview} setReport={setReport} key={review.review_id} />
       )}
-      <ReviewModal submitReview={submitReview} setSubmitReview={setSubmitReview} setReviews={setReviews}/>
+      <ReviewModal submitReview={submitReview} setSubmitReview={setSubmitReview} setReviews={setReviews}
+        uploadPics={uploadPics} setUploadPics={setUploadPics}/>
     </div>
   );
 };
