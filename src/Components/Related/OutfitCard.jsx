@@ -2,9 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { ContextObj } from '../../ContextObj.jsx';
 import './styles.css';
 import { getServer, grabReviewScore } from '../../helpers';
-import '../../../assets/outfits-x.svg';
-
-const actionImg = '../../../assets/outfits-x.svg';
+import actionImg from '../../../assets/outfits-x.svg';
 
 const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
 
