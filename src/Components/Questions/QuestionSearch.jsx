@@ -6,7 +6,7 @@ const QuestionSearch = (props) => {
   const [filteredList, setFilteredList] = useState(props.questions.results);
   const [query, setQuery] = useState('');
 
-  const searchHandler = (array) => {
+  const searchHandler = () => {
     var search = event.target.value;
     setQuery(search);
   };
@@ -30,7 +30,7 @@ const QuestionSearch = (props) => {
   return (
     <div className="searchGrid">
       <input className="search-text-box" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={searchHandler}></input>
-      <QAList addQuestion={props.addQuestion} questions={filterQuestions(props.questions.results)}/>
+      <QAList query={query} addQuestion={props.addQuestion} questions={filterQuestions(props.questions.results)}/>
     </div>
   );
 };

@@ -26,7 +26,7 @@ const NavBar = (props) => {
 
   return (
     <div className="topHeader">
-      <h2 className="title">ProjectCatwalk</h2>
+      <h2 className="title">TrouserBrowser</h2>
       {isLoaded &&
       <form onSubmit={handleSubmit} className="searchBar">
         <label htmlFor='navSearchBar'>Search Product Id:</label><br />
