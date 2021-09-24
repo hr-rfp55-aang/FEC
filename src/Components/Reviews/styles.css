@@ -35,7 +35,7 @@
 .moreReviews,
 .addReview {
   border-style: solid;
-  background-color: white;
+  background-color: rgb(139, 192, 241);
   height: 50px;
   width: 150px;
   font-weight: 600;
@@ -43,6 +43,7 @@
   transition: .5s;
   display: inline;
   margin-right: 2.5%;
+  color:rgb(18, 20, 20);
 }
 
 .noReviewsBtn {
@@ -62,7 +63,7 @@
 .moreReviews:hover,
 .addReview:hover,
 .noReviewsBtn:hover {
-  background-color: lightgray;
+  background-color: rgb(34, 117, 212);
   cursor: pointer;
 }
 
@@ -112,16 +113,16 @@ h1 {
   cursor: pointer;
 }
 
-.ratingAvgStars {
+/* .ratingAvgStars {
 
-}
+} */
 
 #ratingsReview {
   color:rgb(56, 56, 56);
   font-weight: 100;
   font-size: 20px;
   margin-left: 17%;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   margin-top: 70px;
 }
 
@@ -293,6 +294,7 @@ h1 {
 
 .starBar {
   margin-left: 2px;
+  z-index: -1;
 }
 
 .box-container {
