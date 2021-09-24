@@ -27,11 +27,11 @@ const Details = () => {
         <AddToCart currentProductSizes={currentProductSizes} />
         <div className="socialMediaInfo">
           <a href="https://twitter.com/?lang=en">
-            <img className="socialMediaIcon" src={'../../../assets/twitter.jpeg'} /> </a>
+            <img className="socialMediaIcon" src={'../../../assets/twitter.jpeg'} alt="Add to Twitter"/> </a>
           <a href="https://www.facebook.com/">
-            <img className="socialMediaIcon" src={'../../../assets/facebook.jpeg'} /> </a>
+            <img className="socialMediaIcon" src={'../../../assets/facebook.jpeg'} alt="Add to Facebook"/> </a>
           <a href="https://www.pinterest.com/">
-            <img className="socialMediaIcon" src={'../../../assets/pinterest.jpeg'} /> </a>
+            <img className="socialMediaIcon" src={'../../../assets/pinterest.jpeg'} alt="Add to Pinterest"/> </a>
         </div>
       </div>
     </div>
