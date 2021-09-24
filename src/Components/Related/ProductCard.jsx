@@ -61,7 +61,7 @@ const ProductCard = ({cardId}) => {
           <ComparisonModal show={modalShow} onClose={() => setModalShow(false)} cardInfo={cardInfo}/>
           <img className='actionButton'src={actionImg} onClick={() => setModalShow(true)} alt='Compare Item'/>
           <div className='card-wrapper' onClick={() => setProductId(cardId)}>
-            <div><img className='relatedPhoto' src={cardInfo.thumbnail} /></div>
+            <div><img className='relatedPhoto' src={cardInfo.thumbnail} alt={cardInfo.name}/></div>
             <div>{cardInfo.category}</div>
             <div>{cardInfo.name}</div>
             {saleDiv()}

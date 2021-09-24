@@ -79,7 +79,7 @@ const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
     <div>
       <div className='productCard'>
         <img className='actionButton' src={actionImg} onClick={() => removeOutfit(cardInfo.productId)} alt='Remove outfit'/>
-        <div className='card-wrapper' onClick={() => setProductId(cardInfo.productId)}><img className='relatedPhoto' src={cardInfo.thumbnail} />
+        <div className='card-wrapper' onClick={() => setProductId(cardInfo.productId)}><img className='relatedPhoto' src={cardInfo.thumbnail} alt={cardInfo.name}/>
           <div onClick={() => setProductId(cardInfo.productId)}>
             <div>{cardInfo.category}</div>
             <div>{cardInfo.name}</div>
