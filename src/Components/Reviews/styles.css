@@ -519,12 +519,13 @@ textarea {
 .email-warning {
   display: block;
   width: 100%;
-  margin: -.1% 0 0% 33%;
+  margin: -.1% 0 0% 36%;
   color: rgb(168, 26, 55);
+  font-size: 13px;
 }
 
 .email-warning {
-  margin-left: 33%;
+  margin-left: 34.5%;
 }
 .submit-review {
   border-style: solid;
@@ -586,7 +587,8 @@ textarea {
 }
 
 .minimumChars {
-  margin-left: 33%;
+  margin-left: 35%;
+  font-size: 15px;
 }
 
 .submitModalPictureBar {
