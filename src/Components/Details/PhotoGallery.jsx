@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import ThumbnailList from './ThumbnailList';
 import MainPhotoModal from './MainPhotoModal.jsx';
 import { ContextObj } from '../../ContextObj.jsx';
+import missingImg from '../../assets/pants.svg';
 
 const PhotoGallery = ({ currentProductStyle }) => {
   const { productInfo } = useContext(ContextObj);
@@ -11,7 +12,6 @@ const PhotoGallery = ({ currentProductStyle }) => {
   const index = photos.findIndex(photo => photo.url === mainPhoto.url);
   const [enlargeMainPhoto, setEnlargeMainPhoto] = useState(false);
   const [isMainPhotoZoomedIn, setIsMainPhotoZoomedIn] = useState(false);
-  // console.log('In Photo Gallery ', currentProductStyle);
 
   useEffect(() => {
     setMainPhoto(currentProductStyle.photos[0] || {});
@@ -34,20 +34,20 @@ const PhotoGallery = ({ currentProductStyle }) => {
         <div>
           {
             index > 0 ?
-              <button onClick={getPreviousImage} className="MIleftArrow">
+              <button onClick={getPreviousImage} className="MIleftArrow" aria-label="Main Image Left Arrow">
                 &larr;
               </button> : null
           }
         </div>
         {/* Main Displayed Photo */}
         <div className="mainPhotoContainer">
-          <img className="displayedPhoto" src={mainPhoto.url} alt={mainPhotoName} />
-          <button className="buttonToEnlarge" onClick={() => setEnlargeMainPhoto(true)}>&#128269;</button>
+          <img className="displayedPhoto" src={mainPhoto.url || missingImg} alt={mainPhotoName} />
+          <button className="buttonToEnlarge" aria-label="Enlarge main Image" onClick={() => setEnlargeMainPhoto(true)}>&#128269;</button>
         </div>
         <div>
           {
             index < photos.length - 1 ?
-              <button onClick={getNextImage} className="MIrightArrow">
+              <button onClick={getNextImage} className="MIrightArrow" aria-label="Main Image Right Arrow">
                 &rarr;
               </button> : null
           }
