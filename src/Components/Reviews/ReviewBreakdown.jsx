@@ -28,15 +28,15 @@ var ReviewBreakdown = ({ reviews, handleStarFilters, filters, setFilters }) => {
         <h1>{ratingAvg}</h1>
         <StarRating className='breakdownStars' rating={ratingAvg}/>
       </div>
-      <h6>{recommendedPercent(reviewMetaObj.recommended.true)}% of reviewers recomend this product</h6>
-      <h5 className='starRatings' onClick={() => handleStarFilters(5)}>5 stars <RatingBar rating={reviewMetaObj.ratings[5]} />{reviewMetaObj.ratings[5]}</h5>
-      <h5 className='starRatings' onClick={() => handleStarFilters(4)}>4 stars <RatingBar rating={reviewMetaObj.ratings[4]} />{reviewMetaObj.ratings[4]} </h5>
-      <h5 className='starRatings' onClick={() => handleStarFilters(3)}>3 stars <RatingBar rating={reviewMetaObj.ratings[3]} />{reviewMetaObj.ratings[3]} </h5>
-      <h5 className='starRatings' onClick={() => handleStarFilters(2)}>2 stars <RatingBar rating={reviewMetaObj.ratings[2]} />{reviewMetaObj.ratings[2]} </h5>
-      <h5 className='starRatings' onClick={() => handleStarFilters(1)}>1 stars <RatingBar rating={reviewMetaObj.ratings[1]} />{reviewMetaObj.ratings[1]} </h5>
-      {(filters.length) ? <div className='filteredBy'><div>Filtering by: <br></br>{setFilterString(filters)}</div>
+      {ratingAvg === 0 ? null : <h6>{recommendedPercent(reviewMetaObj.recommended.true)}% of reviewers recomend this product</h6>}
+      <h5 className='starRatings' onClick={() => handleStarFilters(5)}>5 stars <RatingBar rating={reviewMetaObj.ratings[5]} /><div id='rating-count'>{reviewMetaObj.ratings[5] || 0}</div></h5>
+      <h5 className='starRatings' onClick={() => handleStarFilters(4)}>4 stars <RatingBar rating={reviewMetaObj.ratings[4]} /><div id='rating-count'>{reviewMetaObj.ratings[4] || 0}</div></h5>
+      <h5 className='starRatings' onClick={() => handleStarFilters(3)}>3 stars <RatingBar rating={reviewMetaObj.ratings[3]} /><div id='rating-count'>{reviewMetaObj.ratings[3] || 0}</div></h5>
+      <h5 className='starRatings' onClick={() => handleStarFilters(2)}>2 stars <RatingBar rating={reviewMetaObj.ratings[2]} /><div id='rating-count'>{reviewMetaObj.ratings[2] || 0}</div></h5>
+      <h5 className='starRatings' onClick={() => handleStarFilters(1)}>1 stars <RatingBar rating={reviewMetaObj.ratings[1]} /><div id='rating-count'>{reviewMetaObj.ratings[1] || 0}</div> </h5>
+      {(filters.length) ? <div><div className='filteredBy'><div>Filtering by: <br></br>{setFilterString(filters)}</div></div>
         <div className='clearFilters'onClick={() => setFilters([])}>Clear All Filters</div></div> : <div className='filterPlaceholder'></div>}
-      <CharacteristicsList />
+      {ratingAvg === 0 ? null : <CharacteristicsList />}
     </div>
   );
 };

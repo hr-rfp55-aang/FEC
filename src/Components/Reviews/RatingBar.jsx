@@ -14,7 +14,7 @@ var RatingBar = ({rating}) => {
   };
 
   return (
-    <svg viewBox="0 0 1000 200" className='ratingBar'>
+    <svg viewBox="0 0 950 190" className='ratingBar'>
       <rect className='rating__background' clipPath="url(#bar)"></rect>
       <rect width={setPercentage(rating) + '%'} className='rating__value' clipPath="url(#bar)"></rect>
     </svg>

@@ -15,7 +15,13 @@ var Review = () => {
   const [submitReview, setSubmitReview] = useState(false);
   const [uploadPics, setUploadPics] = useState([]);
 
-  const { productInfo, productId, reviewsTotal } = useContext(ContextObj);
+  const { productInfo, productId, reviewsTotal, ratingAvg, setRatingAvg } = useContext(ContextObj);
+
+  useEffect(() => {
+    if (isNaN(ratingAvg)) {
+      setRatingAvg(0);
+    }
+  }, [ratingAvg]);
 
   var handleStarFilters = (rating) => {
 
@@ -72,24 +78,26 @@ var Review = () => {
   }, [report]);
 
   return (
-    <div>
-      <h4 id="ratingsReview">Ratings & Reviews</h4>
-      <div className='reviewsTotal'>{reviews.length} reviews, sorted by</div>
-      <select className='dropDown' name="selectList" onChange={(e) => setsortStr(e.target.value)}>
-        <option value="relevance">relevance</option>
-        <option value="helpful">helpfulness</option>
-        <option value="newest">newest</option>
-      </select>
-      <div className='reviews'>
-        <ReviewBreakdown reviews={reviews} handleStarFilters={handleStarFilters} filters={filters} setFilters={setFilters} />
-        <ReviewList reviews={reviews} setReviews={setReviews} setLimit={setLimit} reviewsLimit={reviewsLimit} setsortStr={setsortStr} setCurReview={setCurReview} setReport={setReport} filters={filters} submitReview={submitReview} setSubmitReview={setSubmitReview}
-          uploadPics={uploadPics} setUploadPics={setUploadPics} />
+    (isNaN(ratingAvg)) ?
+      <div>No reviews</div> :
+      <div>
+        <h4 id="ratingsReview">Ratings & Reviews</h4>
+        {ratingAvg === 0 ? null : <div><div className='reviewsTotal'>{reviews.length} reviews, sorted by</div>
+          <select className='dropDown' name="selectList" onChange={(e) => setsortStr(e.target.value)}>
+            <option value="relevance">relevance</option>
+            <option value="helpful">helpfulness</option>
+            <option value="newest">newest</option>
+          </select></div>}
+        <div className='reviews'>
+          <ReviewBreakdown reviews={reviews} handleStarFilters={handleStarFilters} filters={filters} setFilters={setFilters} />
+          <ReviewList reviews={reviews} setReviews={setReviews} setLimit={setLimit} reviewsLimit={reviewsLimit} setsortStr={setsortStr} setCurReview={setCurReview} setReport={setReport} filters={filters} submitReview={submitReview} setSubmitReview={setSubmitReview}
+            uploadPics={uploadPics} setUploadPics={setUploadPics} />
+        </div>
+        <div className='reviewBtnBox'>
+          {ratingAvg === 0 ? <button className='noReviewsBtn' onClick={() => setSubmitReview(true)}>Be the first to add a review!</button> : <button className='addReview' onClick={() => setSubmitReview(true)}>ADD REVIEW +</button>}
+          {(reviews.length <= 2 || reviewsLimit > reviews.length) ? null : <button className='moreReviews' onClick={() => setLimit(reviewsLimit + 2)}>MORE REVIEWS</button>}
+        </div>
       </div>
-      <div className='reviewBtnBox'>
-        <button className='moreReviews' onClick={() => setLimit(reviewsLimit + 2)}>MORE REVIEWS</button>
-        <button className='addReview' onClick={() => setSubmitReview(true)}>ADD REVIEW +</button>
-      </div>
-    </div>
   );
 };
 
