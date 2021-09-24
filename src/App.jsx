@@ -44,7 +44,7 @@ const App = () => {
 
   return (
     <div>
-      {isLoaded && <ContextObj.Provider value={{ productId, setProductId, productInfo, stylesInfo, ratingAvg, reviewsTotal, reviewMetaObj, setReviewMetaObj }}>
+      {isLoaded && <ContextObj.Provider value={{ productId, setProductId, productInfo, stylesInfo, ratingAvg, reviewsTotal, reviewMetaObj, setReviewMetaObj, setRatingAvg }}>
         <NavBar />
         {!isError &&
         <div>

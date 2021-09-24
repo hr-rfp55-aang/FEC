@@ -1,7 +1,6 @@
-
 .reviewBreakdown {
-  margin: 0px 15px 0px 65px;
-  width: 25%;
+  margin: -50px -19px 0px 100px;
+  width: 30%;
 }
 
 .reviews {
@@ -21,6 +20,18 @@
   color: #3d3d3d;
 }
 
+.seeMore {
+  color: #666161;
+  font-weight: bold;
+  transition: .5s;
+}
+
+.seeMore:hover {
+  color: black;
+  cursor: pointer;
+  transition-delay: .3s;
+}
+
 .moreReviews,
 .addReview {
   border-style: solid;
@@ -29,36 +40,89 @@
   width: 150px;
   font-weight: 600;
   border-width: thin;
+  transition: .5s;
+  display: inline;
+  margin-right: 2.5%;
+}
+
+.noReviewsBtn {
+  border-style: solid;
+  background-color: white;
+  height: 150px;
+  width: 350px;
+  font-weight: 600;
+  border-width: thin;
+  transition: .5s;
+  display: block;
+  position: absolute;
+  top: 277%;
+  margin-right: 2.5%;
+}
+
+.moreReviews:hover,
+.addReview:hover,
+.noReviewsBtn:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.reviewBtnBox {
+  margin-left: 40%;
+  margin-bottom: 5%;
+  margin-top: 4px;
 }
 
 h1 {
   margin: 0px;
   color: #525252;
-  font-size: 60px;
+  font-size: 80px;
   display: inline;
 }
 
-h6 {
-  margin: 10px 0px 20px 0px;
-  color:rgb(138, 128, 128);
+.percentReviews {
+  margin: 40px 0px 20px 0px;
+  color:rgb(53, 50, 50);
   font-weight: 100;
-  font-size: 14px;
+  font-size: 13px;
+}
+
+#rating-count {
+  font-size: 16px;
+  text-decoration: none;
 }
 
 .starRatings {
   margin: 5px;
   text-decoration: underline;
-  color:grey;
+  color:rgb(59, 57, 57);
   font-weight: 100;
   height: 20px;
+  width: 300px;
   display: flex;
+  transition: .3s;
+}
+
+.starRatings1 {
+  margin-right: 908px;
+  font-size: 17px;
+}
+
+.starRatings:hover {
+  color:rgb(66, 65, 65);
+  cursor: pointer;
+}
+
+.ratingAvgStars {
+
 }
 
 #ratingsReview {
   color:rgb(56, 56, 56);
   font-weight: 100;
   font-size: 20px;
-  margin-left: 14.5%;
+  margin-left: 17%;
+  margin-bottom: 50px;
+  margin-top: 70px;
 }
 
 .reviewEntry {
@@ -72,23 +136,32 @@ h6 {
 .reviewList {
   width: 60%;
   margin-left: 0px;
-  height: 700px;
+  height: 600px;
+  overflow: scroll;
+}
 
+.reviewList::-webkit-scrollbar {
+  display: none;
 }
 
 /* Review Entry box */
 #rating {
   display: inline-block;
-  margin-bottom: 7%;
-  margin-left: -2.5%;
+  position: relative;
+  /* margin-left: -2.5%; */
+  margin-top: 0%;
+  height: 0px;
+  width: 40%;
+  margin-bottom: 6%;
+  margin-left: -.5%;
 }
 
 .date {
   display: inline;
   margin-left: auto;
   margin-right: 0px;
-  margin-top: 3%;
-  color:grey;
+  margin-top: .5%;
+  color:rgb(44, 43, 43);
   font-weight: 100;
   font-size: 12px;
   float: right;
@@ -102,8 +175,17 @@ h6 {
 
 .helpful {
   margin-bottom: 10px;
-  color:grey;
+  color:rgb(54, 53, 53);
   font-weight: 100;
+}
+
+.helpReport {
+  transition: 1s;
+}
+
+.helpReport:hover {
+  color:rgb(54, 53, 53);
+  cursor: pointer;
 }
 
 .response {
@@ -115,8 +197,9 @@ h6 {
 }
 
 .body {
-  color:rgb(104, 103, 103);
+  color:rgb(70, 68, 68);
   font-weight: 100;
+  overflow-wrap: break-word;
 }
 
 .reviewpics,
@@ -137,6 +220,7 @@ h6 {
 
 .reviewsTotal {
   margin-right: 1%;
+  margin-left: 39.5%;
 }
 
 .dropDown {
@@ -167,15 +251,15 @@ h6 {
 } */
 
 .rating__background {
-  fill: #eeeee8;
-  height: 20%;
+  fill: #d8d8d1;
+  height: 30%;
   width: 100%;
   border: black;
 }
 
 .rating__value {
   fill: #70c75f;
-  height: 20%;
+  height: 30%;
 }
 
 .ratingBar {
@@ -186,9 +270,9 @@ h6 {
   margin-left: 1.5%;
 }
 
-.starBar {
+.starBarAvg {
   display: inline;
-  font-size: 2px;
+  font-size: 0px;
   margin: 0px;
   position: absolute;
   float: top;
@@ -197,20 +281,34 @@ h6 {
   z-index: -1;
 }
 
+.starBarReview {
+  display: inline;
+  font-size: 2px;
+  margin: 0px;
+  position: relative;
+  float: top;
+  margin-left: 5%;
+  z-index: -1;
+}
+
+.starBar {
+  margin-left: 2px;
+}
+
 .box-container {
-  width: 90%;
+  width: 85%;
   height: 15px;
   display: inline-flexbox;
   margin-top: 15%;
   margin-bottom: 12%;
-  color:grey;
+  color:rgb(75, 72, 72);
   margin-left: 1%;
 }
 
 .box {
   width: 90%;
   height: 8px;
-  background-color: #eeeee8;
+  background-color: #cecec9;
   position: inherit;
 
 }
@@ -253,6 +351,7 @@ h6 {
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 255, 255, 0);
+  z-index: 10;
 }
 
 .picture-modal-content {
@@ -288,6 +387,11 @@ h6 {
   right: 12%;
   position: fixed;
   margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.picContainer {
+  margin-bottom: 20px;
 }
 
 .charAttBox {
@@ -313,6 +417,7 @@ h6 {
   justify-content: center;
   align-items: center;
   background-color: rgba(236, 27, 27, 0);
+  z-index: 5;
 }
 
 .review-modal-content {
@@ -367,12 +472,12 @@ h6 {
   width: 80%;
   /* align-items: center; */
   justify-content: space-around;
-  margin: 1% 10% 3% 11%;
+  margin: 1% 10% 1% 10%;
 
 }
 
 .charRadios-title {
-  font-size: 20px;
+  font-size: 17px;
 }
 
 label {
@@ -385,11 +490,16 @@ textarea {
 
 .summary-form,
 .body-form,
-.name-form,
-.email-form {
+.name-form {
   display: flex;
   justify-content: center;
   margin: 3% 0 0 0;
+}
+
+.email-form {
+  display: flex;
+  margin-left: 8%;
+  margin-top: 2%;
 }
 
 .summary-input,
@@ -398,6 +508,10 @@ textarea {
 .email-input {
   margin-left: 3%;
   width: 58%;
+}
+
+.email-input {
+  margin-left: 15%;
 }
 
 .body-input {
@@ -409,10 +523,14 @@ textarea {
 .email-warning {
   display: block;
   width: 100%;
-  margin: -.1% 0 0% 15%;
+  margin: -.1% 0 0% 36%;
   color: rgb(168, 26, 55);
+  font-size: 13px;
 }
 
+.email-warning {
+  margin-left: 34.5%;
+}
 .submit-review {
   border-style: solid;
   background-color: rgb(115, 177, 141);
@@ -420,8 +538,15 @@ textarea {
   width: 150px;
   font-weight: 600;
   border-width: thin;
-  margin: 2% 25% 2% 36%;
-  position: absolute;
+  /* margin: -2% 2% 0 10%; */
+  left: 62%;
+  top: 88%;
+  position: fixed;
+  transition: 1s;
+}
+
+.submit-review:hover {
+  background-color: rgb(55, 194, 113);
 }
 
 .radio-star {
@@ -435,10 +560,70 @@ textarea {
 .iRecommend {
   display: inline;
   margin-left: 1%;
-  color: rgb(104, 103, 103);
+  color: rgb(61, 58, 58);
   margin-bottom: 25px;
 }
 
 .checkMark {
   margin-bottom: 2%;
+}
+
+.filteredBy {
+  color:rgb(104, 103, 103);
+  margin-top: 5%;
+  margin-bottom: 1%;
+  transition: 5s;
+}
+
+.filterPlaceholder {
+  height: 69px;
+}
+
+
+.clearFilters {
+  display: inline;
+  font-weight: bold;
+  color: rgb(53, 52, 52);
+}
+
+.characteristics-box {
+  margin-top: -9%;
+}
+
+.minimumChars {
+  margin-left: 35%;
+  font-size: 15px;
+}
+
+.submitModalPictureBar {
+  display: inline-flex;
+  margin-top: 2%;
+  margin-left: 8%;
+}
+
+.submitModalPictures {
+  width: 80px;
+  height: 65px;
+  margin-right: 3%;
+  display: block;
+}
+
+.emptySubmitPhotos {
+  width: 40%;
+}
+
+.submitPhotosHeader {
+  display: flex;
+  margin-top: 2%;
+}
+
+.submitPhotosTitle {
+  margin: 0 5% 0 8%;
+}
+
+.formValidation {
+  position: fixed;
+  left: 62%;
+  top: 84%;
+  color: red;
 }

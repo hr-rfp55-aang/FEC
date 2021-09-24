@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, act, cleanup } from '@testing-library/react';
+import { render, screen, act, cleanup, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { ContextObj } from '../../ContextObj.jsx';
 import App from '../../App.jsx';
@@ -40,12 +40,37 @@ describe('Details', () => {
     }
   };
 
+  // test('Does create product card', () => {
+  //   renderRelated();
+  //   // await screen.findByText(/stars/i);
+  //   // expect(screen.getByText(/Camo Onesie/)).toBeInTheDocument();
+
+  //   waitFor(() =>
+  //     screen.findByText(/stars/i)
+  //   )
+  //     .then((result) => {
+  //       expect(screen.getByText(/Camo Onesie/)).toBeInTheDocument();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // });
+
   test('renders Reviews component', () => {
-    const { getByText } = render(
+    render(
       <ContextObj.Provider value={{ productId, ratingAvg, reviewsTotal, reviewMetaObj }}>
         <Reviews />
       </ContextObj.Provider>);
 
-    expect(getByText(/Ratings & Reviews/i)).toBeInTheDocument();
+    waitFor(() => {
+      screen.findByText(/report/i);
+    })
+      .then((result) => {
+        expect(screen.getByText(/5 stars/i)).toBeInTheDocument();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
   });
 });
