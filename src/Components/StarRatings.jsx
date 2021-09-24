@@ -30,19 +30,24 @@ const StarRating = (props) => {
     }
   }
 
+  var styleStar = {
+    height: '16px',
+    width: '16px'
+  };
+
   return (
     <div className={`starBar ${extraClass}`}>
       {starArr.map((star, index) => {
         if (star === 1) {
-          return (<img src={fullSvg} key={index} alt='full star'/>);
+          return (<img src={fullSvg} key={index} alt='full star' style={styleStar}/>);
         } else if (star === 0.25) {
-          return (<img src={quarterSvg} key={index} alt='quarter star'/>);
+          return (<img src={quarterSvg} key={index} alt='quarter star' style={styleStar}/>);
         } else if (star === 0.5) {
-          return (<img src={halfSvg} key={index} alt='half star'/>);
+          return (<img src={halfSvg} key={index} alt='half star' style={styleStar}/>);
         } else if (star === 0.75) {
-          return (<img src={threeQuarterSvg} key={index} alt='three quarter star'/>);
+          return (<img src={threeQuarterSvg} key={index} alt='three quarter star' style={styleStar}/>);
         } else {
-          return (<img src={emptySvg} key={index} alt='empty star'/>);
+          return (<img src={emptySvg} key={index} alt='empty star' style={styleStar}/>);
         }
       })}
     </div>
