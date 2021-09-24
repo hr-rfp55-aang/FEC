@@ -75,7 +75,7 @@ const AnswerModal = (props) => {
               *Your Answer:
             </label>
             <textarea className="a-textarea" maxLength={1000} onChange={aModalBodyHandler}></textarea>
-            {/* <button className="uploadBtn">upload images</button> */}
+            <button className="uploadBtn">upload images</button>
           </div>
           <div className="a-name">
             <label className="a-label">
