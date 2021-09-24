@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { ContextObj } from '../../ContextObj.jsx';
 import ReviewPicList from './ReviewPicList.jsx';
 import { formatDate } from '../../helpers';
-import StarRatings from './StarRatings.jsx';
+import StarRatings from '../StarRatings.jsx';
 import {FaCheck} from 'react-icons/fa';
 
 var ReviewListEntry = ({ review, setReviews, setCurReview, setReport }) => {
@@ -12,7 +12,7 @@ var ReviewListEntry = ({ review, setReviews, setCurReview, setReport }) => {
   var recommedCheck = () => {
     return (
       <div className='checkMark'>
-        <FaCheck size={14} color={'#525252'}/>
+        <FaCheck size={14} alt='Checkmark' color={'#525252'}/>
         <div className='iRecommend'>I recommend this product</div>
       </div>
     );

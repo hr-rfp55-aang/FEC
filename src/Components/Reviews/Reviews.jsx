@@ -81,7 +81,7 @@ var Review = () => {
     (isNaN(ratingAvg)) ?
       <div>No reviews</div> :
       <div>
-        <h4 id="ratingsReview">Ratings & Reviews</h4>
+        <div id="ratingsReview">Ratings & Reviews</div>
         {ratingAvg === 0 ? null : <div><div className='reviewsTotal'>{reviews.length} reviews, sorted by</div>
           <select className='dropDown' name="selectList" onChange={(e) => setsortStr(e.target.value)}>
             <option value="relevance">relevance</option>

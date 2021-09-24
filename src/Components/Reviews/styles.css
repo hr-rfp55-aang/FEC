@@ -1,5 +1,5 @@
 .reviewBreakdown {
-  margin: -50px 1px 0px 100px;
+  margin: -50px -19px 0px 100px;
   width: 30%;
 }
 
@@ -67,7 +67,7 @@
 }
 
 .reviewBtnBox {
-  margin-left: 41%;
+  margin-left: 40%;
   margin-bottom: 5%;
   margin-top: 4px;
 }
@@ -79,11 +79,11 @@ h1 {
   display: inline;
 }
 
-h6 {
-  margin: 10px 0px 20px 0px;
-  color:rgb(138, 128, 128);
+.percentReviews {
+  margin: 40px 0px 20px 0px;
+  color:rgb(53, 50, 50);
   font-weight: 100;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 #rating-count {
@@ -94,7 +94,7 @@ h6 {
 .starRatings {
   margin: 5px;
   text-decoration: underline;
-  color:grey;
+  color:rgb(59, 57, 57);
   font-weight: 100;
   height: 20px;
   width: 300px;
@@ -113,6 +113,7 @@ h6 {
   font-size: 20px;
   margin-left: 17%;
   margin-bottom: 50px;
+  margin-top: 70px;
 }
 
 .reviewEntry {
@@ -137,18 +138,21 @@ h6 {
 /* Review Entry box */
 #rating {
   display: inline-block;
+  position: relative;
   /* margin-left: -2.5%; */
-  margin-top: 2%;
-  width: 20%;
-  margin-bottom: 3%;
+  margin-top: 0%;
+  height: 0px;
+  width: 40%;
+  margin-bottom: 6%;
+  margin-left: -.5%;
 }
 
 .date {
   display: inline;
   margin-left: auto;
   margin-right: 0px;
-  margin-top: 3%;
-  color:grey;
+  margin-top: .5%;
+  color:rgb(44, 43, 43);
   font-weight: 100;
   font-size: 12px;
   float: right;
@@ -162,7 +166,7 @@ h6 {
 
 .helpful {
   margin-bottom: 10px;
-  color:grey;
+  color:rgb(54, 53, 53);
   font-weight: 100;
 }
 
@@ -184,7 +188,7 @@ h6 {
 }
 
 .body {
-  color:rgb(104, 103, 103);
+  color:rgb(70, 68, 68);
   font-weight: 100;
   overflow-wrap: break-word;
 }
@@ -207,7 +211,7 @@ h6 {
 
 .reviewsTotal {
   margin-right: 1%;
-  margin-left: 41%;
+  margin-left: 39.5%;
 }
 
 .dropDown {
@@ -238,7 +242,7 @@ h6 {
 } */
 
 .rating__background {
-  fill: #eeeee8;
+  fill: #d8d8d1;
   height: 30%;
   width: 100%;
   border: black;
@@ -284,14 +288,14 @@ h6 {
   display: inline-flexbox;
   margin-top: 15%;
   margin-bottom: 12%;
-  color:grey;
+  color:rgb(75, 72, 72);
   margin-left: 1%;
 }
 
 .box {
   width: 90%;
   height: 8px;
-  background-color: #eeeee8;
+  background-color: #cecec9;
   position: inherit;
 
 }
@@ -541,7 +545,7 @@ textarea {
 .iRecommend {
   display: inline;
   margin-left: 1%;
-  color: rgb(104, 103, 103);
+  color: rgb(61, 58, 58);
   margin-bottom: 25px;
 }
 
