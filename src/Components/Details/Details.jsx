@@ -16,12 +16,12 @@ const Details = () => {
 
   useEffect(() => {
     setCurrentProductStyle(stylesInfo.results[0]);
-  }, [productId]);
+  }, [productId, stylesInfo]);
 
   return (
     <div className="productOverview">
       <PhotoGallery currentProductStyle={currentProductStyle} stylesInfo={stylesInfo.results}/>
-      <div>
+      <div className="descriptionOverviewContainer">
         <ProductDescription currentProductStyle={currentProductStyle} />
         <StyleSelector productStyles={stylesInfo.results} currentProductStyle={currentProductStyle} setCurrentProductStyle={setCurrentProductStyle} />
         <AddToCart currentProductSizes={currentProductSizes} />
