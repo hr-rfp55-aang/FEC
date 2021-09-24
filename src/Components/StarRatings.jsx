@@ -7,10 +7,12 @@ import threeQuarterSvg from '../assets/star-three-quarter.svg';
 import { ContextObj } from '../ContextObj.jsx';
 
 
-const StarRating = ({rating}) => {
+const StarRating = (props) => {
   const { ratingAvg } = useContext(ContextObj);
 
-  let ratingRounded = Math.round(rating * 4) / 4;
+  const extraClass = props.classParam || null;
+
+  let ratingRounded = Math.round(props.rating * 4) / 4;
   let fullStars = Math.floor(ratingRounded);
   let partialStar = ratingRounded - fullStars;
   let emptyStars = Math.floor(5 - fullStars - partialStar);
@@ -29,7 +31,7 @@ const StarRating = ({rating}) => {
   }
 
   return (
-    <div className='starBar'>
+    <div className={`starBarTest ${extraClass}`}>
       {starArr.map((star, index) => {
         if (star === 1) {
           return (<img src={fullSvg} key={index} alt='full star'/>);

@@ -73,6 +73,7 @@
   overflow-y: auto;
   overflow-x:inherit;
   grid-template-rows: 25% 60% 15%;
+  border-radius: 10%;
 }
 
 .nameText {
@@ -181,14 +182,6 @@ label {
 
 .link:hover {
   font-weight: bold;
-}
-
-.clickable {
-
-}
-
-.QAEntry {
-
 }
 
 .qEntry {
@@ -364,4 +357,13 @@ label {
 
 .uploadBtn:hover {
   background-color: rgb(223, 223, 223);
+}
+
+.empty-list-button {
+  margin-top: 40px;
+  margin-left: 48px
+}
+
+.highlight {
+  background-color: yellow;
 }

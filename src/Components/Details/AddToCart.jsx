@@ -48,7 +48,7 @@ const AddToCart = ({ currentProductSizes }) => {
             })}
           </select>
 
-          <select disabled={!isSizeChosen} id="quantityDropDown" name="quantity" value={currentQuantity} onChange={(e) => {
+          <select disabled={!isSizeChosen} id="quantityDropDown" name="quantity" aria-label="quantity drop down" value={currentQuantity} onChange={(e) => {
             setCurrentQuantity(e.target.value);
           }}>
             <option value="">-</option>

@@ -219,6 +219,10 @@
   justify-content: center;
 }
 
+/* .mainPhoto-modal-body:hover .modalMainPhoto {
+  transform: scale(2.5);
+} */
+
 .modalMainPhoto {
   cursor: zoom-in;
   justify-content: center;
@@ -245,23 +249,47 @@
   width: auto;
 }
 
+.zoomedInContainer {
+  /* background-color: darkblue; */
+  position: absolute;
+  justify-content: left;
+  /* align-items:flex-start; */
+   overflow: hidden;
+   max-height: 80%;
+   max-width: 80%;
+   /* top: auto;
+   left: auto; */
+   z-index: 9;
+   overflow-y: scroll;
+   overflow-x: scroll;
+}
+
+.zoomedInContainer::-webkit-scrollbar {
+  display: none;
+}
+
 .modalZoomedInMainPhoto {
   cursor: zoom-out;
-  justify-content: center;
-  align-items: center;
-  position:fixed;
+  /* justify-content: center;
+  align-items: center; */
+  /* position: fixed; */
   margin: 0 50px 0 40px;
-  width: 100%;
+  width: 200%;
   max-width: 2750px;
-  height: 100%;
+  height: 200%;
   max-height: 2500px;
   z-index: 10;
+  /* left: -244px;
+  top: -113; */
+  display: block;
+  /* transform: translateY(-50%);
+  transform: translateX(-50%); */
 }
 
 .modalLeftArrow, .modalRightArrow {
   position: fixed;
   z-index: 3;
-  top: 150px;
+  top: 50%;
   /* transform: translateY(-50%); */
   width: 40px;
   height: 40px;
@@ -272,9 +300,9 @@
 }
 
 .modalLeftArrow{
-  left: 6%;
+  left: 16%;
 }
 
 .modalRightArrow {
-  left: 82%;
+  left: 60%;
 }

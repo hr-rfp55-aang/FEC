@@ -10,6 +10,7 @@ const QAList = (props) => {
   const [qLimit, setQLimit] = useState(4);
   const {productId} = useContext(ContextObj);
 
+
   useEffect(() => {
     setQLimit(4);
   }, [productId]);
@@ -24,7 +25,17 @@ const QAList = (props) => {
   };
 
   if (questionList.length === 0) {
-    return null;
+    return (
+      <div className="qa-list-grid">
+        <div className="qa-list">
+          {listHandler(questionList).map((question, index) => (<QAListEntry query={props.query} question={question} key={index} />))}
+        </div>
+        <div className="empty-list-button">
+          {props.addQuestion}
+          {listButton}
+        </div>
+      </div>
+    );
   }
 
   if (questionList.length - listHandler(questionList).length === 0) {
@@ -36,7 +47,7 @@ const QAList = (props) => {
   return (
     <div className="qa-list-grid">
       <div className="qa-list">
-        {listHandler(questionList).map((question, index) => (<QAListEntry question={question} key={index} />))}
+        {listHandler(questionList).map((question, index) => (<QAListEntry query={props.query} question={question} key={index} />))}
       </div>
       <div>
         {props.addQuestion}
