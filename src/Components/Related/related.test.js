@@ -60,7 +60,7 @@ describe('Related', () => {
 
   test('Does outfits render add outfit', () => {
     renderRelated();
-    const addOutfitTest = screen.getByText(/ADD OUTFIT/i);
+    const addOutfitTest = screen.getByText(/MY OUTFIT/i);
 
     expect(addOutfitTest).toBeInTheDocument();
   });

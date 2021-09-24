@@ -183,7 +183,8 @@ module.exports = {
     '^.+\\.(js|jsx|mjs|cjs|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
     '^.+\\.scss$': 'jest-scss-transform',
     '^.+\\.css$': '<rootDir>/jest/mocks/cssMock.js',
-    '^.+\\.svg$': '<rootDir>/jest/mocks/svgTransform.js'
+    '^.+\\.svg$': '<rootDir>/jest/mocks/svgTransform.js',
+    '^.+\\.png$': '<rootDir>/jest/mocks/svgTransform.js'
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
