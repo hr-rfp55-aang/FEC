@@ -19,6 +19,7 @@ const Outfits = (props) => {
 
   return (
     <div>
+      <h3>My Outfits</ h3>
       {isLoaded &&
         <div className='outfits'>
           <Carousel show={(myOutfits.length > 4) ? 4 : myOutfits.length}>

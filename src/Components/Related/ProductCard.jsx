@@ -4,9 +4,9 @@ import './styles.css';
 import { getServer, grabReviewScore } from '../../helpers';
 import ComparisonModal from './ComparisonModal';
 import actionImg from '../../assets/empty-star.svg';
+import missingImg from '../../assets/pants.svg';
 import StarRating from '../StarRatings';
 
-// const actionImg = '../../assets/related-star.svg';
 const ProductCard = ({cardId}) => {
 
   const { productId, setProductId, ratingAvg } = useContext(ContextObj);
@@ -23,11 +23,12 @@ const ProductCard = ({cardId}) => {
       getServer(`/reviews/meta/?product_id=${cardId}`)
     ])
       .then(([product, styles, reviewMeta]) => {
+        let photo = styles.results[0].photos[0].thumbnail_url || missingImg;
         setCardInfo({
           productId: cardId,
           name: product.name,
           category: product.category,
-          thumbnail: styles.results[0].photos[0].thumbnail_url,
+          thumbnail: photo,
           originalPrice: styles.results[0].original_price,
           salePrice: styles.results[0].sale_price,
           rating: grabReviewScore(reviewMeta.ratings)[0],
@@ -57,15 +58,14 @@ const ProductCard = ({cardId}) => {
       {isLoaded &&
         <div className='productCard' >
           <ComparisonModal show={modalShow} onClose={() => setModalShow(false)} cardInfo={cardInfo}/>
-          <img className='actionButton'src={actionImg} onClick={() => setModalShow(true)} />
+          <img className='actionButton'src={actionImg} onClick={() => setModalShow(true)} alt='Compare Item'/>
           <div className='card-wrapper' onClick={() => setProductId(cardId)}>
-            <img className='relatedPhoto' src={cardInfo.thumbnail} /></div>
-          <div onClick={() => setProductId(cardId)}>
+            <div><img className='relatedPhoto' src={cardInfo.thumbnail} /></div>
             <div>{cardInfo.category}</div>
             <div>{cardInfo.name}</div>
             {saleDiv()}
             <div>{cardInfo.rating} stars</div>
-            <div className='starLeft'>
+            <div className='starCard'>
               <StarRating rating={cardInfo.rating} />
             </div></div>
         </div>}

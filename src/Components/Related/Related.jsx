@@ -28,6 +28,7 @@ const Related = (props) => {
 
   return (
     <div className='related'>
+      <h3>Related Products</h3>
       {isLoaded && <div>
         <Carousel show={(relatedItems.length > 4) ? 4 : relatedItems.length}>
           {(relatedItems.length > 0) && relatedItems.map( (item, index) => {

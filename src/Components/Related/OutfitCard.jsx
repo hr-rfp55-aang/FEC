@@ -2,7 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import { ContextObj } from '../../ContextObj.jsx';
 import './styles.css';
 import { getServer, grabReviewScore } from '../../helpers';
-import actionImg from '../../../assets/outfits-x.svg';
+import actionImg from '../../assets/outfits-x.svg';
+import plusIcon from '../../assets/plus.svg';
+import crossIcon from '../../assets/cross.png';
+import StarRating from '../StarRatings';
 
 const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
 
@@ -54,12 +57,10 @@ const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
   if (cardInfo.productId === 'Add') {
     return (
       <div>
-        <div className='productCard' onClick={() => addOutfit(productId)}>
-          <div className='card-wrapper add'>
-            <div className='relatedPhoto'>ADD OUTFIT</div>
-          </div>
-          <div></div>
-        </div>
+        <div className='productCard add' onClick={() => addOutfit(productId)}>
+          <div className='card-wrapper'>
+            <div className='addPhoto'>+</div>
+          </div></div>
       </div>
     );
   }
@@ -67,13 +68,16 @@ const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
   return (
     <div>
       <div className='productCard'>
-        <img className='actionButton'src={actionImg} onClick={() => removeOutfit(cardInfo.productId)}/>
-        <div className='card-wrapper' onClick={() => setProductId(cardInfo.productId)}><img className='relatedPhoto' src={cardInfo.thumbnail} /></div>
-        <div onClick={() => setProductId(cardInfo.productId)}>
-          <div>{cardInfo.category}</div>
-          <div>{cardInfo.name}</div>
-          {saleDiv()}
-          <div></div>
+        <img className='actionButton' src={actionImg} onClick={() => removeOutfit(cardInfo.productId)} alt='Remove outfit'/>
+        <div className='card-wrapper' onClick={() => setProductId(cardInfo.productId)}><img className='relatedPhoto' src={cardInfo.thumbnail} />
+          <div onClick={() => setProductId(cardInfo.productId)}>
+            <div>{cardInfo.category}</div>
+            <div>{cardInfo.name}</div>
+            {saleDiv()}
+            <div>{cardInfo.rating} stars</div>
+            <div className='starCard'>
+              <StarRating rating={cardInfo.rating} />
+            </div></div>
         </div>
       </div>
     </div>
