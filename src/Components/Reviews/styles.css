@@ -287,8 +287,12 @@ h1 {
   margin: 0px;
   position: relative;
   float: top;
-  margin-left: 1%;
+  margin-left: 5%;
   z-index: -1;
+}
+
+.starBar {
+  margin-left: 2px;
 }
 
 .box-container {
