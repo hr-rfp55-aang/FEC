@@ -65,9 +65,8 @@ const ProductCard = ({cardId}) => {
             <div>{cardInfo.category}</div>
             <div>{cardInfo.name}</div>
             {saleDiv()}
-            <div>{cardInfo.rating} stars</div>
             <div className='starCard'>
-              <StarRating rating={cardInfo.rating} />
+              <StarRating rating={cardInfo.rating} classParam={'starCard'}/>
             </div></div>
         </div>}
     </div>

@@ -3,8 +3,7 @@ import { ContextObj } from '../../ContextObj.jsx';
 import './styles.css';
 import { getServer, grabReviewScore } from '../../helpers';
 import actionImg from '../../assets/outfits-x.svg';
-import plusIcon from '../../assets/plus.svg';
-import crossIcon from '../../assets/cross.png';
+import missingImg from '../../assets/pants.svg';
 import StarRating from '../StarRatings';
 
 const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
@@ -19,12 +18,13 @@ const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
 
   const addOutfit = (id) => {
     if (!isOutfitAdded) {
+      let photo = stylesInfo.results[0].photos[0].thumbnail_url || missingImg;
       setIsOutfitAdded(true);
       let itemDetails = {
         productId: productId,
         name: productInfo.name,
         category: productInfo.category,
-        thumbnail: stylesInfo.results[0].photos[0].thumbnail_url,
+        thumbnail: photo,
         originalPrice: stylesInfo.results[0].original_price,
         salePrice: stylesInfo.results[0].sale_price,
         rating: ratingAvg,
@@ -79,16 +79,14 @@ const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
     <div>
       <div className='productCard'>
         <img className='actionButton' src={actionImg} onClick={() => removeOutfit(cardInfo.productId)} alt='Remove outfit'/>
-        <div className='card-wrapper' onClick={() => setProductId(cardInfo.productId)}><img className='relatedPhoto' src={cardInfo.thumbnail} alt={cardInfo.name}/>
-          <div onClick={() => setProductId(cardInfo.productId)}>
-            <div>{cardInfo.category}</div>
-            <div>{cardInfo.name}</div>
-            {saleDiv()}
-            <div>{cardInfo.rating} stars</div>
-            <div className='starCard'>
-              <StarRating rating={cardInfo.rating} />
-            </div></div>
-        </div>
+        <div className='card-wrapper' onClick={() => setProductId(cardInfo.productId)}>
+          <div><img className='relatedPhoto' src={cardInfo.thumbnail} alt={cardInfo.name}/></div>
+          <div>{cardInfo.category}</div>
+          <div>{cardInfo.name}</div>
+          {saleDiv()}
+          <div className='starCard'>
+            <StarRating rating={cardInfo.rating} />
+          </div></div>
       </div>
     </div>
   );
