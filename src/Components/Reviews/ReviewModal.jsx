@@ -41,11 +41,13 @@ const ReviewModal = ({ submitReview, setSubmitReview, setReviews, uploadPics, se
       'recommend': recommend,
       'name': name,
       'email': email,
+      'photos': uploadPics,
       'characteristics': charObj
     })
       .then(() => getServer(`/reviews/?product_id=${productId}&count=100`))
       .then((result) => setReviews(result.results))
-      .then(() => setSubmitReview(false));
+      .then(() => setSubmitReview(false))
+      .then(() => setUploadPics([]));
   };
 
   if (!submitReview) {
@@ -84,7 +86,7 @@ const ReviewModal = ({ submitReview, setSubmitReview, setReviews, uploadPics, se
   };
 
   return (
-    <div className="review-modal" onClick={() => { setSubmitReview(false), setHover(null), setStarValue(null); }}>
+    <div className="review-modal" onClick={() => { setSubmitReview(false), setHover(null), setStarValue(null), setUploadPics([]); }}>
       <div className="review-modal-content" onClick={e => e.stopPropagation()}>
         <div className="review-modal-header">
           <h2 className="review-modal-title">Submit Your Review</h2>
@@ -127,7 +129,7 @@ const ReviewModal = ({ submitReview, setSubmitReview, setReviews, uploadPics, se
             *Your Review Body
             <textarea className='body-input' onChange={(e) => { setBody(e.target.value), setBodyCharCount(e.target.value.length); }} placeholder='Why did you like the product or not?'></textarea>
           </div>
-          {(body.length < 50) ? <div className='minimumChars'>{50 - body.length + ' remaining characters to reach minimum'}</div> : <div className='minimumChars'>minimum reached</div>}
+          {(body.length < 50) ? <div className='minimumChars'>{'Minimum required characters left: ' + (50 - body.length)}</div> : <div className='minimumChars'>{body.length < 1000 ? 'Minimum reached' : 'Maximum exeeded'}</div>}
           <div className='name-form'>
             *What is your nickname
             <input className='name-input' type="text" placeholder="Example: jackson11!" onChange={(e) => setName(e.target.value)}></input>

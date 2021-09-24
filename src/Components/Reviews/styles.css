@@ -163,6 +163,7 @@ h6 {
 .body {
   color:rgb(104, 103, 103);
   font-weight: 100;
+  overflow-wrap: break-word;
 }
 
 .reviewpics,
@@ -345,6 +346,11 @@ h6 {
   right: 12%;
   position: fixed;
   margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.picContainer {
+  margin-bottom: 20px;
 }
 
 .charAttBox {
@@ -489,8 +495,15 @@ textarea {
   width: 150px;
   font-weight: 600;
   border-width: thin;
-  margin: -2% 2% 0 10%;
-  position: sticky;
+  /* margin: -2% 2% 0 10%; */
+  left: 62%;
+  top: 88%;
+  position: fixed;
+  transition: 1s;
+}
+
+.submit-review:hover {
+  background-color: rgb(55, 194, 113);
 }
 
 .radio-star {
