@@ -2,27 +2,40 @@ import React, { useState, useEffect, useContext } from 'react';
 import { ContextObj } from '../../ContextObj.jsx';
 import './styles.css';
 import { getServer, grabReviewScore } from '../../helpers';
-import actionImg from '../../../assets/outfits-x.svg';
+import actionImg from '../../assets/outfits-x.svg';
+import plusIcon from '../../assets/plus.svg';
+import crossIcon from '../../assets/cross.png';
+import StarRating from '../StarRatings';
 
 const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
 
   const { productId, productInfo, setProductId, ratingAvg, stylesInfo, reviewMetaObj } = useContext(ContextObj);
 
+  const [isOutfitAdded, setIsOutfitAdded] = useState(false);
+
+  useEffect(() => {
+    setIsOutfitAdded(false);
+  }, [productId]);
+
   const addOutfit = (id) => {
-    let itemDetails = {
-      productId: productId,
-      name: productInfo.name,
-      category: productInfo.category,
-      thumbnail: stylesInfo.results[0].photos[0].thumbnail_url,
-      originalPrice: stylesInfo.results[0].original_price,
-      salePrice: stylesInfo.results[0].sale_price,
-      rating: ratingAvg,
-    };
-    setMyOutfits(prevState => {
-      let temp = prevState.slice();
-      temp.push(itemDetails);
-      return temp;
-    });
+    if (!isOutfitAdded) {
+      setIsOutfitAdded(true);
+      let itemDetails = {
+        productId: productId,
+        name: productInfo.name,
+        category: productInfo.category,
+        thumbnail: stylesInfo.results[0].photos[0].thumbnail_url,
+        originalPrice: stylesInfo.results[0].original_price,
+        salePrice: stylesInfo.results[0].sale_price,
+        rating: ratingAvg,
+        features: productInfo.features
+      };
+      setMyOutfits(prevState => {
+        let temp = prevState.slice();
+        temp.push(itemDetails);
+        return temp;
+      });
+    }
   };
 
   const removeOutfit = (id) => {
@@ -54,12 +67,10 @@ const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
   if (cardInfo.productId === 'Add') {
     return (
       <div>
-        <div className='productCard' onClick={() => addOutfit(productId)}>
-          <div className='card-wrapper add'>
-            <div className='relatedPhoto'>ADD OUTFIT</div>
-          </div>
-          <div></div>
-        </div>
+        <div className='productCard add' onClick={() => addOutfit(productId)}>
+          <div className='card-wrapper'>
+            <div className='addPhoto'>+</div>
+          </div></div>
       </div>
     );
   }
@@ -67,13 +78,16 @@ const OutfitCard = ({cardInfo, myOutfits, setMyOutfits}) => {
   return (
     <div>
       <div className='productCard'>
-        <img className='actionButton'src={actionImg} onClick={() => removeOutfit(cardInfo.productId)}/>
-        <div className='card-wrapper' onClick={() => setProductId(cardInfo.productId)}><img className='relatedPhoto' src={cardInfo.thumbnail} /></div>
-        <div onClick={() => setProductId(cardInfo.productId)}>
-          <div>{cardInfo.category}</div>
-          <div>{cardInfo.name}</div>
-          {saleDiv()}
-          <div></div>
+        <img className='actionButton' src={actionImg} onClick={() => removeOutfit(cardInfo.productId)} alt='Remove outfit'/>
+        <div className='card-wrapper' onClick={() => setProductId(cardInfo.productId)}><img className='relatedPhoto' src={cardInfo.thumbnail} alt={cardInfo.name}/>
+          <div onClick={() => setProductId(cardInfo.productId)}>
+            <div>{cardInfo.category}</div>
+            <div>{cardInfo.name}</div>
+            {saleDiv()}
+            <div>{cardInfo.rating} stars</div>
+            <div className='starCard'>
+              <StarRating rating={cardInfo.rating} />
+            </div></div>
         </div>
       </div>
     </div>

@@ -1,29 +1,57 @@
 .productCard {
-  height: 250px;
-  width: 150px;
+  position: relative;
+  margin: auto;
+  height: 50vh;
   float: left;
   border-style: solid;
   border-width: thin;
-  overflow: hidden;
-  text-align: center;
+  overflow: scroll;
   box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
-}
-.card-wrapper {
-  padding: 8;
+  -ms-overflow-style: none;  /* hide scrollbar in IE and Edge */
+  scrollbar-width: none;  /* hide scrollbar in Firefox */
 }
 
-.add {
-  width: 48px;
-  height: 48px;
-  background-color: white;
-  border: 1px solid #ddd;
+/* hide scrollbar in webkit browser */
+.productCard::-webkit-scrollbar, .productCard::-webkit-scrollbar {
+  display: none;
+}
+
+.card-wrapper {
+  width: 23vw;
+  text-align: center;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+}
+
+.productCard.add {
+  overflow: hidden;
 }
 
 .relatedPhoto {
-  height: 150px;
-  width: auto;
+  height: 25vh;
+  width: 25vh;
   object-fit: cover;
   overflow: hidden;
+  /* display: inline-block;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat; */
+  position: relative;
+}
+
+.addPhoto {
+  font-size: 30vh;
+  object-fit: cover;
+  overflow: hidden;
+  position: relative;
+
 }
 
 .related {
@@ -43,6 +71,12 @@
 
 .actionButton {
   position: absolute;
+  right: 5px;
+  top: 5px;
+  height: 2vw;
+  width: 2vw;
+  z-index: 1;
+  cursor: pointer;
 }
 
 /* CAROUSEL STYLES */
@@ -117,20 +151,41 @@
 
 /* MODAL SETTINGS */
 
-.comparison-modal {
+.relatedModal {
   position: fixed;
+  justify-content: center;
+  align-items: center;
+  display:flex;
+  height: 100%;
+  width: 100%;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
-  display:flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 255, 255, 0);
 }
 
-.modal-content {
+.modalWrapper {
+  max-height: 80vh;
+  overflow: scroll;
+  padding: 10px;
+  background: #fff;
+  color: #000;
+  border-radius: 10px;
+}
+
+.relatedModalContent {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5;
   border-style: solid;
   background-color:rgb(255, 255, 255, 0.9);
   box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
+}
+
+.starCard {
+  text-align: left;
 }
