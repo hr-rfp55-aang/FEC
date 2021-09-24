@@ -10,7 +10,7 @@ var CharacteristicsList = ({ rating }) => {
 
 
   return (
-    <div>
+    <div className='characteristics-box'>
       {characteristics.map((characteristic, index) =>
         <CharacteristicsEntry name={characteristic} CharObj={reviewMetaObj.characteristics[characteristic]} key={index}/>
       )}

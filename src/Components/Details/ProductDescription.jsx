@@ -8,7 +8,7 @@ const ProductDescription = ({ currentProductStyle }) => {
 
   return (
     <div className="descriptionOverview">
-      <div className="starsInDescription"> <StarRatings rating={ratingAvg}/>
+      <div className="starsInDescription"> <StarRatings rating={ratingAvg} classParam={'productStarBar'}/>
         <a className="descriptionRating" href="#ratingsReview"> Read all {reviewsTotal} reviews </a>
       </div>
       <div className="category">{productInfo.category}</div>
