@@ -31,7 +31,7 @@ const StarRating = (props) => {
   }
 
   return (
-    <div className={`starBarTest ${extraClass}`}>
+    <div className={`starBar ${extraClass}`}>
       {starArr.map((star, index) => {
         if (star === 1) {
           return (<img src={fullSvg} key={index} alt='full star'/>);

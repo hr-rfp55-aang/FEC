@@ -83,7 +83,7 @@ h1 {
   margin: 40px 0px 20px 0px;
   color:rgb(53, 50, 50);
   font-weight: 100;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 #rating-count {
@@ -102,9 +102,18 @@ h1 {
   transition: .3s;
 }
 
+.starRatings1 {
+  margin-right: 908px;
+  font-size: 17px;
+}
+
 .starRatings:hover {
   color:rgb(66, 65, 65);
   cursor: pointer;
+}
+
+.ratingAvgStars {
+
 }
 
 #ratingsReview {
@@ -261,9 +270,9 @@ h1 {
   margin-left: 1.5%;
 }
 
-.starBar {
+.starBarAvg {
   display: inline;
-  font-size: 2px;
+  font-size: 0px;
   margin: 0px;
   position: absolute;
   float: top;
