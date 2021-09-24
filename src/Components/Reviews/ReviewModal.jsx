@@ -15,6 +15,11 @@ const ReviewModal = ({ submitReview, setSubmitReview, setReviews, uploadPics, se
   const [email, setEmail] = useState();
   const [charObj, setCharObj] = useState();
   const [bodyCharCount, setBodyCharCount] = useState(0);
+  const [emailBool, setEmailBool] = useState(true);
+  const [nameBool, setNameBool] = useState(true);
+  const [bodyBool, setBodyBool] = useState(true);
+  const [summaryBool, setSummaryBool] = useState(true);
+
 
   const { reviewMetaObj, setReviewMeta, productId, productInfo } = useContext(ContextObj);
   var keys = Object.keys(reviewMetaObj.characteristics);
@@ -28,26 +33,41 @@ const ReviewModal = ({ submitReview, setSubmitReview, setReviews, uploadPics, se
     setCharObj(obj);
   }, [reviewMetaObj]);
 
-  // useEffect(() => {
-  //   setBodyCharCount(body.length);
-  // }, [body]);
+  var formValidation = (email, body, summary, nickname) => {
+    if (!validateEmail(email)) { setEmailBool(false); }
 
-  var postReview = () => {
-    postServer('/reviews', {
-      'product_id': productId,
-      'rating': starValue,
-      'summary': summary,
-      'body': body,
-      'recommend': recommend,
-      'name': name,
-      'email': email,
-      'photos': uploadPics,
-      'characteristics': charObj
-    })
-      .then(() => getServer(`/reviews/?product_id=${productId}&count=100`))
-      .then((result) => setReviews(result.results))
-      .then(() => setSubmitReview(false))
-      .then(() => setUploadPics([]));
+    if (body === '' || body.length < 50 || body.length > 1000) { setBodyBool(false); }
+
+    if (summary === '') { setSummaryBool(false); }
+
+    if (nickname === '') { setNameBool(false); }
+
+    if (!emailBool || !bodyBool || !summaryBool || !nameBool) { return false; }
+
+    return true;
+  };
+
+  var postReview = (email, body, summary, nickname) => {
+
+    if (formValidation(email, body, summary, nickname)) {
+      postServer('/reviews', {
+        'product_id': productId,
+        'rating': starValue,
+        'summary': summary,
+        'body': body,
+        'recommend': recommend,
+        'name': name,
+        'email': email,
+        'photos': uploadPics,
+        'characteristics': charObj
+      })
+        .then(() => getServer(`/reviews/?product_id=${productId}&count=100`))
+        .then((result) => setReviews(result.results))
+        .then(() => setSubmitReview(false))
+        .then(() => setUploadPics([]));
+    } else {
+      return;
+    }
   };
 
   if (!submitReview) {
@@ -61,6 +81,8 @@ const ReviewModal = ({ submitReview, setSubmitReview, setReviews, uploadPics, se
     if (rating === 4) { return 'Good'; }
     if (rating === 5) { return 'Great'; }
   };
+
+  var invalid = { color: 'red' };
 
   const uploadPhotos = () => {
     const photos = [...uploadPics];
@@ -122,7 +144,7 @@ const ReviewModal = ({ submitReview, setSubmitReview, setReviews, uploadPics, se
           </div>
           <ReviewModalCharList charObj={charObj} setCharObj={setCharObj} />
           <div className='summary-form'>
-            *Your Review Summary
+            {!summaryBool ? <div style={invalid}>*Your Review Summary</div> : <div>*Your Review Summary</div>}
             <input type='text' className='summary-input' onChange={(e) => setSummary(e.target.value)} placeholder='Best purchase ever!'></input>
           </div>
           <div className='body-form'>
