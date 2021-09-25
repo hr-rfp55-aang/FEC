@@ -3,7 +3,6 @@ import ProductDescription from './ProductDescription.jsx';
 import missingImg from '../../assets/pants.svg';
 
 const ThumbnailListItem = ({ index, photo, mainPhoto, setMainPhoto, mainPhotoName }) => {
-  // console.log('In thumbnaillistlitem: ', mainPhoto)
   return (
     <div >
       <img onClick={() => { setMainPhoto(photo); }}

@@ -5,7 +5,6 @@ import { getServer, postServer } from '../../helpers';
 import { ContextObj } from '../../ContextObj.jsx';
 
 const AddToCart = ({ currentProductSizes }) => {
-
   const [currentSku, setCurrentSku] = useState('');
   const [currentQuantity, setCurrentQuantity] = useState();
   const [itemsInCart, setItemsInCart] = useState([]);
