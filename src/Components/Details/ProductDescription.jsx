@@ -3,7 +3,6 @@ import StarRatings from '../StarRatings.jsx';
 import { ContextObj } from '../../ContextObj.jsx';
 
 const ProductDescription = ({ currentProductStyle }) => {
-
   const { productInfo, ratingAvg, reviewsTotal } = useContext(ContextObj);
 
   return (

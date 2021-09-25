@@ -2,8 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import missingImg from '../../assets/pants.svg';
 
 const StyleSelectorListItem = ({style, currentProductStyle, setCurrentProductStyle}) => {
-  // console.log('In StyleSLI ', currentProductStyle.style_id, style.style_id);
-
   return (
     <div className="productStyle">
       {currentProductStyle.style_id === style.style_id && <span className="styleCheckMark"> &#10003; </span>}

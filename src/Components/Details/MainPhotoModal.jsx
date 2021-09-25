@@ -9,20 +9,6 @@ const MainPhotoModal = ({ mainPhoto, closeMainPhotoModal, enlargeMainPhoto, prod
       className={mainPhoto.url === photo.url ? 'productMainPhotoThumbnail thumbnailListItem' : 'thumbnailListItem'} src={photo.thumbnail_url ||missingImg} alt={mainPhotoName + index} />;
   });
 
-
-  // if the mouse (y) goes up (+) down (-)
-  // if the mouse (x) goes left(-) right(+)
-  const x = 0;
-  const y = 0;
-
-  // useEffect(() => {
-  //   x =
-  //   y =
-  // }, [mousePosition]);
-
-  const zoomStyles = {
-    // transform: `translate(${mousePosition.x - 200}px, ${mousePosition.y - 200}px`
-  };
   return (
     <div>
       {enlargeMainPhoto ?
@@ -38,11 +24,9 @@ const MainPhotoModal = ({ mainPhoto, closeMainPhotoModal, enlargeMainPhoto, prod
                     </button> : null
                 }
               </div>
-              {/* <img className='modalMainPhoto' src={mainPhoto.url} onClick={() => { setIsMainPhotoZoomedIn(true); }}>
-              </img> */}
               {isMainPhotoZoomedIn ?
                 <div className="zoomedInContainer">
-                  <img className='modalZoomedInMainPhoto' style={zoomStyles} src={mainPhoto.url || missingImg} onClick={() => { setIsMainPhotoZoomedIn(false); }} onMouseMove={(e) => { setMousePosition({ x: e.clientX, y: e.clientY }); }} ></img>
+                  <img className='modalZoomedInMainPhoto' src={mainPhoto.url || missingImg} onClick={() => { setIsMainPhotoZoomedIn(false); }} onMouseMove={(e) => { setMousePosition({ x: e.clientX, y: e.clientY }); }} ></img>
                 </div>
                 : <img className='modalMainPhoto' src={mainPhoto.url} onClick={() => { setIsMainPhotoZoomedIn(true); }}>
                 </img>}
