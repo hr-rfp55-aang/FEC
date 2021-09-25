@@ -3,7 +3,7 @@ import { ContextObj } from '../../ContextObj.jsx';
 import './styles.css';
 import { getServer, grabReviewScore } from '../../helpers';
 import ComparisonModal from './ComparisonModal';
-import actionImg from '../../assets/empty-star.svg';
+import actionImg from '../../assets/star.svg';
 import missingImg from '../../assets/pants.svg';
 import StarRating from '../StarRatings';
 
@@ -54,12 +54,17 @@ const ProductCard = ({cardId}) => {
     }
   };
 
+  const styleStar = {
+    height: '16px',
+    width: '16px'
+  };
+
   return (
     <div>
       {isLoaded &&
         <div className='productCard' >
-          <ComparisonModal show={modalShow} onClose={() => setModalShow(false)} cardInfo={cardInfo}/>
-          <img className='actionButton'src={actionImg} onClick={() => setModalShow(true)} alt='Compare Item'/>
+          <ComparisonModal show={modalShow} onClose={() => setModalShow(false)} cardInfo={cardInfo} />
+          <img className='actionButton'src={actionImg} onClick={() => setModalShow(true)} alt='Compare Item' style={styleStar}/>
           <div className='card-wrapper' onClick={() => setProductId(cardId)}>
             <div><img className='relatedPhoto' src={cardInfo.thumbnail} alt={cardInfo.name}/></div>
             <div>{cardInfo.category}</div>

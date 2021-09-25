@@ -16,8 +16,9 @@
   margin-top: 6px;
 }
 
-.title {
-  /* font-size: 20px; */
+.q-title {
+  margin-top: 25px;
+  font-size: 25px;
   grid-column: 2;
 }
 
@@ -43,6 +44,10 @@
   grid-column: 2/3;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .emptyDiv {
   height: 50px;
 }
@@ -63,17 +68,17 @@
 
 .a-modal-content {
   display: grid;
-  height: 50%;
+  height: 70%;
   width: 40%;
-  background-color:rgba(212, 211, 199, 0.979);
+  background-color:rgb(195, 214, 241);
   box-shadow: 10px 25px 50px 10px rgba(71, 71, 70, 0.424), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
-  z-index: 5;
   justify-content: center;
   border-style: unset;
   overflow-y: auto;
   overflow-x:inherit;
   grid-template-rows: 25% 60% 15%;
   border-radius: 10%;
+  z-index: 1000;
 }
 
 .nameText {
@@ -162,17 +167,18 @@ label {
 
 .q-button {
   border-style: solid;
-  background-color: white;
+  background-color: rgb(139, 192, 241);
   height: 50px;
   width: 150px;
   font-weight: 600;
   border-width: thin;
-  border-color: rgb(223, 223, 223);
+  border-color: rgb(0, 0, 0);
   cursor: pointer;
+  color:black;
 }
 
 .q-button:hover {
-  background-color: rgb(223, 223, 223);
+  background-color: rgb(34, 117, 212);
 }
 
 .link {
@@ -186,10 +192,10 @@ label {
 
 .qEntry {
   display: grid;
-  border-top: white;
-  border-left: white;
-  border-right: white;
-  border-bottom: 4px rgb(223, 223, 223);
+  border-top: blanchedalmond;
+  border-left: blanchedalmond;
+  border-right: blanchedalmond;
+  border-bottom: 4px rgb(148, 182, 245, 0.5);
   border-style: solid;
   padding-bottom: 10px;
   padding-top: 10px;
@@ -202,10 +208,10 @@ label {
   padding-bottom: 10px;
   grid-template-columns: 5% auto;
   grid-template-rows: 70% 30%;
-  border: 1px solid rgb(223, 223, 223);
-  border-top: white;
-  border-left: white;
-  border-right: white;
+  border: 1px solid rgb(148, 182, 245, 0.5);
+  border-top: blanchedalmond;
+  border-left: blanchedalmond;
+  border-right: blanchedalmond;
 }
 
 .qLetter {
@@ -229,7 +235,7 @@ label {
 .moreAnswers {
   font-size: large;
   cursor: pointer;
-  background-color: rgb(223, 223, 223);
+  background-color: rgb(148, 182, 245, 0.5);
 }
 
 .moreAnswers:hover {
@@ -297,17 +303,18 @@ label {
   grid-column: 1;
   grid-row: 1;
   border-style: solid;
-  background-color: white;
+  background-color: rgb(139, 192, 241);
   height: 50px;
   width: 150px;
   font-weight: 600;
   border-width: thin;
-  border-color: rgb(223, 223, 223);
+  border-color: rgb(0, 0, 0);
   cursor: pointer;
+  color: black;
 }
 
 .a-button:hover {
-  background-color: rgb(223, 223, 223);
+  background-color: rgb(34, 117, 212);
 }
 
 .aWarningText {
@@ -356,7 +363,7 @@ label {
 }
 
 .uploadBtn:hover {
-  background-color: rgb(223, 223, 223);
+  background-color: rgb(75, 50, 50);
 }
 
 .empty-list-button {

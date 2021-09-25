@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import missingImg from '../../assets/pants.svg';
 
 const MainPhotoModal = ({ mainPhoto, closeMainPhotoModal, enlargeMainPhoto, productPhotos, setMainPhoto, mainPhotoName, index, photos, getNextImage, getPreviousImage, isMainPhotoZoomedIn, setIsMainPhotoZoomedIn }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const showOrHide = enlargeMainPhoto ? 'modal display-block' : 'modal display-none';
   const modalThumbnails = productPhotos.map((photo, index) => {
     return <img className="modalThumbnail" onClick={() => { setMainPhoto(photo); }} key={index}
-      className={mainPhoto.url === photo.url ? 'productMainPhotoThumbnail thumbnailListItem' : 'thumbnailListItem'} src={photo.thumbnail_url} alt={mainPhotoName + index} />;
+      className={mainPhoto.url === photo.url ? 'productMainPhotoThumbnail thumbnailListItem' : 'thumbnailListItem'} src={photo.thumbnail_url ||missingImg} alt={mainPhotoName + index} />;
   });
 
 
@@ -41,7 +42,7 @@ const MainPhotoModal = ({ mainPhoto, closeMainPhotoModal, enlargeMainPhoto, prod
               </img> */}
               {isMainPhotoZoomedIn ?
                 <div className="zoomedInContainer">
-                  <img className='modalZoomedInMainPhoto' style={zoomStyles} src={mainPhoto.url} onClick={() => { setIsMainPhotoZoomedIn(false); }} onMouseMove={(e) => { setMousePosition({ x: e.clientX, y: e.clientY }); }} ></img>
+                  <img className='modalZoomedInMainPhoto' style={zoomStyles} src={mainPhoto.url || missingImg} onClick={() => { setIsMainPhotoZoomedIn(false); }} onMouseMove={(e) => { setMousePosition({ x: e.clientX, y: e.clientY }); }} ></img>
                 </div>
                 : <img className='modalMainPhoto' src={mainPhoto.url} onClick={() => { setIsMainPhotoZoomedIn(true); }}>
                 </img>}
